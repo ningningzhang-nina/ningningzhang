@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "papers": "Papers",
+    "life": "Life"
+  },
+  "home": {
+    "greeting": "Hi, I'm",
+    "role": "Researcher · Engineer",
+    "bio": "Focused on machine learning and systems research. Here I share my projects, technical thoughts, published papers, and daily life.",
+    "recentPosts": "Recent Posts",
+    "featuredProjects": "Featured Projects",
+    "viewAll": "View All",
+    "readMore": "Read More"
+  },
+  "about": {
+    "title": "About Me",
+    "education": "Education",
+    "experience": "Experience",
+    "skills": "Skills"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Things I've built",
+    "viewCode": "Code",
+    "viewDemo": "Demo"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Technical articles, thoughts & ideas",
+    "minRead": "min read"
+  },
+  "papers": {
+    "title": "Papers & Publications",
+    "subtitle": "Academic work I've published"
+  },
+  "life": {
+    "title": "Life",
+    "subtitle": "Daily moments & sharing"
+  }
+}

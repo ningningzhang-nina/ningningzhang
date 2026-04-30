@@ -1,0 +1,51 @@
+---
+title: "Lessons from Building Scalable Data Pipelines"
+date: "2026-03-20"
+tags: ["Systems", "Engineering"]
+summary: "Practical lessons I've learned designing and operating high-throughput data systems."
+---
+
+After spending the past year building data pipelines that process millions of events per day, here are the most important lessons I've learned.
+
+## Start with the right data model
+
+The biggest mistake teams make is choosing a data model optimized for queries they think they'll run, rather than queries they actually run. Before writing any code, spend time mapping out your access patterns.
+
+## Backpressure is not optional
+
+Every pipeline component needs to communicate its capacity to upstream producers. Without backpressure, you're one traffic spike away from a cascading failure.
+
+```python
+# Simple token bucket implementation
+class TokenBucket:
+    def __init__(self, rate, capacity):
+        self.rate = rate
+        self.capacity = capacity
+        self.tokens = capacity
+        self.last_refill = time.time()
+
+    def consume(self, tokens=1):
+        self._refill()
+        if self.tokens >= tokens:
+            self.tokens -= tokens
+            return True
+        return False
+```
+
+## Idempotency everywhere
+
+Every operation that modifies state should be idempotent. Network failures are not edge cases — they're the normal operating condition at scale.
+
+## Monitor what matters
+
+You can have 200 metrics and still miss the one that matters. Pick 5 golden signals and make sure everyone on the team understands them:
+
+1. **Throughput**: events/second
+2. **Latency**: p50, p95, p99
+3. **Error rate**: failures/total
+4. **Queue depth**: current backlog
+5. **Consumer lag**: how far behind are readers
+
+## Final thoughts
+
+Scalable systems are not built with clever algorithms — they're built with boring, reliable components that fail predictably and recover gracefully.

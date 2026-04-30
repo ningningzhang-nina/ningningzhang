@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-[#fafafa] text-[#111];
+  }
+
+  /* Prose styles for MDX content */
+  .prose h1 { @apply text-2xl font-bold tracking-tight mb-4 mt-8; }
+  .prose h2 { @apply text-xl font-semibold tracking-tight mb-3 mt-7; }
+  .prose h3 { @apply text-lg font-semibold mb-2 mt-6; }
+  .prose p { @apply text-[15px] leading-relaxed text-[#333] mb-4; }
+  .prose a { @apply text-[#0a0a0a] underline underline-offset-2; }
+  .prose ul { @apply list-disc pl-5 mb-4 space-y-1; }
+  .prose ol { @apply list-decimal pl-5 mb-4 space-y-1; }
+  .prose li { @apply text-[15px] text-[#333]; }
+  .prose code { @apply bg-[#f5f5f5] px-1.5 py-0.5 rounded text-sm font-mono text-[#c7254e]; }
+  .prose pre { @apply bg-[#f5f5f5] rounded-xl p-4 overflow-x-auto mb-4; }
+  .prose pre code { @apply bg-transparent p-0 text-[#333] text-sm; }
+  .prose blockquote { @apply border-l-2 border-[#ddd] pl-4 italic text-[#666] mb-4; }
+  .prose hr { @apply border-[#ebebeb] my-8; }
+}
