@@ -35,7 +35,7 @@ const travelGroups = [
     key: 'chengdu',
     title: { zh: '成都', en: 'Chengdu' },
     date: { zh: '2024年12月', en: 'Dec 2024' },
-    images: ['IMG_6088.jpeg', 'IMG_6044.jpeg', 'IMG_5969.jpeg'],
+    images: ['IMG_6088.jpeg', 'IMG_6044.jpeg'],
   },
   {
     key: 'yuyuantan-2019',
