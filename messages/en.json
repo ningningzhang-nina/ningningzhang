@@ -4,7 +4,8 @@
     "about": "About",
     "projects": "Projects",
     "blog": "Blog",
-    "papers": "Papers"
+    "papers": "Papers",
+    "travel": "Travel"
   },
   "home": {
     "greeting": "Hi, I'm",
@@ -35,6 +36,10 @@
   "papers": {
     "title": "Papers & Publications",
     "subtitle": "Academic work I've published"
+  },
+  "travel": {
+    "title": "Travel",
+    "subtitle": "Places, fragments, and photographs"
   },
   "life": {}
 }

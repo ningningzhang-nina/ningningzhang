@@ -4,7 +4,8 @@
     "about": "关于我",
     "projects": "项目",
     "blog": "博客",
-    "papers": "论文"
+    "papers": "论文",
+    "travel": "旅行"
   },
   "home": {
     "greeting": "你好，我是",
@@ -35,6 +36,10 @@
   "papers": {
     "title": "论文与出版物",
     "subtitle": "发表的学术成果"
+  },
+  "travel": {
+    "title": "旅行",
+    "subtitle": "一些走过的地方和照片"
   },
   "life": {}
 }
