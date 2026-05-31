@@ -29,11 +29,11 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className="flex min-h-screen bg-[#f4f7fa]">
+      <body className="min-h-screen bg-[#fbfcff]">
         <NextIntlClientProvider messages={messages}>
           <Sidebar locale={locale} />
-          <main className="ml-64 min-h-screen flex-1">
-            <div className="px-12 py-12 xl:px-16">
+          <main className="min-h-screen">
+            <div>
               {children}
             </div>
           </main>
