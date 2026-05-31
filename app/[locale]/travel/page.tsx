@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
+import TravelGallery from '@/components/TravelGallery';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -17,7 +18,6 @@ const travelGroups = [
       'IMG_5387.jpeg',
       'IMG_6627.jpeg',
       'IMG_5618.jpeg',
-      'IMG_2540.jpeg',
       'IMG_0023.jpeg',
       'IMG_2470.jpeg',
       'IMG_0106.jpeg',
@@ -32,10 +32,10 @@ const travelGroups = [
     images: ['IMG_6088.jpeg', 'IMG_6044.jpeg', 'IMG_5969.jpeg'],
   },
   {
-    key: 'shenzhen',
-    title: { zh: '深圳', en: 'Shenzhen' },
-    date: { zh: '2024年11月', en: 'Nov 2024' },
-    images: ['IMG_5632.jpeg'],
+    key: 'yuyuantan-2019',
+    title: { zh: '2019年在玉渊潭公园', en: 'Yuyuantan Park, 2019' },
+    date: { zh: '2019年', en: '2019' },
+    images: ['yuyuantan-2019.jpeg'],
   },
 ] as const;
 
@@ -65,23 +65,12 @@ export default async function TravelPage({ params }: { params: Promise<{ locale:
               <div className="h-px flex-1 bg-[#e4e9f1]" />
             </div>
 
-            <div className="grid auto-rows-[220px] grid-cols-1 gap-4 md:grid-cols-3">
-              {group.images.map((image, index) => (
-                <figure
-                  key={image}
-                  className={`group overflow-hidden bg-white shadow-[0_14px_40px_rgba(37,55,78,0.08)] ${
-                    index === 0 && group.images.length > 1 ? 'md:col-span-2 md:row-span-2' : ''
-                  }`}
-                >
-                  <img
-                    src={`${basePath}/images/travel/${image}`}
-                    alt={`${group.title[l]} ${index + 1}`}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                </figure>
-              ))}
-            </div>
+            <TravelGallery
+              images={group.images.map((image, index) => ({
+                src: `${basePath}/images/travel/${image}`,
+                alt: `${group.title[l]} ${index + 1}`,
+              }))}
+            />
           </section>
         ))}
       </div>

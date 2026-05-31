@@ -30,9 +30,11 @@ export default function Sidebar({ locale }: { locale: string }) {
     <header className="sticky top-0 z-50 border-b border-[#18385c] bg-[#0f2742]">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
         <Link href={`/${locale}`} className="group flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#bda36b] bg-white text-[13px] font-semibold text-[#0f2742]">
-            NZ
-          </span>
+          <img
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/profile/avatar.jpeg`}
+            alt="Ningning Zhang"
+            className="h-10 w-10 rounded-full border border-[#bda36b] object-cover"
+          />
           <span>
             <span className="block text-[15px] font-semibold text-white">Ningning Zhang</span>
             <span className="block text-[11px] uppercase tracking-[0.18em] text-[#d6c28b]">Academic Profile</span>
