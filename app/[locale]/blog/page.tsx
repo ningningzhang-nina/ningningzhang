@@ -37,7 +37,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   const sortedKeys = Object.keys(grouped).sort((a, b) => (a < b ? 1 : -1));
 
   return (
-    <div className="max-w-2xl">
+    <div className="mx-auto max-w-4xl px-6 py-14">
       <div className="mb-8">
         <h1 className="text-[32px] font-bold tracking-tight text-[#0a0a0a] mb-2">{t('title')}</h1>
         <p className="text-[15px] text-[#888]">{t('subtitle')}</p>

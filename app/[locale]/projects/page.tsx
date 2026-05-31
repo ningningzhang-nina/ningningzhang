@@ -16,7 +16,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
   const projects = getAllProjects();
 
   return (
-    <div className="max-w-2xl">
+    <div className="mx-auto max-w-4xl px-6 py-14">
       <div className="mb-10">
         <h1 className="text-[32px] font-bold tracking-tight text-[#0a0a0a] mb-2">{t('title')}</h1>
         <p className="text-[15px] text-[#888]">{t('subtitle')}</p>

@@ -10,7 +10,6 @@ const navItems = [
   { key: 'papers', href: '/papers' },
   { key: 'blog', href: '/blog' },
   { key: 'projects', href: '/projects' },
-  { key: 'life', href: '/life' },
 ] as const;
 
 export default function Sidebar({ locale }: { locale: string }) {

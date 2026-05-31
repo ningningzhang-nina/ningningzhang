@@ -123,7 +123,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const l = locale as 'zh' | 'en';
 
   return (
-    <div className="max-w-2xl">
+    <div className="mx-auto max-w-4xl px-6 py-14">
       <h1 className="text-[32px] font-bold tracking-tight text-[#0a0a0a] mb-10">
         {l === 'zh' ? '关于我' : 'About Me'}
       </h1>

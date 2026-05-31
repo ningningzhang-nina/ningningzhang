@@ -74,23 +74,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
 
-          <aside className="rounded-[2px] border border-[#e2e7ef] bg-white p-8 shadow-[0_30px_80px_rgba(37,55,78,0.12)]">
-            <p className="mb-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#8a7444]">
-              Academic Snapshot
-            </p>
-            <div className="space-y-6">
-              {[
-                [isZh ? '现任' : 'Current', isZh ? '航信博士后研究员' : 'Postdoctoral Researcher, TravelSky'],
-                [isZh ? '教育' : 'Education', isZh ? '香港大学统计学博士' : 'Ph.D. in Statistics, HKU'],
-                [isZh ? '方向' : 'Focus', isZh ? '收益管理 · 动态定价 · 时间序列' : 'Revenue Management · Dynamic Pricing · Time Series'],
-                ['Email', 'zhangnn0725@163.com'],
-              ].map(([label, value]) => (
-                <div key={label} className="border-t border-[#edf1f6] pt-5">
-                  <div className="mb-1 text-[12px] font-semibold uppercase tracking-[0.16em] text-[#9aa6b6]">{label}</div>
-                  <div className="text-[17px] font-semibold leading-7 text-[#0f2742]">{value}</div>
-                </div>
-              ))}
-            </div>
+          <aside className="min-h-[360px] rounded-[2px] border border-[#e2e7ef] bg-white shadow-[0_30px_80px_rgba(37,55,78,0.12)]" aria-label={isZh ? '个人视觉图占位' : 'Personal visual placeholder'}>
+            <div className="h-full min-h-[360px] bg-[radial-gradient(circle_at_70%_30%,rgba(189,163,107,0.10),transparent_34%),linear-gradient(135deg,#ffffff_0%,#f6f9fd_100%)]" />
           </aside>
         </div>
       </section>

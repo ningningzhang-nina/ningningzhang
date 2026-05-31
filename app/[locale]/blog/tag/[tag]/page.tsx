@@ -25,7 +25,7 @@ export default async function BlogTagPage({ params }: { params: Promise<{ locale
   if (posts.length === 0) notFound();
 
   return (
-    <div className="max-w-2xl">
+    <div className="mx-auto max-w-4xl px-6 py-14">
       <Link
         href={`/${locale}/blog`}
         className="inline-flex items-center gap-1.5 text-[13px] text-[#999] hover:text-[#0a0a0a] mb-8 transition-colors"

@@ -1,6 +1,7 @@
 .next/
 out/
 node_modules/
+content/life/*.md
 .env
 .env.local
 .env*.local
