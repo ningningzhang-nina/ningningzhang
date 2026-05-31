@@ -12,6 +12,7 @@ export interface Post {
   summary: string;
   content: string;
   readingTime?: string;
+  externalUrl?: string;
 }
 
 export interface Paper {
@@ -24,6 +25,7 @@ export interface Paper {
   doi?: string;
   pdf?: string;
   featured?: boolean;
+  citations?: number;
 }
 
 export interface Project {
@@ -44,6 +46,7 @@ export interface LifePost {
   date: string;
   content: string;
   images?: string[];
+  tags: string[];
 }
 
 function estimateReadingTime(content: string): string {
@@ -74,9 +77,21 @@ export function getAllPosts(locale: string): Post[] {
         summary: data.summary ?? '',
         content,
         readingTime: estimateReadingTime(content),
+        externalUrl: data.externalUrl as string | undefined,
       } as Post;
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+export function getAllBlogTags(locale: string): string[] {
+  const posts = getAllPosts(locale);
+  const tagSet = new Set<string>();
+  posts.forEach((p) => p.tags.forEach((t) => tagSet.add(t)));
+  return Array.from(tagSet).sort();
+}
+
+export function getPostsByTag(locale: string, tag: string): Post[] {
+  return getAllPosts(locale).filter((p) => p.tags.includes(tag));
 }
 
 export function getPostBySlug(locale: string, slug: string): Post | null {
@@ -95,13 +110,34 @@ export function getPostBySlug(locale: string, slug: string): Post | null {
     summary: data.summary ?? '',
     content,
     readingTime: estimateReadingTime(content),
+    externalUrl: data.externalUrl as string | undefined,
   };
 }
 
 export function getAllPapers(): Paper[] {
+  // 从单个 papers.md 文件读取所有论文
+  const singleFile = path.join(contentDir, 'papers.md');
+  if (fs.existsSync(singleFile)) {
+    const raw = fs.readFileSync(singleFile, 'utf8');
+    const { data } = matter(raw);
+    const list: Paper[] = (data.papers ?? []).map((p: Record<string, unknown>, i: number) => ({
+      slug: `paper-${i}`,
+      title: p.title ?? '',
+      authors: p.authors ?? '',
+      venue: p.venue ?? '',
+      year: p.year ?? 2024,
+      abstract: p.abstract ?? '',
+      doi: p.doi as string | undefined,
+      pdf: p.pdf as string | undefined,
+      featured: p.featured ?? false,
+      citations: p.citations as number | undefined,
+    }));
+    return list.sort((a, b) => b.year - a.year);
+  }
+
+  // 兼容旧的多文件模式
   const dir = path.join(contentDir, 'papers');
   const files = readDir(dir);
-
   return files
     .map((filename) => {
       const slug = filename.replace(/\.(md|mdx)$/, '');
@@ -161,7 +197,38 @@ export function getAllLifePosts(): LifePost[] {
         date: data.date ?? '',
         content,
         images: data.images ?? [],
+        tags: data.tags ?? [],
       } as LifePost;
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+export function getLifePostBySlug(slug: string): LifePost | null {
+  const dir = path.join(contentDir, 'life');
+  const filePath = path.join(dir, `${slug}.md`);
+  const fallback = path.join(dir, `${slug}.mdx`);
+  const target = fs.existsSync(filePath) ? filePath : fs.existsSync(fallback) ? fallback : null;
+  if (!target) return null;
+
+  const raw = fs.readFileSync(target, 'utf8');
+  const { data, content } = matter(raw);
+  return {
+    slug,
+    title: data.title ?? slug,
+    date: data.date ?? '',
+    content,
+    images: data.images ?? [],
+    tags: data.tags ?? [],
+  };
+}
+
+export function getAllLifeTags(): string[] {
+  const posts = getAllLifePosts();
+  const tagSet = new Set<string>();
+  posts.forEach((p) => p.tags.forEach((t) => tagSet.add(t)));
+  return Array.from(tagSet).sort();
+}
+
+export function getLifePostsByTag(tag: string): LifePost[] {
+  return getAllLifePosts().filter((p) => p.tags.includes(tag));
 }

@@ -26,4 +26,9 @@
   .prose pre code { @apply bg-transparent p-0 text-[#333] text-sm; }
   .prose blockquote { @apply border-l-2 border-[#ddd] pl-4 italic text-[#666] mb-4; }
   .prose hr { @apply border-[#ebebeb] my-8; }
+  .prose .table-wrap { @apply overflow-x-auto mb-6 rounded-lg border border-[#e8e8e8] bg-white; }
+  .prose table { @apply w-full border-collapse text-[14px]; }
+  .prose th { @apply bg-[#f7f7f7] px-4 py-3 text-left font-semibold text-[#111] border-b border-[#e8e8e8] whitespace-nowrap; }
+  .prose td { @apply px-4 py-3 text-[#333] border-b border-[#f0f0f0] align-top leading-relaxed; }
+  .prose tr:last-child td { @apply border-b-0; }
 }

@@ -9,101 +9,178 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const education = [
   {
-    degree: { zh: '博士研究生', en: 'PhD Student' },
-    school: 'University Name',
-    period: '2022 – Present',
-    detail: { zh: '计算机科学，专注机器学习与系统方向', en: 'Computer Science, focused on ML & Systems' },
+    degree: { zh: '统计学 博士', en: 'Ph.D. in Statistics' },
+    school: { zh: '香港大学', en: 'The University of Hong Kong' },
+    period: '2019.09 – 2024.12',
+    details: {
+      zh: ['主修：高级统计推断、高级概率论、计算统计', '全额博士奖学金 · 香港大学高等教育教学证书'],
+      en: ['Courses: Advanced Statistical Inference, Advanced Probability Theory, Computational Statistics', 'Full PhD Scholarship · HKU Certificate in Higher Education Teaching'],
+    },
   },
   {
-    degree: { zh: '工学学士', en: 'Bachelor of Engineering' },
-    school: 'Another University',
-    period: '2018 – 2022',
-    detail: { zh: '软件工程', en: 'Software Engineering' },
+    degree: { zh: '统计学 硕士', en: 'M.S. in Statistics' },
+    school: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
+    period: '2016.09 – 2019.06',
+    details: {
+      zh: ['主修：统计模型与应用、时间序列分析、统计优化、多元统计分析', '平均分 93.51，全系 45 人排名第一', '国家奖学金 · 一等奖学金×2 · 三好研究生 · 研究生创新项目'],
+      en: ['Courses: Statistical Models, Time Series Analysis, Statistical Optimization, Multivariate Analysis', 'GPA: 93.51/100 · Ranked 1st out of 45 students', 'National Scholarship · First-class Scholarship ×2 · Excellent Graduate Student'],
+    },
+  },
+  {
+    degree: { zh: '信息与计算科学 学士', en: 'B.S. in Information and Computing Science' },
+    school: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
+    period: '2012.09 – 2016.06',
+    details: {
+      zh: ['主修：数学分析、高等代数、运筹学、数值分析、C语言、Matlab、R语言', '平均分 88.1，全系 110 人排名第九，获保研资格'],
+      en: ['Courses: Mathematical Analysis, Advanced Algebra, Operations Research, Numerical Analysis, C, Matlab, R', 'GPA: 88.1/100 · Ranked 9th out of 110 · Qualified for direct Master\'s enrollment'],
+    },
   },
 ];
 
-const experience = [
+const workExperience = [
   {
-    role: { zh: '研究实习生', en: 'Research Intern' },
-    company: 'Some Lab / Company',
-    period: '2023 Summer',
-    detail: { zh: '大规模分布式系统研究', en: 'Large-scale distributed systems research' },
+    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
+    company: { zh: '中国民航信息网络股份有限公司（航信）', en: 'TravelSky Technology Limited' },
+    period: { zh: '2025.09 – 至今', en: '2025.09 – Present' },
+    details: {
+      zh: ['研究方向：民航收益管理与动态定价算法研究'],
+      en: ['Research focus: airline revenue management and dynamic pricing algorithm research'],
+    },
+  },
+  {
+    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
+    company: { zh: '香港大学', en: 'The University of Hong Kong' },
+    period: '2025.01 – 2025.08',
+    details: {
+      zh: ['继续金融时间序列分析与统计建模相关研究'],
+      en: ['Continued research in financial time series analysis and statistical modeling'],
+    },
+  },
+  {
+    role: { zh: '研究助理', en: 'Research Assistant' },
+    company: { zh: '香港大学', en: 'The University of Hong Kong' },
+    period: '2023.09 – 2024.12',
+    details: {
+      zh: ['参与多项统计学科研项目，协助论文写作与数据分析'],
+      en: ['Participated in multiple statistics research projects, assisting with paper writing and data analysis'],
+    },
   },
 ];
 
-const skills = ['Python', 'PyTorch', 'TypeScript', 'Go', 'Kubernetes', 'PostgreSQL', 'Linux', 'LaTeX'];
+const internship = [
+  {
+    role: { zh: '算法工程师（实习）', en: 'Algorithm Engineer Intern' },
+    company: { zh: '美团', en: 'Meituan' },
+    period: '2018.03 – 2018.05',
+    details: {
+      zh: ['参与外卖配送时间预测算法优化，通过特征工程识别关键特征', '将新特征集成到现有模型中，显著提升预测准确性与配送效率'],
+      en: ['Optimized food delivery time prediction via feature engineering', 'Integrated new features into existing models, significantly improving accuracy'],
+    },
+  },
+  {
+    role: { zh: '数据分析实习生', en: 'Data Analysis Intern' },
+    company: { zh: '滴滴出行', en: 'DiDi Chuxing' },
+    period: '2017.10 – 2017.12',
+    details: {
+      zh: ['使用线性回归分析顺风车供需关系，评估调价策略影响', '应用 K-means 聚类为 A/B 实验设计提供数据驱动指导'],
+      en: ['Built linear regression models to analyze supply-demand dynamics and evaluate pricing strategies', 'Applied K-means clustering for city segmentation to guide A/B experiment design'],
+    },
+  },
+];
+
+function ExperienceList({ items, locale }: { items: typeof workExperience; locale: string }) {
+  const l = locale as 'zh' | 'en';
+  return (
+    <div className="space-y-8">
+      {items.map((exp, i) => (
+        <div key={i} className="flex gap-4">
+          <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#ccc] shrink-0" />
+          <div className="flex-1">
+            <div className="flex items-baseline justify-between gap-2 flex-wrap">
+              <span className="text-[15px] font-semibold text-[#0a0a0a]">{exp.role[l]}</span>
+              <span className="text-[12px] text-[#bbb] shrink-0">
+                {typeof exp.period === 'string' ? exp.period : exp.period[l]}
+              </span>
+            </div>
+            <div className="text-[14px] text-[#555] mb-2">{exp.company[l]}</div>
+            <ul className="space-y-1">
+              {exp.details[l].map((d, j) => (
+                <li key={j} className="text-[13px] text-[#888] flex gap-2">
+                  <span className="text-[#ccc] shrink-0">·</span><span>{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'about' });
   const l = locale as 'zh' | 'en';
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-[32px] font-bold tracking-tight text-[#0a0a0a] mb-10">{t('title')}</h1>
+      <h1 className="text-[32px] font-bold tracking-tight text-[#0a0a0a] mb-10">
+        {l === 'zh' ? '关于我' : 'About Me'}
+      </h1>
 
-      {/* Bio */}
+      {/* 简介 */}
       <section className="mb-12">
         <p className="text-[16px] text-[#555] leading-relaxed mb-4">
-          {locale === 'zh'
-            ? '你好！我是张宁宁，目前在某某大学攻读博士学位，研究方向为机器学习与分布式系统。我热爱构建实际可用的系统，并将研究成果转化为工程实践。'
-            : "Hi! I'm Zhang Ningning, a PhD student at a university researching machine learning and distributed systems. I love building systems that work in practice and bridging the gap between research and engineering."}
+          {l === 'zh'
+            ? '香港大学统计学博士，专注于金融时间序列分析与因果推断研究，具备扎实的数学与统计学理论基础，擅长数据建模与分析，掌握多种编程语言（Matlab, Python, R 等）。'
+            : 'PhD in Statistics from The University of Hong Kong, specializing in financial time series analysis and causal inference. Skilled in data modeling and programming (Matlab, Python, R).'}
         </p>
         <p className="text-[16px] text-[#555] leading-relaxed">
-          {locale === 'zh'
-            ? '业余时间我喜欢写作、摄影和爬山。这个网站是我分享思考、记录成长的地方。'
-            : 'In my spare time I enjoy writing, photography, and hiking. This site is where I share my thinking and document my growth.'}
+          {l === 'zh'
+            ? '多年学术训练培养了强大的逻辑思维与快速学习能力，喜欢挑战，具备较强的抗压能力，为人正直严谨，积极乐观，勤学奉献。'
+            : 'Years of academic training cultivated strong logical thinking. I enjoy challenges, stay optimistic under pressure, and am committed to rigorous, dedicated work.'}
         </p>
       </section>
 
-      {/* Education */}
+      {/* 工作经历 */}
       <section className="mb-12">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-5">
-          {t('education')}
+        <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-6">
+          {l === 'zh' ? '工作经历' : 'Work Experience'}
         </h2>
-        <div className="space-y-6">
+        <ExperienceList items={workExperience} locale={locale} />
+      </section>
+
+      {/* 实习经历 */}
+      <section className="mb-12">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-6">
+          {l === 'zh' ? '实习经历' : 'Internship'}
+        </h2>
+        <ExperienceList items={internship} locale={locale} />
+      </section>
+
+      {/* 教育背景 */}
+      <section className="mb-12">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-6">
+          {l === 'zh' ? '教育背景' : 'Education'}
+        </h2>
+        <div className="space-y-8">
           {education.map((edu, i) => (
             <div key={i} className="flex gap-4">
-              <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#ccc] shrink-0" />
-              <div>
-                <div className="text-[15px] font-semibold text-[#0a0a0a]">{edu.degree[l]}</div>
-                <div className="text-[14px] text-[#555]">{edu.school} · {edu.period}</div>
-                <div className="text-[13px] text-[#999] mt-0.5">{edu.detail[l]}</div>
+              <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#ccc] shrink-0" />
+              <div className="flex-1">
+                <div className="flex items-baseline justify-between gap-2 flex-wrap">
+                  <span className="text-[15px] font-semibold text-[#0a0a0a]">{edu.degree[l]}</span>
+                  <span className="text-[12px] text-[#bbb] shrink-0">{edu.period}</span>
+                </div>
+                <div className="text-[14px] text-[#555] mb-2">{edu.school[l]}</div>
+                <ul className="space-y-1">
+                  {edu.details[l].map((d, j) => (
+                    <li key={j} className="text-[13px] text-[#888] flex gap-2">
+                      <span className="text-[#ccc] shrink-0">·</span><span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Experience */}
-      <section className="mb-12">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-5">
-          {t('experience')}
-        </h2>
-        <div className="space-y-6">
-          {experience.map((exp, i) => (
-            <div key={i} className="flex gap-4">
-              <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#ccc] shrink-0" />
-              <div>
-                <div className="text-[15px] font-semibold text-[#0a0a0a]">{exp.role[l]}</div>
-                <div className="text-[14px] text-[#555]">{exp.company} · {exp.period}</div>
-                <div className="text-[13px] text-[#999] mt-0.5">{exp.detail[l]}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section className="mb-12">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-5">
-          {t('skills')}
-        </h2>
-        <div className="flex flex-wrap gap-2">
-          {skills.map((skill) => (
-            <span key={skill} className="px-3 py-1.5 bg-white border border-[#ebebeb] rounded-lg text-[13px] text-[#444] font-medium">
-              {skill}
-            </span>
           ))}
         </div>
       </section>

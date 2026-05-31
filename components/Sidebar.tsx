@@ -35,8 +35,8 @@ export default function Sidebar({ locale }: { locale: string }) {
         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#e8e8e8] to-[#d0d0d0] flex items-center justify-center text-xl mb-4 select-none">
           人
         </div>
-        <div className="text-[15px] font-semibold tracking-tight text-[#0a0a0a]">ningningzhang</div>
-        <div className="text-[12px] text-[#999] mt-0.5">Researcher · Engineer</div>
+        <div className="text-[15px] font-semibold tracking-tight text-[#0a0a0a]">张宁宁 Ningning Zhang</div>
+        <div className="text-[12px] text-[#999] mt-0.5">统计学博士 · 香港大学</div>
       </div>
 
       <div className="px-4 mb-2">
@@ -81,17 +81,13 @@ export default function Sidebar({ locale }: { locale: string }) {
 
         {/* Social links */}
         <div className="flex gap-3">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-            className="text-[12px] text-[#bbb] hover:text-[#555] transition-colors">
-            GitHub
-          </a>
-          <a href="mailto:your@email.com"
+          <a href="mailto:zhangnn0725@163.com"
             className="text-[12px] text-[#bbb] hover:text-[#555] transition-colors">
             Email
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+          <a href="https://ningningzhang-nina.github.io/" target="_blank" rel="noopener noreferrer"
             className="text-[12px] text-[#bbb] hover:text-[#555] transition-colors">
-            Twitter
+            主页
           </a>
         </div>
       </div>

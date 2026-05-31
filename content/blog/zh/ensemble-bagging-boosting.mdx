@@ -1,0 +1,122 @@
+---
+title: "集成学习、Bagging 与 Boosting 的关系梳理"
+date: "2026-05-28"
+tags: ["机器学习", "集成学习", "Boosting"]
+summary: "用一张结构图和几张表梳理 Bagging、Boosting、随机森林、XGBoost、LightGBM 与 CatBoost 的关系。"
+---
+
+## 整体关系
+
+```text
+集成学习 (Ensemble Learning)
+├── Bagging（并行，降方差）
+│   └── 随机森林 (Random Forest)
+├── Boosting（串行，降偏差）
+│   ├── AdaBoost
+│   ├── Gradient Boosting
+│   │   ├── XGBoost
+│   │   ├── LightGBM
+│   │   └── CatBoost
+│   └── 其他（LogitBoost 等）
+└── Stacking（模型输出作为新特征）
+```
+
+## 两大范式
+
+<div className="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Bagging</th>
+        <th>Boosting</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>核心思想</td>
+        <td>多个模型独立训练，取平均</td>
+        <td>多个模型串行训练，后者修正前者</td>
+      </tr>
+      <tr>
+        <td>解决的问题</td>
+        <td>降低方差（防过拟合）</td>
+        <td>降低偏差（提升精度）</td>
+      </tr>
+      <tr>
+        <td>树之间关系</td>
+        <td>独立</td>
+        <td>依赖</td>
+      </tr>
+      <tr>
+        <td>代表</td>
+        <td>随机森林</td>
+        <td>XGBoost, LightGBM</td>
+      </tr>
+      <tr>
+        <td>提出者</td>
+        <td>Breiman, 1996</td>
+        <td>Freund &amp; Schapire, 1997</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## 具体算法
+
+<div className="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>算法</th>
+        <th>属于</th>
+        <th>核心特点</th>
+        <th>论文</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Random Forest</td>
+        <td>Bagging</td>
+        <td>行采样 + 列采样 + 取平均</td>
+        <td>Breiman 2001</td>
+      </tr>
+      <tr>
+        <td>AdaBoost</td>
+        <td>Boosting</td>
+        <td>给错误样本加权重</td>
+        <td>Freund &amp; Schapire 1997</td>
+      </tr>
+      <tr>
+        <td>Gradient Boosting</td>
+        <td>Boosting</td>
+        <td>每棵树拟合损失函数的梯度（残差）</td>
+        <td>Friedman 2001</td>
+      </tr>
+      <tr>
+        <td>XGBoost</td>
+        <td>Gradient Boosting</td>
+        <td>加了正则化 + 二阶导 + 工程优化</td>
+        <td>Chen &amp; Guestrin 2016</td>
+      </tr>
+      <tr>
+        <td>LightGBM</td>
+        <td>Gradient Boosting</td>
+        <td>直方图加速 + 按叶子生长</td>
+        <td>Ke et al. 2017</td>
+      </tr>
+      <tr>
+        <td>CatBoost</td>
+        <td>Gradient Boosting</td>
+        <td>类别特征处理更好 + 排序 Boosting</td>
+        <td>Prokhorenkova et al. 2018</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## 一句话记忆
+
+**Bagging**：每个人独立做题，最后取平均分。
+
+**Boosting**：第一个人做完，第二个人专门改第一个人的错题，第三个人再改前两个人还没改对的。
