@@ -1,6 +1,6 @@
-import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { getLifePostsByTag, getAllLifeTags } from '@/lib/content';
+import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
 
 export default async function LifeTagPage({ params }: { params: Promise<{ locale: string; tag: string }> }) {
   const { locale, tag } = await params;
+  setRequestLocale(locale);
   const decodedTag = decodeURIComponent(tag);
   const posts = getLifePostsByTag(decodedTag);
 

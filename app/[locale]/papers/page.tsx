@@ -1,17 +1,20 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAllPapers } from '@/lib/content';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'papers' });
   return { title: t('title') };
 }
 
 export default async function PapersPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'papers' });
   const papers = getAllPapers();
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const years = [...new Set(papers.map((p) => p.year))].sort((a, b) => b - a);
 
   return (
@@ -61,7 +64,7 @@ export default async function PapersPage({ params }: { params: Promise<{ locale:
                   )}
                   {paper.pdf && (
                     <a
-                      href={paper.pdf}
+                      href={`${basePath}${paper.pdf}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[12px] text-[#555] hover:text-[#0a0a0a] underline underline-offset-2 transition-colors"

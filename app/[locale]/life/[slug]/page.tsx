@@ -1,7 +1,7 @@
-import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getLifePostBySlug, getAllLifePosts } from '@/lib/content';
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 
 export async function generateStaticParams({ params }: { params: { locale: string } }) {
@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function LifePostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const post = getLifePostBySlug(slug);
   if (!post) notFound();
 

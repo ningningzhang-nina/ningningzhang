@@ -1,5 +1,4 @@
-import { useTranslations } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { getAllPosts, getAllProjects } from '@/lib/content';
 import type { Metadata } from 'next';
@@ -19,8 +18,8 @@ function TagBadge({ tag }: { tag: string }) {
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'home' });
-  const navT = await getTranslations({ locale, namespace: 'nav' });
 
   const posts = getAllPosts(locale).slice(0, 4);
   const projects = getAllProjects().filter((p) => p.featured).slice(0, 4);

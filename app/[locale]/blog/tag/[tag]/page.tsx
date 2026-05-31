@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { getPostsByTag, getAllBlogTags } from '@/lib/content';
 import { notFound } from 'next/navigation';
@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
 
 export default async function BlogTagPage({ params }: { params: Promise<{ locale: string; tag: string }> }) {
   const { locale, tag } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'blog' });
   const decodedTag = decodeURIComponent(tag);
   const posts = getPostsByTag(locale, decodedTag);
