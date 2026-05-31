@@ -11,6 +11,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const travelGroups = [
   {
+    key: 'beijing',
+    title: { zh: '北京', en: 'beijing' },
+    date: { zh: '2026年3月', en: 'Mar 2026' },
+    images: ['IMG_20260309_181804.jpeg'],
+  },
+  {
     key: 'hong-kong',
     title: { zh: '香港', en: 'Hong Kong' },
     date: { zh: '2022-2025', en: '2022-2025' },
