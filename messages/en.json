@@ -4,13 +4,12 @@
     "about": "About",
     "projects": "Projects",
     "blog": "Blog",
-    "papers": "Papers",
-    "life": "Life"
+    "papers": "Papers"
   },
   "home": {
     "greeting": "Hi, I'm",
     "role": "Researcher · Engineer",
-    "bio": "Focused on machine learning and systems research. Here I share my projects, technical thoughts, published papers, and daily life.",
+    "bio": "Focused on machine learning and systems research. Here I share my projects, technical thoughts, and published papers.",
     "recentPosts": "Recent Posts",
     "featuredProjects": "Featured Projects",
     "viewAll": "View All",
@@ -37,8 +36,5 @@
     "title": "Papers & Publications",
     "subtitle": "Academic work I've published"
   },
-  "life": {
-    "title": "Life",
-    "subtitle": "Daily moments & sharing"
-  }
+  "life": {}
 }

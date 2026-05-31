@@ -4,13 +4,12 @@
     "about": "关于我",
     "projects": "项目",
     "blog": "博客",
-    "papers": "论文",
-    "life": "生活"
+    "papers": "论文"
   },
   "home": {
     "greeting": "你好，我是",
     "role": "研究员 · 工程师",
-    "bio": "专注于机器学习与系统研究。在这里分享我的项目、技术思考、论文成果和日常生活。",
+    "bio": "专注于机器学习与系统研究。在这里分享我的项目、技术思考和论文成果。",
     "recentPosts": "最近文章",
     "featuredProjects": "精选项目",
     "viewAll": "查看全部",
@@ -37,8 +36,5 @@
     "title": "论文与出版物",
     "subtitle": "发表的学术成果"
   },
-  "life": {
-    "title": "生活",
-    "subtitle": "日常记录与分享"
-  }
+  "life": {}
 }

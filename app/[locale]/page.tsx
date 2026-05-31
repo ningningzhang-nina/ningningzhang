@@ -24,6 +24,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   const papers = getAllPapers().slice(0, 3);
   const posts = getAllPosts(locale).slice(0, 3);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const tags = isZh
     ? ['Statistical Modeling', 'Financial Time Series', 'Causal Inference', 'Airline Pricing']
     : ['Statistical Modeling', 'Financial Time Series', 'Causal Inference', 'Airline Pricing'];
@@ -74,8 +75,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
 
-          <aside className="min-h-[360px] rounded-[2px] border border-[#e2e7ef] bg-white shadow-[0_30px_80px_rgba(37,55,78,0.12)]" aria-label={isZh ? '个人视觉图占位' : 'Personal visual placeholder'}>
-            <div className="h-full min-h-[360px] bg-[radial-gradient(circle_at_70%_30%,rgba(189,163,107,0.10),transparent_34%),linear-gradient(135deg,#ffffff_0%,#f6f9fd_100%)]" />
+          <aside className="overflow-hidden rounded-[2px] border border-[#e2e7ef] bg-white shadow-[0_30px_80px_rgba(37,55,78,0.12)]" aria-label={isZh ? '树与根系意象图' : 'Tree and roots visual'}>
+            <img
+              src={`${basePath}/images/growth-tree.png`}
+              alt={isZh ? '蓝天下的树与根系，象征向上生长与深厚根基' : 'A tree with deep roots under a blue sky, symbolizing growth and foundation'}
+              className="aspect-[4/3] h-full w-full object-cover"
+            />
           </aside>
         </div>
       </section>

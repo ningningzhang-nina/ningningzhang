@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'ningningzhang',
-  description: 'Personal website — research, projects, blog, and life.',
+  description: 'Personal website — research, projects, publications, and blog.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

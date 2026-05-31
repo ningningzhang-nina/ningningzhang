@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: { default: 'ningningzhang', template: '%s | ningningzhang' },
-  description: 'Personal website — research, projects, blog, and life.',
+  description: 'Personal website — research, projects, publications, and blog.',
 };
 
 export function generateStaticParams() {
