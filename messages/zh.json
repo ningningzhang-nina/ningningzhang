@@ -1,10 +1,10 @@
 {
   "nav": {
     "home": "首页",
-    "about": "关于我",
-    "projects": "项目",
-    "blog": "博客",
-    "papers": "论文",
+    "about": "经历",
+    "projects": "代表项目",
+    "blog": "技术文章",
+    "papers": "研究成果",
     "travel": "旅行"
   },
   "home": {
@@ -23,8 +23,8 @@
     "skills": "技能"
   },
   "projects": {
-    "title": "项目展示",
-    "subtitle": "我做过的一些项目",
+    "title": "代表项目",
+    "subtitle": "以公开范围内的简要描述，展示核心问题、关键技术与我的工作重点",
     "viewCode": "查看代码",
     "viewDemo": "在线演示"
   },

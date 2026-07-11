@@ -4,7 +4,7 @@ export default function RootPage() {
   const zhPath = `${basePath}/zh/`;
 
   return (
-    <main className="min-h-screen bg-[#fafafa] px-8 py-12 text-[#0a0a0a]">
+    <main className="min-h-screen bg-[#c8d2c2] px-8 py-12 text-[#382638]">
       <script
         dangerouslySetInnerHTML={{
           __html: `window.location.replace(${JSON.stringify(zhPath)});`,

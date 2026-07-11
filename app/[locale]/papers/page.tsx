@@ -15,69 +15,33 @@ export default async function PapersPage({ params }: { params: Promise<{ locale:
   const t = await getTranslations({ locale, namespace: 'papers' });
   const papers = getAllPapers();
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  const years = [...new Set(papers.map((p) => p.year))].sort((a, b) => b - a);
+  const isZh = locale === 'zh';
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-14">
-      <div className="mb-10">
-        <h1 className="text-[32px] font-bold tracking-tight text-[#0a0a0a] mb-2">{t('title')}</h1>
-        <p className="text-[15px] text-[#888]">{t('subtitle')}</p>
-      </div>
+    <div className="inner-page">
+      <header className="inner-page-hero">
+        <p className="eyebrow">RESEARCH</p>
+        <h1>{t('title')}</h1>
+        <p>{isZh ? '统计方法、金融时间序列、因果推断与航空动态定价相关研究。' : 'Research in statistical methods, financial time series, causal inference, and airline dynamic pricing.'}</p>
+      </header>
 
-      {papers.length === 0 && (
-        <p className="text-[15px] text-[#bbb]">
-          {locale === 'zh' ? '在 content/papers.md 中添加论文。' : 'Add papers to content/papers.md.'}
-        </p>
-      )}
-
-      {years.map((year) => (
-        <section key={year} className="mb-10">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-4">{year}</h2>
-          <div className="space-y-6">
-            {papers.filter((p) => p.year === year).map((paper) => (
-              <div key={paper.slug} className="border-l-2 border-[#ebebeb] pl-5">
-                <h3 className="text-[15px] font-semibold text-[#0a0a0a] mb-1 leading-snug">
-                  {paper.title}
-                </h3>
-                <p className="text-[13px] text-[#888] mb-0.5">{paper.authors}</p>
-                <p className="text-[13px] text-[#aaa] italic mb-2">{paper.venue}</p>
-                {paper.abstract && (
-                  <p className="text-[13px] text-[#777] leading-relaxed mb-2 line-clamp-2">
-                    {paper.abstract}
-                  </p>
-                )}
-                <div className="flex items-center gap-4">
-                  {paper.citations !== undefined && paper.citations > 0 && (
-                    <span className="text-[12px] text-[#bbb]">
-                      引用 {paper.citations}
-                    </span>
-                  )}
-                  {paper.doi && (
-                    <a
-                      href={paper.doi.startsWith('http') ? paper.doi : `https://doi.org/${paper.doi}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[12px] text-[#555] hover:text-[#0a0a0a] underline underline-offset-2 transition-colors"
-                    >
-                      DOI
-                    </a>
-                  )}
-                  {paper.pdf && (
-                    <a
-                      href={`${basePath}${paper.pdf}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[12px] text-[#555] hover:text-[#0a0a0a] underline underline-offset-2 transition-colors"
-                    >
-                      PDF
-                    </a>
-                  )}
-                </div>
+      <div className="paper-catalog">
+        {papers.map((paper, index) => (
+          <article key={paper.slug}>
+            <div className="paper-number">{String(index + 1).padStart(2, '0')}</div>
+            <div>
+              <div className="paper-meta"><span>{paper.year}</span><span>{paper.venue}</span></div>
+              <h2>{paper.title}</h2>
+              <p className="paper-authors">{paper.authors}</p>
+              {paper.abstract && <p className="paper-abstract">{paper.abstract}</p>}
+              <div className="paper-links">
+                {paper.doi && <a href={paper.doi.startsWith('http') ? paper.doi : `https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
+                {paper.pdf && <a href={`${basePath}${paper.pdf}`} target="_blank" rel="noopener noreferrer">PDF ↗</a>}
               </div>
-            ))}
-          </div>
-        </section>
-      ))}
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }

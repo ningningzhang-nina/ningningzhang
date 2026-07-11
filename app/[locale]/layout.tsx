@@ -6,8 +6,8 @@ import Sidebar from '@/components/Sidebar';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: { default: 'ningningzhang', template: '%s | ningningzhang' },
-  description: 'Personal website — research, projects, publications, and blog.',
+  title: { default: 'Ningning Zhang', template: '%s | Ningning Zhang' },
+  description: 'Statistical forecasting, optimization, applied algorithms, and research.',
 };
 
 export function generateStaticParams() {
@@ -29,7 +29,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className="min-h-screen bg-[#fbfcff]">
+      <body className="min-h-screen">
         <NextIntlClientProvider messages={messages}>
           <Sidebar locale={locale} />
           <main className="min-h-screen">

@@ -1,114 +1,218 @@
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { getAllPapers, getAllPosts } from '@/lib/content';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  return { title: 'Zhang Ningning' };
+  const isZh = locale === 'zh';
+  return {
+    title: isZh ? '张宁宁｜统计预测与优化算法工程师' : 'Ningning Zhang | Forecasting & Optimization',
+    description: isZh
+      ? '统计预测、概率建模、优化决策与民航收益管理算法作品集。'
+      : 'Portfolio in statistical forecasting, probabilistic modeling, optimization, and airline revenue management.',
+  };
 }
 
-function ResearchTag({ children }: { children: React.ReactNode }) {
+const caseStudies = [
+  {
+    index: '01',
+    title: { zh: '航空需求预测', en: 'Airline Demand Forecasting' },
+    description: {
+      zh: '面向订座曲线与需求受限场景，参与构建覆盖基础需求、节假日、取消与需求分解的预测链路。',
+      en: 'A forecasting pipeline for booking curves and constrained-demand settings, covering base demand, events, cancellations, and demand decomposition.',
+    },
+    methods: ['Bayesian Modeling', 'DLM', 'Time Series'],
+  },
+  {
+    index: '02',
+    title: { zh: '收益管理优化', en: 'Revenue Management Optimization' },
+    description: {
+      zh: '围绕舱位控制与网络收益优化，研究并验证从容量管理、DLP 到动态规划的决策方法。',
+      en: 'Decision methods for inventory control and network revenue optimization, from capacity management and DLP to dynamic programming.',
+    },
+    methods: ['DLP', 'Dynamic Programming', 'Bid Price'],
+  },
+  {
+    index: '03',
+    title: { zh: '动态定价', en: 'Dynamic Pricing' },
+    description: {
+      zh: '研究价格、购买概率与机会成本之间的联动，参与旅客选择模型与动态定价算法的设计和验证。',
+      en: 'Modeling the interaction between price, purchase probability, and opportunity cost for choice-aware dynamic pricing.',
+    },
+    methods: ['Choice Modeling', 'WTP', 'Optimization'],
+  },
+] as const;
+
+const capabilities = [
+  {
+    title: { zh: '统计预测', en: 'Statistical Forecasting' },
+    text: { zh: '时间序列、贝叶斯建模、概率预测与非平稳更新', en: 'Time series, Bayesian modeling, probabilistic forecasts, and non-stationary updating' },
+  },
+  {
+    title: { zh: '优化决策', en: 'Optimization' },
+    text: { zh: '线性规划、动态规划、随机优化与收益管理', en: 'Linear programming, dynamic programming, stochastic optimization, and revenue management' },
+  },
+  {
+    title: { zh: '业务转化', en: 'Applied Modeling' },
+    text: { zh: '把统计模型转化为可验证、可解释的业务决策模块', en: 'Turning statistical models into testable, interpretable decision modules' },
+  },
+] as const;
+
+function DecisionVisual({ isZh }: { isZh: boolean }) {
   return (
-    <span className="rounded-full border border-[#d8deea] bg-white px-4 py-2 text-[13px] font-medium text-[#43546b]">
-      {children}
-    </span>
+    <div className="algorithm-visual" aria-label={isZh ? '预测与优化算法示意图' : 'Forecasting and optimization visual'}>
+      <svg viewBox="0 0 720 560" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="forecastBand" x1="0" x2="1">
+            <stop offset="0" stopColor="#E5EAD9" stopOpacity="0.18" />
+            <stop offset="1" stopColor="#B45F4A" stopOpacity="0.38" />
+          </linearGradient>
+          <linearGradient id="surfaceFill" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#E5EAD9" stopOpacity="0.5" />
+            <stop offset="1" stopColor="#76536B" stopOpacity="0.16" />
+          </linearGradient>
+        </defs>
+
+        <g opacity="0.48" stroke="#C8D2C2" strokeWidth="1">
+          <path d="M34 174H686" />
+          <path d="M34 116H686" strokeDasharray="4 8" />
+          <path d="M34 58H686" strokeDasharray="4 8" />
+        </g>
+        <path
+          d="M34 142 C68 116 90 151 120 120 S171 91 204 132 S257 151 292 119 S333 140 354 112 L354 112 C392 78 428 91 463 68 S522 88 558 57 S623 80 686 28 L686 110 C630 137 598 128 558 145 S502 124 463 151 S397 129 354 156 Z"
+          fill="url(#forecastBand)"
+        />
+        <path d="M34 142 C68 116 90 151 120 120 S171 91 204 132 S257 151 292 119 S333 140 354 112" fill="none" stroke="#E5EAD9" strokeWidth="3" />
+        <path d="M354 112 C392 86 428 103 463 82 S522 105 558 75 S623 98 686 48" fill="none" stroke="#E57A61" strokeWidth="3" />
+        <path d="M354 28V184" stroke="#E5EAD9" strokeDasharray="8 9" opacity="0.85" />
+        {[34, 84, 134, 184, 234, 284, 334, 384, 434, 484, 534, 584, 634, 686].map((x, i) => (
+          <circle key={x} cx={x} cy={[142, 121, 108, 103, 139, 133, 121, 96, 91, 103, 75, 89, 81, 48][i]} r="4" fill={i < 7 ? '#E5EAD9' : '#E57A61'} />
+        ))}
+
+        <g transform="translate(30 230)">
+          <path d="M18 226 C96 150 121 36 220 56 C316 77 311 179 421 193 C319 220 224 251 18 226Z" fill="url(#surfaceFill)" stroke="#AABAA5" strokeWidth="1.5" />
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <path key={i} d={`M${24 + i * 12} ${220 - i * 14} C${100 + i * 8} ${154 - i * 20} ${136 + i * 11} ${54 - i * 2} ${220 + i * 6} ${62 + i * 5} C${302 + i * 9} ${74 + i * 18} ${320 + i * 8} ${170 + i * 9} ${414 - i * 2} ${190 + i * 5}`} fill="none" stroke="#DDE5D5" opacity={0.72 - i * 0.08} />
+          ))}
+          {[0, 1, 2, 3, 4].map((i) => (
+            <ellipse key={i} cx="220" cy="226" rx={176 - i * 26} ry={48 - i * 7} fill="none" stroke="#C3B69C" opacity="0.72" />
+          ))}
+          <path d="M122 213 C159 196 175 169 194 140 S223 95 246 78" fill="none" stroke="#E57A61" strokeWidth="3" />
+          {[122, 158, 194, 223, 246].map((x, i) => <circle key={x} cx={x} cy={[213, 188, 140, 101, 78][i]} r={i === 3 ? 9 : 5} fill="#E5EAD9" stroke="#5A3F52" strokeWidth="3" />)}
+        </g>
+
+        <g transform="translate(510 296)" stroke="#D7C9B7" strokeWidth="2">
+          <path d="M20 55L92 22L146 74L104 142L35 128Z" fill="none" />
+          <path d="M92 22L104 142M20 55L146 74M35 128L146 74" fill="none" opacity="0.7" />
+          {([
+            [20, 55, '#C8D2C2'], [92, 22, '#E5EAD9'], [146, 74, '#E57A61'], [104, 142, '#C8D2C2'], [35, 128, '#A7879F'],
+          ] as const).map(([cx, cy, fill]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="13" fill={fill} stroke="#382638" strokeWidth="4" />)}
+        </g>
+      </svg>
+      <span className="visual-caption">FORECAST → DECISION</span>
+    </div>
   );
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'home' });
   const isZh = locale === 'zh';
-
+  const l = isZh ? 'zh' : 'en';
   const papers = getAllPapers().slice(0, 3);
   const posts = getAllPosts(locale).slice(0, 3);
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  const tags = isZh
-    ? ['Statistical Modeling', 'Financial Time Series', 'Causal Inference', 'Airline Pricing']
-    : ['Statistical Modeling', 'Financial Time Series', 'Causal Inference', 'Airline Pricing'];
 
   return (
-    <div className="bg-[#fbfcff]">
-      <section className="relative overflow-hidden border-b border-[#e4e9f1]">
-        <div className="absolute inset-x-0 top-0 h-72 bg-[linear-gradient(180deg,#eef4fb_0%,rgba(251,252,255,0)_100%)]" />
-        <div className="relative mx-auto grid min-h-[610px] max-w-6xl gap-12 px-6 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-          <div>
-            <div className="mb-8 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.22em] text-[#8a7444]">
-              <span className="h-px w-12 bg-[#bda36b]" />
-              <span>{isZh ? 'Scholar Profile' : 'Scholar Profile'}</span>
-            </div>
-
-            <h1 className="mb-5 text-[64px] font-semibold leading-[0.98] tracking-[-0.02em] text-[#0f2742] md:text-[78px]">
-              张宁宁
-              <span className="mt-4 block text-[34px] font-medium tracking-normal text-[#506176] md:text-[42px]">
-                Ningning Zhang
-              </span>
-            </h1>
-
-            <p className="mb-7 max-w-2xl text-[19px] leading-9 text-[#43546b]">
-              {isZh
-                ? '香港大学统计学博士，现为中国民航信息网络股份有限公司博士后研究员。研究聚焦统计建模、金融时间序列、因果推断，以及民航收益管理与动态定价算法。'
-                : 'Ph.D. in Statistics from The University of Hong Kong, currently a postdoctoral researcher at TravelSky. My research focuses on statistical modeling, financial time series, causal inference, and airline revenue management.'}
-            </p>
-
-            <div className="mb-9 flex flex-wrap gap-3">
-              {tags.map((tag) => (
-                <ResearchTag key={tag}>{tag}</ResearchTag>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href={`/${locale}/papers`}
-                className="rounded-full bg-[#0f2742] px-6 py-3 text-[14px] font-semibold text-white shadow-[0_12px_30px_rgba(15,39,66,0.22)] transition-colors hover:bg-[#18385c]"
-              >
-                {isZh ? '查看代表论文' : 'View Publications'}
-              </Link>
-              <Link
-                href={`/${locale}/about`}
-                className="rounded-full border border-[#c8d1de] bg-white px-6 py-3 text-[14px] font-semibold text-[#0f2742] transition-colors hover:border-[#0f2742]"
-              >
-                {isZh ? '查看学术经历' : 'Academic Background'}
-              </Link>
-            </div>
+    <div className="portfolio-home">
+      <section className="hero-grid">
+        <div className="hero-copy">
+          <p className="eyebrow">STATISTICAL FORECASTING · OPTIMIZATION</p>
+          <h1>{isZh ? '统计预测与优化算法工程师' : 'Statistical Forecasting & Optimization Engineer'}</h1>
+          <p className="hero-lead">
+            {isZh
+              ? '香港大学统计学博士，现从事航空收益管理与动态定价算法研发。擅长将时间序列预测、概率建模与优化方法转化为可落地的业务决策系统。'
+              : 'Ph.D. in Statistics from The University of Hong Kong, working on airline revenue management and dynamic pricing. I turn forecasting, probabilistic modeling, and optimization into practical decision systems.'}
+          </p>
+          <div className="hero-actions">
+            <Link href={`/${locale}/projects`} className="button button-primary">
+              {isZh ? '查看代表项目' : 'View Selected Work'}
+            </Link>
+            <Link href={`/${locale}/about`} className="button button-secondary">
+              {isZh ? '了解我的经历' : 'View Experience'}
+            </Link>
           </div>
+          <div className="skill-list" aria-label={isZh ? '核心技术方向' : 'Core skills'}>
+            {['Time Series', 'Bayesian Modeling', 'Optimization', 'Machine Learning'].map((skill) => (
+              <span key={skill}>{skill}</span>
+            ))}
+          </div>
+        </div>
+        <DecisionVisual isZh={isZh} />
+      </section>
 
-          <aside className="overflow-hidden rounded-[2px] border border-[#e2e7ef] bg-white shadow-[0_30px_80px_rgba(37,55,78,0.12)]" aria-label={isZh ? '树与根系意象图' : 'Tree and roots visual'}>
-            <img
-              src={`${basePath}/images/growth-tree.png`}
-              alt={isZh ? '蓝天下的树与根系，象征向上生长与深厚根基' : 'A tree with deep roots under a blue sky, symbolizing growth and foundation'}
-              className="aspect-[4/3] h-full w-full object-cover"
-            />
-          </aside>
+      <section className="proof-strip" aria-label={isZh ? '专业背景概览' : 'Professional summary'}>
+        <div><span>01</span><strong>Ph.D. in Statistics</strong></div>
+        <div><span>02</span><strong>Forecasting &amp; Optimization</strong></div>
+        <div><span>03</span><strong>Airline RM · Dynamic Pricing</strong></div>
+      </section>
+
+      <section className="content-section" id="work">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">SELECTED WORK</p>
+            <h2>{isZh ? '代表项目' : 'Selected Projects'}</h2>
+          </div>
+          <Link href={`/${locale}/projects`}>{isZh ? '查看全部' : 'View all'} →</Link>
+        </div>
+        <div className="case-grid">
+          {caseStudies.map((study) => (
+            <article key={study.index} className="case-card">
+              <div className="case-index">{study.index}</div>
+              <h3>{study.title[l]}</h3>
+              <p>{study.description[l]}</p>
+              <div className="method-list">
+                {study.methods.map((method) => <span key={method}>{method}</span>)}
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
-          <div className="mb-6 flex items-end justify-between gap-4">
-            <div>
-              <p className="mb-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#8a7444]">
-                Publications
-              </p>
-              <h2 className="text-[28px] font-semibold text-[#0f2742]">
-                {isZh ? '代表论文' : 'Selected Publications'}
-              </h2>
-            </div>
-            <Link href={`/${locale}/papers`} className="text-[13px] font-semibold text-[#506176] hover:text-[#0f2742]">
-              {t('viewAll')} →
-            </Link>
+      <section className="content-section capability-section">
+        <div className="section-heading compact-heading">
+          <div>
+            <p className="eyebrow">CAPABILITIES</p>
+            <h2>{isZh ? '我能解决什么问题' : 'What I Bring'}</h2>
           </div>
+        </div>
+        <div className="capability-grid">
+          {capabilities.map((capability, index) => (
+            <article key={capability.title.en}>
+              <span>0{index + 1}</span>
+              <h3>{capability.title[l]}</h3>
+              <p>{capability.text[l]}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-          <div className="divide-y divide-[#e7ecf3] border-y border-[#e7ecf3] bg-white">
+      <section className="content-section evidence-grid">
+        <div>
+          <div className="section-heading compact-heading">
+            <div>
+              <p className="eyebrow">PUBLICATIONS</p>
+              <h2>{isZh ? '研究成果' : 'Selected Publications'}</h2>
+            </div>
+            <Link href={`/${locale}/papers`}>{isZh ? '全部论文' : 'All papers'} →</Link>
+          </div>
+          <div className="publication-list">
             {papers.map((paper) => (
-              <article key={paper.slug} className="grid gap-4 px-6 py-6 md:grid-cols-[82px_1fr]">
-                <div className="text-[13px] font-semibold text-[#8a7444]">{paper.year}</div>
+              <article key={paper.slug}>
+                <span>{paper.year}</span>
                 <div>
-                  <h3 className="mb-2 text-[17px] font-semibold leading-7 text-[#0f2742]">{paper.title}</h3>
-                  <p className="mb-1 text-[14px] text-[#506176]">{paper.authors}</p>
-                  <p className="text-[13px] italic text-[#7b8797]">{paper.venue}</p>
+                  <h3>{paper.title}</h3>
+                  <p>{paper.venue}</p>
                 </div>
               </article>
             ))}
@@ -116,63 +220,29 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
 
         <div>
-          <div className="mb-6 flex items-end justify-between gap-4">
+          <div className="section-heading compact-heading">
             <div>
-              <p className="mb-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#8a7444]">
-                Notes
-              </p>
-              <h2 className="text-[28px] font-semibold text-[#0f2742]">
-                {isZh ? '研究笔记' : 'Research Notes'}
-              </h2>
+              <p className="eyebrow">TECHNICAL NOTES</p>
+              <h2>{isZh ? '技术文章' : 'Technical Writing'}</h2>
             </div>
-            <Link href={`/${locale}/blog`} className="text-[13px] font-semibold text-[#506176] hover:text-[#0f2742]">
-              {t('viewAll')} →
-            </Link>
+            <Link href={`/${locale}/blog`}>{isZh ? '全部文章' : 'All notes'} →</Link>
           </div>
-
-          <div className="space-y-4">
-            {posts.map((post) => {
-              const href = post.externalUrl || `/${locale}/blog/${post.slug}`;
-              const isExternal = !!post.externalUrl;
-              const className = 'block border border-[#e2e7ef] bg-white p-5 transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_48px_rgba(37,55,78,0.10)]';
-              const body = (
-                <>
-                  <div className="mb-3 flex items-center justify-between gap-4 text-[12px] text-[#7b8797]">
-                    <span>{post.date}</span>
-                    {post.tags[0] && <span className="font-semibold text-[#8a7444]">{post.tags[0]}</span>}
-                  </div>
-                  <h3 className="mb-2 text-[16px] font-semibold leading-7 text-[#0f2742]">{post.title}</h3>
-                  {post.summary && <p className="line-clamp-2 text-[13px] leading-6 text-[#66758a]">{post.summary}</p>}
-                </>
-              );
-
-              return isExternal ? (
-                <a key={post.slug} href={href} target="_blank" rel="noopener noreferrer" className={className}>
-                  {body}
-                </a>
-              ) : (
-                <Link key={post.slug} href={href} className={className}>
-                  {body}
-                </Link>
-              );
-            })}
+          <div className="note-list">
+            {posts.map((post) => (
+              <Link key={post.slug} href={post.externalUrl || `/${locale}/blog/${post.slug}`} target={post.externalUrl ? '_blank' : undefined}>
+                <span>{post.date}</span>
+                <h3>{post.title}</h3>
+                <p>{post.summary}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-[#e4e9f1] bg-[#f5f8fc]">
-        <div className="mx-auto grid max-w-6xl gap-5 px-6 py-12 md:grid-cols-3">
-          {[
-            [isZh ? '研究主题' : 'Research Areas', isZh ? '统计学习、条件矩、分位数方法、金融时间序列、航空动态定价。' : 'Statistical learning, conditional moments, quantile methods, financial time series, and airline pricing.'],
-            [isZh ? '方法能力' : 'Methods', isZh ? '因果推断、优化建模、机器学习、R/Python/Matlab 数据分析。' : 'Causal inference, optimization, machine learning, and R/Python/Matlab analysis.'],
-            [isZh ? '合作联系' : 'Contact', 'zhangnn0725@163.com'],
-          ].map(([title, text]) => (
-            <div key={title} className="bg-white p-6">
-              <h3 className="mb-3 text-[14px] font-semibold text-[#0f2742]">{title}</h3>
-              <p className="text-[14px] leading-7 text-[#5f6f84]">{text}</p>
-            </div>
-          ))}
-        </div>
+      <section className="contact-band">
+        <p className="eyebrow">LET&apos;S CONNECT</p>
+        <h2>{isZh ? '关注统计预测、优化决策与算法落地机会' : 'Open to opportunities in forecasting, optimization, and applied algorithms'}</h2>
+        <a href="mailto:zhangnn0725@163.com">zhangnn0725@163.com ↗</a>
       </section>
     </div>
   );

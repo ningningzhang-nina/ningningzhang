@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'ningningzhang',
-  description: 'Personal website — research, projects, publications, and blog.',
+  title: 'Ningning Zhang',
+  description: 'Statistical forecasting, optimization, applied algorithms, and research.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

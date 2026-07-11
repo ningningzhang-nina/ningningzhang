@@ -8,182 +8,114 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: t('title') };
 }
 
+const experience = [
+  {
+    period: { zh: '2025.09 – 至今', en: 'Sep 2025 – Present' },
+    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
+    organization: { zh: '中国民航信息网络股份有限公司', en: 'TravelSky Technology Limited' },
+    details: {
+      zh: ['从事民航收益管理与动态定价算法研发', '研究需求预测、Bid Price、网络优化与旅客选择模型'],
+      en: ['Algorithm research for airline revenue management and dynamic pricing', 'Work spanning demand forecasting, bid price, network optimization, and passenger choice'],
+    },
+  },
+  {
+    period: { zh: '2025.01 – 2025.08', en: 'Jan 2025 – Aug 2025' },
+    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
+    organization: { zh: '香港大学', en: 'The University of Hong Kong' },
+    details: {
+      zh: ['金融时间序列、条件矩与统计建模研究'],
+      en: ['Research in financial time series, conditional moments, and statistical modeling'],
+    },
+  },
+  {
+    period: { zh: '2017 – 2018', en: '2017 – 2018' },
+    role: { zh: '算法与数据分析实习', en: 'Algorithm & Data Analytics Internships' },
+    organization: { zh: '美团 · 滴滴出行', en: 'Meituan · DiDi' },
+    details: {
+      zh: ['外卖配送时间预测特征工程', '供需关系分析、调价评估与实验分群'],
+      en: ['Feature engineering for delivery-time prediction', 'Supply-demand analysis, pricing evaluation, and experiment segmentation'],
+    },
+  },
+] as const;
+
 const education = [
   {
-    degree: { zh: '统计学 博士', en: 'Ph.D. in Statistics' },
+    period: '2019 – 2024',
+    degree: { zh: '统计学博士', en: 'Ph.D. in Statistics' },
     school: { zh: '香港大学', en: 'The University of Hong Kong' },
-    period: '2019.09 – 2024.12',
-    details: {
-      zh: ['主修：高级统计推断、高级概率论、计算统计', '全额博士奖学金 · 香港大学高等教育教学证书'],
-      en: ['Courses: Advanced Statistical Inference, Advanced Probability Theory, Computational Statistics', 'Full PhD Scholarship · HKU Certificate in Higher Education Teaching'],
-    },
+    note: { zh: '全额博士奖学金', en: 'Full Ph.D. Scholarship' },
   },
   {
-    degree: { zh: '统计学 硕士', en: 'M.S. in Statistics' },
+    period: '2016 – 2019',
+    degree: { zh: '统计学硕士', en: 'M.S. in Statistics' },
     school: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
-    period: '2016.09 – 2019.06',
-    details: {
-      zh: ['主修：统计模型与应用、时间序列分析、统计优化、多元统计分析', '平均分 93.51，全系 45 人排名第一', '国家奖学金 · 一等奖学金×2 · 三好研究生 · 研究生创新项目'],
-      en: ['Courses: Statistical Models, Time Series Analysis, Statistical Optimization, Multivariate Analysis', 'GPA: 93.51/100 · Ranked 1st out of 45 students', 'National Scholarship · First-class Scholarship ×2 · Excellent Graduate Student'],
-    },
+    note: { zh: '平均分 93.51，专业排名第 1', en: 'GPA 93.51/100, ranked 1st in the program' },
   },
   {
-    degree: { zh: '信息与计算科学 学士', en: 'B.S. in Information and Computing Science' },
+    period: '2012 – 2016',
+    degree: { zh: '信息与计算科学学士', en: 'B.S. in Information and Computing Science' },
     school: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
-    period: '2012.09 – 2016.06',
-    details: {
-      zh: ['主修：数学分析、高等代数、运筹学、数值分析、C语言、Matlab、R语言', '平均分 88.1，全系 110 人排名第九，获保研资格'],
-      en: ['Courses: Mathematical Analysis, Advanced Algebra, Operations Research, Numerical Analysis, C, Matlab, R', 'GPA: 88.1/100 · Ranked 9th out of 110 · Qualified for direct Master\'s enrollment'],
-    },
+    note: { zh: '数学、统计与计算基础', en: 'Foundation in mathematics, statistics, and computing' },
   },
-];
-
-const workExperience = [
-  {
-    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
-    company: { zh: '中国民航信息网络股份有限公司（航信）', en: 'TravelSky Technology Limited' },
-    period: { zh: '2025.09 – 至今', en: '2025.09 – Present' },
-    details: {
-      zh: ['研究方向：民航收益管理与动态定价算法研究'],
-      en: ['Research focus: airline revenue management and dynamic pricing algorithm research'],
-    },
-  },
-  {
-    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
-    company: { zh: '香港大学', en: 'The University of Hong Kong' },
-    period: '2025.01 – 2025.08',
-    details: {
-      zh: ['继续金融时间序列分析与统计建模相关研究'],
-      en: ['Continued research in financial time series analysis and statistical modeling'],
-    },
-  },
-  {
-    role: { zh: '研究助理', en: 'Research Assistant' },
-    company: { zh: '香港大学', en: 'The University of Hong Kong' },
-    period: '2023.09 – 2024.12',
-    details: {
-      zh: ['参与多项统计学科研项目，协助论文写作与数据分析'],
-      en: ['Participated in multiple statistics research projects, assisting with paper writing and data analysis'],
-    },
-  },
-];
-
-const internship = [
-  {
-    role: { zh: '算法工程师（实习）', en: 'Algorithm Engineer Intern' },
-    company: { zh: '美团', en: 'Meituan' },
-    period: '2018.03 – 2018.05',
-    details: {
-      zh: ['参与外卖配送时间预测算法优化，通过特征工程识别关键特征', '将新特征集成到现有模型中，显著提升预测准确性与配送效率'],
-      en: ['Optimized food delivery time prediction via feature engineering', 'Integrated new features into existing models, significantly improving accuracy'],
-    },
-  },
-  {
-    role: { zh: '数据分析实习生', en: 'Data Analysis Intern' },
-    company: { zh: '滴滴出行', en: 'DiDi Chuxing' },
-    period: '2017.10 – 2017.12',
-    details: {
-      zh: ['使用线性回归分析顺风车供需关系，评估调价策略影响', '应用 K-means 聚类为 A/B 实验设计提供数据驱动指导'],
-      en: ['Built linear regression models to analyze supply-demand dynamics and evaluate pricing strategies', 'Applied K-means clustering for city segmentation to guide A/B experiment design'],
-    },
-  },
-];
-
-function ExperienceList({ items, locale }: { items: typeof workExperience; locale: string }) {
-  const l = locale as 'zh' | 'en';
-  return (
-    <div className="space-y-8">
-      {items.map((exp, i) => (
-        <div key={i} className="flex gap-4">
-          <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#ccc] shrink-0" />
-          <div className="flex-1">
-            <div className="flex items-baseline justify-between gap-2 flex-wrap">
-              <span className="text-[15px] font-semibold text-[#0a0a0a]">{exp.role[l]}</span>
-              <span className="text-[12px] text-[#bbb] shrink-0">
-                {typeof exp.period === 'string' ? exp.period : exp.period[l]}
-              </span>
-            </div>
-            <div className="text-[14px] text-[#555] mb-2">{exp.company[l]}</div>
-            <ul className="space-y-1">
-              {exp.details[l].map((d, j) => (
-                <li key={j} className="text-[13px] text-[#888] flex gap-2">
-                  <span className="text-[#ccc] shrink-0">·</span><span>{d}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+] as const;
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const l = locale as 'zh' | 'en';
+  const l = locale === 'zh' ? 'zh' : 'en';
+  const isZh = l === 'zh';
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-14">
-      <h1 className="text-[32px] font-bold tracking-tight text-[#0a0a0a] mb-10">
-        {l === 'zh' ? '关于我' : 'About Me'}
-      </h1>
-
-      {/* 简介 */}
-      <section className="mb-12">
-        <p className="text-[16px] text-[#555] leading-relaxed mb-4">
-          {l === 'zh'
-            ? '香港大学统计学博士，专注于金融时间序列分析与因果推断研究，具备扎实的数学与统计学理论基础，擅长数据建模与分析，掌握多种编程语言（Matlab, Python, R 等）。'
-            : 'PhD in Statistics from The University of Hong Kong, specializing in financial time series analysis and causal inference. Skilled in data modeling and programming (Matlab, Python, R).'}
+    <div className="inner-page about-page">
+      <header className="inner-page-hero about-hero">
+        <p className="eyebrow">EXPERIENCE</p>
+        <h1>{isZh ? '从统计研究到优化决策' : 'From Statistical Research to Optimization Decisions'}</h1>
+        <p>
+          {isZh
+            ? '我的优势不只是建立模型，而是理解不确定性、业务约束与决策目标之间的关系，并把算法组织成可验证的解决方案。'
+            : 'My work connects uncertainty, business constraints, and decision objectives—organizing algorithms into solutions that can be tested and explained.'}
         </p>
-        <p className="text-[16px] text-[#555] leading-relaxed">
-          {l === 'zh'
-            ? '多年学术训练培养了强大的逻辑思维与快速学习能力，喜欢挑战，具备较强的抗压能力，为人正直严谨，积极乐观，勤学奉献。'
-            : 'Years of academic training cultivated strong logical thinking. I enjoy challenges, stay optimistic under pressure, and am committed to rigorous, dedicated work.'}
-        </p>
-      </section>
+      </header>
 
-      {/* 工作经历 */}
-      <section className="mb-12">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-6">
-          {l === 'zh' ? '工作经历' : 'Work Experience'}
-        </h2>
-        <ExperienceList items={workExperience} locale={locale} />
-      </section>
-
-      {/* 实习经历 */}
-      <section className="mb-12">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-6">
-          {l === 'zh' ? '实习经历' : 'Internship'}
-        </h2>
-        <ExperienceList items={internship} locale={locale} />
-      </section>
-
-      {/* 教育背景 */}
-      <section className="mb-12">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[2px] text-[#bbb] mb-6">
-          {l === 'zh' ? '教育背景' : 'Education'}
-        </h2>
-        <div className="space-y-8">
-          {education.map((edu, i) => (
-            <div key={i} className="flex gap-4">
-              <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#ccc] shrink-0" />
-              <div className="flex-1">
-                <div className="flex items-baseline justify-between gap-2 flex-wrap">
-                  <span className="text-[15px] font-semibold text-[#0a0a0a]">{edu.degree[l]}</span>
-                  <span className="text-[12px] text-[#bbb] shrink-0">{edu.period}</span>
-                </div>
-                <div className="text-[14px] text-[#555] mb-2">{edu.school[l]}</div>
-                <ul className="space-y-1">
-                  {edu.details[l].map((d, j) => (
-                    <li key={j} className="text-[13px] text-[#888] flex gap-2">
-                      <span className="text-[#ccc] shrink-0">·</span><span>{d}</span>
-                    </li>
-                  ))}
+      <section className="resume-section">
+        <div className="resume-label">{isZh ? '工作经历' : 'EXPERIENCE'}</div>
+        <div className="timeline-list">
+          {experience.map((item) => (
+            <article key={item.period.en}>
+              <div className="timeline-period">{item.period[l]}</div>
+              <div>
+                <h2>{item.role[l]}</h2>
+                <h3>{item.organization[l]}</h3>
+                <ul>
+                  {item.details[l].map((detail) => <li key={detail}>{detail}</li>)}
                 </ul>
               </div>
-            </div>
+            </article>
           ))}
         </div>
+      </section>
+
+      <section className="resume-section">
+        <div className="resume-label">{isZh ? '教育背景' : 'EDUCATION'}</div>
+        <div className="timeline-list education-list">
+          {education.map((item) => (
+            <article key={item.period}>
+              <div className="timeline-period">{item.period}</div>
+              <div>
+                <h2>{item.degree[l]}</h2>
+                <h3>{item.school[l]}</h3>
+                <p>{item.note[l]}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-contact">
+        <div>
+          <p className="eyebrow">CONTACT</p>
+          <h2>{isZh ? '交流算法、研究与职业机会' : 'Algorithms, research, and opportunities'}</h2>
+        </div>
+        <a href="mailto:zhangnn0725@163.com">zhangnn0725@163.com ↗</a>
       </section>
     </div>
   );
