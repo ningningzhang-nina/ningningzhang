@@ -61,7 +61,7 @@ const capabilities = [
 
 function DecisionVisual({ isZh }: { isZh: boolean }) {
   return (
-    <div className="algorithm-visual" aria-label={isZh ? '预测与优化算法示意图' : 'Forecasting and optimization visual'}>
+    <div className="algorithm-visual" aria-label={isZh ? '预测、优化与决策算法链路示意图' : 'Forecasting, optimization, and decision pipeline'}>
       <svg viewBox="0 0 720 560" role="img" aria-hidden="true">
         <defs>
           <linearGradient id="forecastBand" x1="0" x2="1">
@@ -72,7 +72,16 @@ function DecisionVisual({ isZh }: { isZh: boolean }) {
             <stop offset="0" stopColor="#E5EAD9" stopOpacity="0.5" />
             <stop offset="1" stopColor="#76536B" stopOpacity="0.16" />
           </linearGradient>
+          <marker id="flowArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#E57A61" />
+          </marker>
         </defs>
+
+        <g fill="#E5EAD9" fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace" fontSize="11" fontWeight="700" letterSpacing="1.8">
+          <text x="34" y="22">01 FORECAST</text>
+          <text x="48" y="224">02 OPTIMIZE</text>
+          <text x="510" y="276">03 DECIDE</text>
+        </g>
 
         <g opacity="0.48" stroke="#C8D2C2" strokeWidth="1">
           <path d="M34 174H686" />
@@ -90,6 +99,8 @@ function DecisionVisual({ isZh }: { isZh: boolean }) {
           <circle key={x} cx={x} cy={[142, 121, 108, 103, 139, 133, 121, 96, 91, 103, 75, 89, 81, 48][i]} r="4" fill={i < 7 ? '#E5EAD9' : '#E57A61'} />
         ))}
 
+        <path d="M354 184 C354 218 318 232 274 270" fill="none" stroke="#E57A61" strokeWidth="2" strokeDasharray="5 7" markerEnd="url(#flowArrow)" />
+
         <g transform="translate(30 230)">
           <path d="M18 226 C96 150 121 36 220 56 C316 77 311 179 421 193 C319 220 224 251 18 226Z" fill="url(#surfaceFill)" stroke="#AABAA5" strokeWidth="1.5" />
           {[0, 1, 2, 3, 4, 5].map((i) => (
@@ -102,6 +113,8 @@ function DecisionVisual({ isZh }: { isZh: boolean }) {
           {[122, 158, 194, 223, 246].map((x, i) => <circle key={x} cx={x} cy={[213, 188, 140, 101, 78][i]} r={i === 3 ? 9 : 5} fill="#E5EAD9" stroke="#5A3F52" strokeWidth="3" />)}
         </g>
 
+        <path d="M446 424 C476 424 492 401 519 376" fill="none" stroke="#E57A61" strokeWidth="2" strokeDasharray="5 7" markerEnd="url(#flowArrow)" />
+
         <g transform="translate(510 296)" stroke="#D7C9B7" strokeWidth="2">
           <path d="M20 55L92 22L146 74L104 142L35 128Z" fill="none" />
           <path d="M92 22L104 142M20 55L146 74M35 128L146 74" fill="none" opacity="0.7" />
@@ -110,7 +123,7 @@ function DecisionVisual({ isZh }: { isZh: boolean }) {
           ] as const).map(([cx, cy, fill]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="13" fill={fill} stroke="#382638" strokeWidth="4" />)}
         </g>
       </svg>
-      <span className="visual-caption">FORECAST → DECISION</span>
+      <span className="visual-caption">FORECAST → OPTIMIZE → DECIDE</span>
     </div>
   );
 }
