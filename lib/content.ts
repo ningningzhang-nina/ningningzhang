@@ -32,6 +32,12 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
+  titleZh?: string;
+  titleEn?: string;
+  descriptionZh?: string;
+  descriptionEn?: string;
+  roleZh?: string;
+  roleEn?: string;
   tags: string[];
   github?: string;
   demo?: string;
@@ -171,6 +177,12 @@ export function getAllProjects(): Project[] {
         slug,
         title: data.title ?? slug,
         description: data.description ?? '',
+        titleZh: data.titleZh,
+        titleEn: data.titleEn,
+        descriptionZh: data.descriptionZh,
+        descriptionEn: data.descriptionEn,
+        roleZh: data.roleZh,
+        roleEn: data.roleEn,
         tags: data.tags ?? [],
         github: data.github,
         demo: data.demo,

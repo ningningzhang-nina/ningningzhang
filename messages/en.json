@@ -1,10 +1,10 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
-    "projects": "Projects",
-    "blog": "Blog",
-    "papers": "Papers",
+    "about": "Experience",
+    "projects": "Selected Work",
+    "blog": "Technical Notes",
+    "papers": "Research",
     "travel": "Travel"
   },
   "home": {
@@ -23,8 +23,8 @@
     "skills": "Skills"
   },
   "projects": {
-    "title": "Projects",
-    "subtitle": "Things I've built",
+    "title": "Selected Work",
+    "subtitle": "Concise, public-safe case studies focused on the problem, key methods, and my role",
     "viewCode": "Code",
     "viewDemo": "Demo"
   },

@@ -6,7 +6,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'projects' });
-  return { title: t('title') };
+  return { title: t('title'), description: t('subtitle') };
 }
 
 export default async function ProjectsPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -14,71 +14,47 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'projects' });
   const projects = getAllProjects();
+  const isZh = locale === 'zh';
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-14">
-      <div className="mb-10">
-        <h1 className="text-[32px] font-bold tracking-tight text-[#0a0a0a] mb-2">{t('title')}</h1>
-        <p className="text-[15px] text-[#888]">{t('subtitle')}</p>
-      </div>
+    <div className="inner-page">
+      <header className="inner-page-hero">
+        <p className="eyebrow">SELECTED WORK</p>
+        <h1>{t('title')}</h1>
+        <p>{t('subtitle')}</p>
+      </header>
 
-      <div className="grid grid-cols-1 gap-4">
-        {projects.map((project) => (
-          <div
-            key={project.slug}
-            className="bg-white border border-[#ebebeb] rounded-xl p-6 hover:border-[#d0d0d0] transition-colors"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <h2 className="text-[16px] font-semibold text-[#0a0a0a]">{project.title}</h2>
-                  {project.featured && (
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-[#999] bg-[#f5f5f5] px-1.5 py-0.5 rounded">
-                      Featured
-                    </span>
-                  )}
-                </div>
-                <p className="text-[14px] text-[#666] leading-relaxed mb-3">{project.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="px-2 py-0.5 bg-[#f5f5f5] rounded text-[11px] text-[#666]">
-                      {tag}
-                    </span>
-                  ))}
+      <div className="project-detail-list">
+        {projects.map((project, index) => {
+          const title = isZh ? project.titleZh || project.title : project.titleEn || project.title;
+          const description = isZh ? project.descriptionZh || project.description : project.descriptionEn || project.description;
+          const role = isZh ? project.roleZh : project.roleEn;
+
+          return (
+            <article key={project.slug} className="project-detail-card">
+              <div className="project-detail-index">0{index + 1}</div>
+              <div>
+                <p className="project-year">{project.year} · CASE STUDY</p>
+                <h2>{title}</h2>
+                <p className="project-description">{description}</p>
+                {role && <p className="project-role">{role}</p>}
+                <div className="method-list">
+                  {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
                 </div>
               </div>
-              <div className="flex flex-col gap-2 shrink-0">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[12px] text-[#555] hover:text-[#0a0a0a] border border-[#ebebeb] px-3 py-1 rounded-lg transition-colors"
-                  >
-                    {t('viewCode')}
-                  </a>
-                )}
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[12px] text-white bg-[#0a0a0a] px-3 py-1 rounded-lg hover:bg-[#333] transition-colors text-center"
-                  >
-                    {t('viewDemo')}
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {projects.length === 0 && (
-          <p className="text-[15px] text-[#bbb]">
-            {locale === 'zh' ? '暂无项目，请在 content/projects/ 目录添加。' : 'No projects yet. Add .md files to content/projects/.'}
-          </p>
-        )}
+            </article>
+          );
+        })}
       </div>
+
+      <aside className="confidentiality-note">
+        <span>PUBLIC-SAFE</span>
+        <p>
+          {isZh
+            ? '项目仅展示公开范围内的问题背景与关键技术，不包含业务数据、内部参数、系统细节或未公开结果。'
+            : 'These summaries describe only public-safe problems and methods. They exclude business data, internal parameters, system details, and unpublished results.'}
+        </p>
+      </aside>
     </div>
   );
 }

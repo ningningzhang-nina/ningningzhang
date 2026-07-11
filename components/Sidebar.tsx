@@ -6,11 +6,10 @@ import { useTranslations } from 'next-intl';
 
 const navItems = [
   { key: 'home', href: '/' },
-  { key: 'about', href: '/about' },
   { key: 'papers', href: '/papers' },
   { key: 'blog', href: '/blog' },
-  { key: 'travel', href: '/travel' },
   { key: 'projects', href: '/projects' },
+  { key: 'about', href: '/about' },
 ] as const;
 
 export default function Sidebar({ locale }: { locale: string }) {
@@ -27,27 +26,20 @@ export default function Sidebar({ locale }: { locale: string }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#18385c] bg-[#0f2742]">
-      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
-        <Link href={`/${locale}`} className="group flex items-center gap-3">
-          <img
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/profile/avatar.jpeg`}
-            alt="Ningning Zhang"
-            className="h-10 w-10 rounded-full border border-[#bda36b] object-cover"
-          />
-          <span>
-            <span className="block text-[15px] font-semibold text-white">Ningning Zhang</span>
-            <span className="block text-[11px] uppercase tracking-[0.18em] text-[#d6c28b]">Academic Profile</span>
-          </span>
+    <header className="site-header sticky top-0 z-50">
+      <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between px-5 md:px-10 lg:px-14">
+        <Link href={`/${locale}`} className="brand-mark group">
+          <span className="block text-[17px] font-bold tracking-[0.07em]">NINGNING ZHANG</span>
+          <span className="hidden text-[10px] font-semibold uppercase tracking-[0.19em] md:block">Forecasting · Optimization</span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navItems.map(({ key, href }) => (
             <Link
               key={key}
               href={localizedHref(href)}
-              className={`text-[13px] font-medium transition-colors ${
-                isActive(href) ? 'text-white' : 'text-[#b8c6d8] hover:text-white'
+              className={`nav-link text-[13px] font-semibold transition-colors ${
+                isActive(href) ? 'active' : ''
               }`}
             >
               {t(key)}
@@ -55,12 +47,17 @@ export default function Sidebar({ locale }: { locale: string }) {
           ))}
         </nav>
 
-        <Link
-          href={otherLocalePath}
-          className="rounded-full border border-[#5d7390] px-3 py-1.5 text-[12px] font-medium text-[#dbe5f1] transition-colors hover:border-[#d6c28b] hover:text-white"
-        >
-          {otherLocale === 'zh' ? '中文' : 'EN'}
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href={`/${locale}/projects`}
+            className="mobile-project-link text-[12px] font-semibold md:hidden"
+          >
+            {locale === 'zh' ? '项目' : 'Work'}
+          </Link>
+          <Link href={otherLocalePath} className="language-switch">
+            {otherLocale === 'zh' ? '中文' : 'EN'}
+          </Link>
+        </div>
       </div>
     </header>
   );
