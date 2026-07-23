@@ -17,21 +17,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const caseStudies = [
   {
     index: '01',
-    title: { zh: '民航收益管理决策系统', en: 'Airline Revenue Management System' },
+    title: { zh: '实时动态定价与旅客选择引擎', en: 'Real-time Choice-based Pricing Engine' },
     description: {
-      zh: '主导从贝叶斯需求预测、需求还原到网络优化、Bid Price 与舱位控制的核心算法设计，构建预测—优化—控制完整链路。',
-      en: 'Leading the core algorithm design from Bayesian demand forecasting and unconstraining to network optimization, bid price, and inventory control.',
+      zh: '从0到1主导构建 Pricing Engine，将旅客选择、WTP、价格弹性与机会成本统一到实时收益最大化框架中。',
+      en: 'Built a pricing engine from the ground up, unifying customer choice, WTP, price elasticity, and opportunity cost for real-time revenue maximization.',
     },
-    methods: ['Bayesian Forecasting', 'DLP', 'Bid Price', 'Dynamic Programming'],
+    methods: ['Real-time Pricing', 'Choice Modeling', 'Revenue Maximization', 'Marketplace Pricing'],
   },
   {
     index: '02',
-    title: { zh: '旅客选择与动态定价引擎', en: 'Choice-based Dynamic Pricing Engine' },
+    title: { zh: '预测驱动的收益优化决策系统', en: 'Forecast-to-Decision Revenue Optimization' },
     description: {
-      zh: '将旅客选择、WTP、购买概率与机会成本统一到收益最大化框架中，形成可约束、可验证的价格决策算法。',
-      en: 'Combining passenger choice, WTP, purchase probability, and opportunity cost in a constrained, testable revenue-maximizing pricing framework.',
+      zh: '从0到1搭建需求预测—网络优化—Bid Price—库存控制的算法架构，将概率预测转化为可执行收益决策。',
+      en: 'Built a forecast-to-decision architecture spanning demand forecasting, network optimization, bid price, and inventory control.',
     },
-    methods: ['Choice Modeling', 'WTP', 'Purchase Probability', 'Optimization'],
+    methods: ['Demand Forecasting', 'Revenue Optimization', 'Network Optimization', 'Inventory Control'],
   },
   {
     index: '03',
@@ -40,7 +40,7 @@ const caseStudies = [
       zh: '基于历史销售与价格敏感性，为不同航线、季节、预售期和停留期生成下一航季分组运价与舱位价格梯度。',
       en: 'Generating segment-level seasonal fares and cabin price ladders from historical sales and price sensitivity across route and booking contexts.',
     },
-    methods: ['Hierarchical Modeling', 'Elasticity', 'WTP', 'Fare Ladder'],
+    methods: ['Market Segmentation', 'Price Elasticity', 'WTP', 'Price Architecture'],
   },
   {
     index: '04',
@@ -49,7 +49,7 @@ const caseStudies = [
       zh: '通过大模型问答连接数据、预测与优化模块，实现决策解释、结果溯源、What-if 分析和约束检查。',
       en: 'Connecting data, forecasting, and optimization through LLM-based explanations, decision traceability, what-if analysis, and constraint checks.',
     },
-    methods: ['LLM', 'Tool Calling', 'Explainability', 'What-if Analysis'],
+    methods: ['Decision Intelligence', 'LLM Orchestration', 'Traceability', 'What-if Analysis'],
   },
 ] as const;
 

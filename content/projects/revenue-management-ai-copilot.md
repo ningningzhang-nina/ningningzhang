@@ -1,24 +1,24 @@
 ---
-title: "Revenue Management AI Copilot"
-titleZh: "收益管理 AI Copilot"
-titleEn: "Revenue Management AI Copilot"
+title: "Pricing & Revenue Optimization AI Copilot"
+titleZh: "定价与收益优化 AI Copilot"
+titleEn: "Pricing & Revenue Optimization AI Copilot"
 description: "An explainable decision-intelligence interface across forecasting, optimization, and pricing."
-descriptionZh: "通过大模型问答连接数据、预测和优化模块，实现模型解释、决策溯源、What-if 分析、异常诊断与约束检查。"
-descriptionEn: "Connecting data, forecasting, and optimization through LLM-based model explanations, decision traceability, what-if analysis, diagnostics, and constraint checks."
-roleZh: "产品与算法负责人 / 决策智能架构设计者"
+descriptionZh: "从0到1设计 Decision Intelligence 交互层，通过大模型编排数据、预测与优化工具，实现模型解释、决策溯源、What-if 分析、异常诊断与约束检查。"
+descriptionEn: "Designed a Decision Intelligence interaction layer from the ground up, orchestrating data, forecasting, and optimization tools through an LLM for explanation, traceability, what-if analysis, diagnostics, and constraint checks."
+roleZh: "产品与算法负责人 / Decision Intelligence Architect"
 roleEn: "Product & Algorithm Lead / Decision Intelligence Architect"
 stageZh: "交互原型与系统方案"
 stageEn: "Interactive prototype and system design"
 challengeZh: "收益管理模型链路长、算法专业门槛高，业务用户难以理解一次预测或定价结果为何产生，也难以跨模块追溯和开展情景分析。"
 challengeEn: "Revenue-management pipelines are long and specialized, making it difficult for business users to understand why a forecast or price was produced, trace it across modules, or run scenarios."
 responsibilitiesZh:
-  - "定义 AI Copilot 的产品边界、用户问题体系与跨模块解释框架"
-  - "设计大模型、业务语义、数据库查询和算法工具之间的调用架构"
-  - "负责结果溯源、What-if 重求解、异常诊断与约束校验能力设计"
+  - "从0到1定义 AI Copilot 的产品边界、用户问题体系与跨模块解释框架"
+  - "主导 LLM Orchestration、业务语义注册表、数据库查询与算法工具调用架构设计"
+  - "构建结果溯源、What-if 重求解、异常诊断与约束校验的核心能力"
 responsibilitiesEn:
-  - "Define the AI Copilot scope, user-question taxonomy, and cross-module explanation framework"
-  - "Design orchestration across the LLM, business semantics, database queries, and algorithm tools"
-  - "Own decision traceability, what-if re-optimization, diagnostics, and constraint-checking capabilities"
+  - "Define the AI Copilot scope, user-question taxonomy, and cross-module explanation framework from the ground up"
+  - "Lead the architecture for LLM orchestration, the business semantic registry, database queries, and algorithm tool calls"
+  - "Build core capabilities for decision traceability, what-if re-optimization, diagnostics, and constraint checking"
 pipelineZh:
   - "自然语言问题识别与业务意图解析"
   - "知识检索、语义注册表与工具选择"
@@ -41,7 +41,15 @@ highlightsEn:
   - "Trace a final price back through purchase probability, WTP, bid price, forecasts, and source data"
   - "Re-solve after changes to demand, capacity, parameters, or constraints and compare decisions"
   - "Unify Explain, What-if, Debug, and Constraint capabilities as an interaction layer for algorithmic systems"
-tags: ["LLM", "Tool Calling", "Explainability", "What-if Analysis", "Optimization"]
+outcomesZh:
+  - "将原本分散在预测、优化与定价模块中的专业判断统一为可查询、可追溯的交互式决策入口"
+  - "降低业务用户理解复杂算法结果和开展情景分析的门槛，同时保留数据、参数与约束证据链"
+  - "形成可复用于定价、库存、供应链与运营优化系统的 Decision Intelligence 架构"
+outcomesEn:
+  - "Unified expert reasoning across forecasting, optimization, and pricing into a queryable and traceable decision interface"
+  - "Lowered the barrier to understanding complex algorithm outputs and running scenarios while preserving evidence across data, parameters, and constraints"
+  - "Created a Decision Intelligence architecture reusable across pricing, inventory, supply-chain, and operations-optimization systems"
+tags: ["Decision Intelligence", "LLM Orchestration", "Tool Calling", "Decision Traceability", "What-if Analysis"]
 featured: true
 year: 2026
 order: 4

@@ -48,6 +48,8 @@ export interface Project {
   pipelineEn?: string[];
   highlightsZh?: string[];
   highlightsEn?: string[];
+  outcomesZh?: string[];
+  outcomesEn?: string[];
   tags: string[];
   github?: string;
   demo?: string;
@@ -204,6 +206,8 @@ export function getAllProjects(): Project[] {
         pipelineEn: data.pipelineEn ?? [],
         highlightsZh: data.highlightsZh ?? [],
         highlightsEn: data.highlightsEn ?? [],
+        outcomesZh: data.outcomesZh ?? [],
+        outcomesEn: data.outcomesEn ?? [],
         tags: data.tags ?? [],
         github: data.github,
         demo: data.demo,

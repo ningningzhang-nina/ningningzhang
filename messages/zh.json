@@ -24,7 +24,7 @@
   },
   "projects": {
     "title": "代表项目",
-    "subtitle": "以公开范围内的简要描述，展示核心问题、关键技术与我的工作重点",
+    "subtitle": "一套覆盖实时定价、需求预测、收益优化、长期价格架构与决策解释的端到端 Pricing & Decision Intelligence 系统",
     "viewCode": "查看代码",
     "viewDemo": "在线演示"
   },
