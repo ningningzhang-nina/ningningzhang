@@ -38,12 +38,23 @@ export interface Project {
   descriptionEn?: string;
   roleZh?: string;
   roleEn?: string;
+  stageZh?: string;
+  stageEn?: string;
+  challengeZh?: string;
+  challengeEn?: string;
+  responsibilitiesZh?: string[];
+  responsibilitiesEn?: string[];
+  pipelineZh?: string[];
+  pipelineEn?: string[];
+  highlightsZh?: string[];
+  highlightsEn?: string[];
   tags: string[];
   github?: string;
   demo?: string;
   image?: string;
   featured?: boolean;
   year: number;
+  order?: number;
 }
 
 export interface LifePost {
@@ -183,15 +194,26 @@ export function getAllProjects(): Project[] {
         descriptionEn: data.descriptionEn,
         roleZh: data.roleZh,
         roleEn: data.roleEn,
+        stageZh: data.stageZh,
+        stageEn: data.stageEn,
+        challengeZh: data.challengeZh,
+        challengeEn: data.challengeEn,
+        responsibilitiesZh: data.responsibilitiesZh ?? [],
+        responsibilitiesEn: data.responsibilitiesEn ?? [],
+        pipelineZh: data.pipelineZh ?? [],
+        pipelineEn: data.pipelineEn ?? [],
+        highlightsZh: data.highlightsZh ?? [],
+        highlightsEn: data.highlightsEn ?? [],
         tags: data.tags ?? [],
         github: data.github,
         demo: data.demo,
         image: data.image,
         featured: data.featured ?? false,
         year: data.year ?? 2024,
+        order: data.order,
       } as Project;
     })
-    .sort((a, b) => b.year - a.year);
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || b.year - a.year);
 }
 
 export function getAllLifePosts(): LifePost[] {

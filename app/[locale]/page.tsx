@@ -17,30 +17,39 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const caseStudies = [
   {
     index: '01',
-    title: { zh: '航空需求预测', en: 'Airline Demand Forecasting' },
+    title: { zh: '民航收益管理决策系统', en: 'Airline Revenue Management System' },
     description: {
-      zh: '面向订座曲线与需求受限场景，参与构建覆盖基础需求、节假日、取消与需求分解的预测链路。',
-      en: 'A forecasting pipeline for booking curves and constrained-demand settings, covering base demand, events, cancellations, and demand decomposition.',
+      zh: '主导从贝叶斯需求预测、需求还原到网络优化、Bid Price 与舱位控制的核心算法设计，构建预测—优化—控制完整链路。',
+      en: 'Leading the core algorithm design from Bayesian demand forecasting and unconstraining to network optimization, bid price, and inventory control.',
     },
-    methods: ['Bayesian Modeling', 'DLM', 'Time Series'],
+    methods: ['Bayesian Forecasting', 'DLP', 'Bid Price', 'Dynamic Programming'],
   },
   {
     index: '02',
-    title: { zh: '收益管理优化', en: 'Revenue Management Optimization' },
+    title: { zh: '旅客选择与动态定价引擎', en: 'Choice-based Dynamic Pricing Engine' },
     description: {
-      zh: '围绕舱位控制与网络收益优化，研究并验证从容量管理、DLP 到动态规划的决策方法。',
-      en: 'Decision methods for inventory control and network revenue optimization, from capacity management and DLP to dynamic programming.',
+      zh: '将旅客选择、WTP、购买概率与机会成本统一到收益最大化框架中，形成可约束、可验证的价格决策算法。',
+      en: 'Combining passenger choice, WTP, purchase probability, and opportunity cost in a constrained, testable revenue-maximizing pricing framework.',
     },
-    methods: ['DLP', 'Dynamic Programming', 'Bid Price'],
+    methods: ['Choice Modeling', 'WTP', 'Purchase Probability', 'Optimization'],
   },
   {
     index: '03',
-    title: { zh: '动态定价', en: 'Dynamic Pricing' },
+    title: { zh: '航季运价规划与价格梯度优化', en: 'Seasonal Fare Planning & Price Ladder Optimization' },
     description: {
-      zh: '研究价格、购买概率与机会成本之间的联动，参与旅客选择模型与动态定价算法的设计和验证。',
-      en: 'Modeling the interaction between price, purchase probability, and opportunity cost for choice-aware dynamic pricing.',
+      zh: '基于历史销售与价格敏感性，为不同航线、季节、预售期和停留期生成下一航季分组运价与舱位价格梯度。',
+      en: 'Generating segment-level seasonal fares and cabin price ladders from historical sales and price sensitivity across route and booking contexts.',
     },
-    methods: ['Choice Modeling', 'WTP', 'Optimization'],
+    methods: ['Hierarchical Modeling', 'Elasticity', 'WTP', 'Fare Ladder'],
+  },
+  {
+    index: '04',
+    title: { zh: '收益管理 AI Copilot', en: 'Revenue Management AI Copilot' },
+    description: {
+      zh: '通过大模型问答连接数据、预测与优化模块，实现决策解释、结果溯源、What-if 分析和约束检查。',
+      en: 'Connecting data, forecasting, and optimization through LLM-based explanations, decision traceability, what-if analysis, and constraint checks.',
+    },
+    methods: ['LLM', 'Tool Calling', 'Explainability', 'What-if Analysis'],
   },
 ] as const;
 
