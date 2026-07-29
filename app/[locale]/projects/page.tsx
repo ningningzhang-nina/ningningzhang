@@ -80,8 +80,8 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
 
       <div className="portfolio-track-heading">
         <div>
-          <p className="eyebrow">DECISION SYSTEMS IN PRACTICE</p>
-          <h2>{isZh ? '核心实践' : 'Core Practice'}</h2>
+          <p className="eyebrow">ESTABLISHED WORK</p>
+          <h2>{isZh ? '核心实践' : 'Applied Intelligence'}</h2>
         </div>
         <p>
           {isZh
@@ -217,11 +217,11 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
         })}
       </div>
 
-      <section className="lab-section" aria-label={isZh ? '下一代定价实验项目' : 'Next-generation pricing lab projects'}>
+      <section className="lab-section" aria-label={isZh ? '前沿探索项目' : 'Frontier exploration projects'}>
         <div className="portfolio-track-heading lab-heading">
           <div>
-            <p className="eyebrow">NEXT-GENERATION PRICING LAB</p>
-            <h2>{isZh ? '前沿实验室' : 'Frontier Lab'}</h2>
+            <p className="eyebrow">EMERGING FRONTIERS</p>
+            <h2>{isZh ? '前沿实验室' : 'Frontier Explorations'}</h2>
           </div>
           <p>
             {isZh
