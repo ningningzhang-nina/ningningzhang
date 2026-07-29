@@ -27,11 +27,11 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
       <section className="decision-system-overview" aria-label={isZh ? '端到端定价与决策智能系统全景' : 'End-to-end pricing and decision intelligence system'}>
         <div className="system-overview-copy">
           <p className="eyebrow">SYSTEM OVERVIEW</p>
-          <h2>{isZh ? '四个项目，共同构成一套端到端决策系统' : 'Four projects. One end-to-end decision system.'}</h2>
+          <h2>{isZh ? '五个项目，共同构成一套端到端决策系统' : 'Five projects. One end-to-end decision system.'}</h2>
           <p>
             {isZh
-              ? '覆盖从市场与需求信号识别、预测与旅客选择建模，到收益优化、实时价格决策、长期价格架构及决策解释的完整闭环。'
-              : 'A complete loop from market and demand signals through forecasting and customer choice, revenue optimization, real-time pricing, long-horizon price architecture, and decision explanation.'}
+              ? '覆盖从市场与需求信号识别、预测与旅客选择建模，到收益优化、实时价格决策、长期价格架构、决策解释及仿真评测的完整闭环。'
+              : 'A complete loop from market and demand signals through forecasting and customer choice, revenue optimization, real-time pricing, long-horizon price architecture, decision explanation, and simulation-based evaluation.'}
           </p>
         </div>
         <div className="system-flow">
