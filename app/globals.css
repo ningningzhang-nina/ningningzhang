@@ -119,6 +119,23 @@
   color: var(--stone-light);
 }
 
+.resume-download {
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(230, 225, 213, 0.34);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 760;
+  white-space: nowrap;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.resume-download:hover {
+  border-color: var(--coral);
+  background: rgba(230, 225, 213, 0.72);
+}
+
 .mobile-project-link {
   color: var(--ink);
 }
@@ -309,6 +326,17 @@
   color: var(--ink);
   font-size: 14px;
   font-weight: 750;
+}
+
+.proof-note {
+  margin: 0;
+  padding: 10px clamp(24px, 4vw, 64px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(230, 225, 213, 0.3);
+  color: rgba(57, 75, 64, 0.7);
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: right;
 }
 
 .content-section {
@@ -564,6 +592,34 @@
   margin: 24px 0 0;
   color: var(--copy);
   font-size: 16px;
+  line-height: 1.8;
+}
+
+.portfolio-track-heading {
+  display: grid;
+  margin: 0 0 30px;
+  align-items: end;
+  gap: 42px;
+  grid-template-columns: minmax(260px, 0.82fr) minmax(320px, 1.18fr);
+}
+
+.portfolio-track-heading .eyebrow {
+  margin-bottom: 10px;
+}
+
+.portfolio-track-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(30px, 3.6vw, 48px);
+  font-weight: 740;
+  letter-spacing: -0.045em;
+}
+
+.portfolio-track-heading > p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--copy);
+  font-size: 14px;
   line-height: 1.8;
 }
 
@@ -834,6 +890,107 @@
   font-weight: 800;
 }
 
+.lab-section {
+  margin-top: 104px;
+}
+
+.lab-heading {
+  padding-top: 44px;
+  border-top: 1px solid var(--line);
+}
+
+.lab-project-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lab-project-card {
+  display: flex;
+  min-height: 460px;
+  padding: 28px;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background:
+    linear-gradient(155deg, rgba(241, 238, 229, 0.82), rgba(230, 225, 213, 0.56));
+  box-shadow: 0 18px 42px rgba(55, 40, 52, 0.05);
+}
+
+.lab-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lab-index {
+  color: var(--coral);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.status-pill {
+  padding: 6px 8px;
+  border: 1px solid rgba(118, 83, 107, 0.32);
+  border-radius: 999px;
+  color: var(--plum);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+
+.lab-project-card h3 {
+  margin: 42px 0 14px;
+  color: var(--ink);
+  font-size: 23px;
+  font-weight: 740;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
+.lab-objective {
+  margin: 0;
+  color: var(--copy);
+  font-size: 13px;
+  line-height: 1.78;
+}
+
+.lab-project-card .method-list {
+  margin-top: 22px;
+}
+
+.lab-details {
+  display: grid;
+  margin: auto 0 0;
+  padding-top: 28px;
+  gap: 18px;
+}
+
+.lab-details div {
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.lab-details dt {
+  margin-bottom: 7px;
+  color: var(--coral);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lab-details dd {
+  margin: 0;
+  color: rgba(57, 75, 64, 0.82);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
 .confidentiality-note {
   display: grid;
   margin-top: 58px;
@@ -854,6 +1011,60 @@
 
 .about-hero {
   max-width: 920px;
+}
+
+.about-evidence {
+  display: grid;
+  margin-bottom: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  background: rgba(230, 225, 213, 0.48);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.about-evidence article {
+  min-height: 158px;
+  padding: 28px;
+  border-right: 1px solid var(--line);
+}
+
+.about-evidence article:last-child {
+  border-right: 0;
+}
+
+.about-evidence span {
+  color: var(--coral);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.about-evidence strong {
+  display: block;
+  margin-top: 26px;
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 740;
+}
+
+.about-evidence p {
+  margin: 9px 0 0;
+  color: rgba(57, 75, 64, 0.76);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.evidence-footnote {
+  margin: 0 0 76px;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-top: 0;
+  border-radius: 0 0 10px 10px;
+  color: rgba(57, 75, 64, 0.68);
+  font-size: 10px;
+  text-align: right;
 }
 
 .resume-section {
@@ -937,6 +1148,33 @@
   border-radius: 50%;
   content: "";
   background: var(--coral);
+}
+
+.skill-matrix {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--line);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.skill-matrix article {
+  min-height: 176px;
+  padding: 24px;
+  background: rgba(241, 238, 229, 0.76);
+}
+
+.skill-matrix h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 760;
+}
+
+.skill-matrix .method-list {
+  margin-top: 22px;
 }
 
 .about-contact {
@@ -1118,6 +1356,11 @@
 }
 
 @media (max-width: 720px) {
+  .resume-download {
+    padding-inline: 8px;
+    font-size: 10px;
+  }
+
   .hero-copy {
     padding: 64px 22px 56px;
   }
@@ -1185,6 +1428,12 @@
     grid-template-columns: 1fr;
   }
 
+  .portfolio-track-heading {
+    align-items: start;
+    gap: 18px;
+    grid-template-columns: 1fr;
+  }
+
   .project-framework {
     grid-template-columns: 1fr;
   }
@@ -1223,10 +1472,33 @@
     grid-template-columns: 1fr;
   }
 
+  .lab-project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-project-card {
+    min-height: 0;
+  }
+
   .resume-section,
   .timeline-list article {
     gap: 20px;
     grid-template-columns: 1fr;
+  }
+
+  .about-evidence,
+  .skill-matrix {
+    grid-template-columns: 1fr;
+  }
+
+  .about-evidence article {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-evidence article:last-child {
+    border-bottom: 0;
   }
 
   .about-contact {

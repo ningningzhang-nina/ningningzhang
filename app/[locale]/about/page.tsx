@@ -14,8 +14,16 @@ const experience = [
     role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
     organization: { zh: '中国民航信息网络股份有限公司', en: 'TravelSky Technology Limited' },
     details: {
-      zh: ['从事民航收益管理与动态定价算法研发', '研究需求预测、Bid Price、网络优化与旅客选择模型'],
-      en: ['Algorithm research for airline revenue management and dynamic pricing', 'Work spanning demand forecasting, bid price, network optimization, and passenger choice'],
+      zh: [
+        '负责航空收益管理与动态定价中“预测—优化—控制”闭环的核心算法设计与 POC 验证',
+        '采用贝叶斯层级预测、DLP / Bid Price、Bellman DP、旅客选择与 WTP 建模连接需求、容量和价格决策',
+        '搭建可复现仿真评测平台；固定随机种子压力场景中，新算法组合取得 56.8% 仿真收益提升（非线上指标）',
+      ],
+      en: [
+        'Lead core algorithm design and POC validation for the forecast-optimize-control loop in airline revenue management and dynamic pricing',
+        'Connect demand, capacity, and pricing through hierarchical Bayesian forecasting, DLP / bid price, Bellman DP, customer choice, and WTP modeling',
+        'Built a reproducible simulation benchmark; the new algorithm stack achieved a 56.8% simulated revenue lift in a fixed-seed stress scenario (not a production metric)',
+      ],
     },
   },
   {
@@ -23,8 +31,8 @@ const experience = [
     role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
     organization: { zh: '香港大学', en: 'The University of Hong Kong' },
     details: {
-      zh: ['金融时间序列、条件矩与统计建模研究'],
-      en: ['Research in financial time series, conditional moments, and statistical modeling'],
+      zh: ['开展金融时间序列、条件矩与统计建模研究，延续概率建模与不确定性分析方向'],
+      en: ['Conducted research in financial time series, conditional moments, statistical modeling, and uncertainty analysis'],
     },
   },
   {
@@ -32,8 +40,8 @@ const experience = [
     role: { zh: '算法与数据分析实习', en: 'Algorithm & Data Analytics Internships' },
     organization: { zh: '美团 · 滴滴出行', en: 'Meituan · DiDi' },
     details: {
-      zh: ['外卖配送时间预测特征工程', '供需关系分析、调价评估与实验分群'],
-      en: ['Feature engineering for delivery-time prediction', 'Supply-demand analysis, pricing evaluation, and experiment segmentation'],
+      zh: ['参与外卖配送时间预测特征工程', '开展供需关系分析、调价评估与实验分群'],
+      en: ['Contributed to feature engineering for delivery-time prediction', 'Conducted supply-demand analysis, pricing evaluation, and experiment segmentation'],
     },
   },
 ] as const;
@@ -59,6 +67,21 @@ const education = [
   },
 ] as const;
 
+const skillGroups = [
+  {
+    title: { zh: '建模', en: 'MODELING' },
+    items: ['Python', 'Bayesian Time Series', 'LightGBM', 'Choice Modeling', 'WTP'],
+  },
+  {
+    title: { zh: '优化', en: 'OPTIMIZATION' },
+    items: ['Linear Programming', 'DLP', 'Bid Price', 'Bellman DP'],
+  },
+  {
+    title: { zh: '系统与评测', en: 'SYSTEMS & EVALUATION' },
+    items: ['Streamlit', 'Backtesting', 'Common Random Numbers', 'LLM Tool Calling'],
+  },
+] as const;
+
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const l = locale === 'zh' ? 'zh' : 'en';
@@ -67,14 +90,35 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   return (
     <div className="inner-page about-page">
       <header className="inner-page-hero about-hero">
-        <p className="eyebrow">EXPERIENCE</p>
-        <h1>{isZh ? '从统计研究到优化决策' : 'From Statistical Research to Optimization Decisions'}</h1>
+        <p className="eyebrow">PRICING · DECISION INTELLIGENCE</p>
+        <h1>{isZh ? '从统计预测到定价决策系统' : 'From Statistical Forecasts to Pricing Decisions'}</h1>
         <p>
           {isZh
-            ? '我的优势不只是建立模型，而是理解不确定性、业务约束与决策目标之间的关系，并把算法组织成可验证的解决方案。'
-            : 'My work connects uncertainty, business constraints, and decision objectives—organizing algorithms into solutions that can be tested and explained.'}
+            ? '香港大学统计学博士，现从事航空收益管理与动态定价算法研发。我的核心能力是把不确定性、用户价格响应、业务约束与收益目标组织成可验证的决策链路。'
+            : 'Ph.D. in Statistics from The University of Hong Kong, working on airline revenue management and dynamic pricing. I turn uncertainty, customer price response, business constraints, and revenue objectives into testable decision pipelines.'}
         </p>
       </header>
+
+      <section className="about-evidence" aria-label={isZh ? '核心证据' : 'Selected evidence'}>
+        <article>
+          <span>01</span>
+          <strong>{isZh ? '统计学博士' : 'Ph.D. in Statistics'}</strong>
+          <p>{isZh ? '时间序列、概率建模与不确定性分析' : 'Time series, probabilistic modeling, and uncertainty analysis'}</p>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>{isZh ? '端到端算法闭环' : 'End-to-end Algorithm Loop'}</strong>
+          <p>{isZh ? 'Forecast → Optimize → Decide → Evaluate' : 'Forecast → Optimize → Decide → Evaluate'}</p>
+        </article>
+        <article>
+          <span>03</span>
+          <strong>+56.8%*</strong>
+          <p>{isZh ? '固定随机种子压力场景仿真收益提升' : 'Simulated lift in a fixed-seed stress scenario'}</p>
+        </article>
+      </section>
+      <p className="evidence-footnote">
+        {isZh ? '* 仿真实验结果，不代表线上业务收益。' : '* Simulation result; not an online production metric.'}
+      </p>
 
       <section className="resume-section">
         <div className="resume-label">{isZh ? '工作经历' : 'EXPERIENCE'}</div>
@@ -104,6 +148,20 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 <h2>{item.degree[l]}</h2>
                 <h3>{item.school[l]}</h3>
                 <p>{item.note[l]}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="resume-section">
+        <div className="resume-label">{isZh ? '技术栈' : 'TECH STACK'}</div>
+        <div className="skill-matrix">
+          {skillGroups.map((group) => (
+            <article key={group.title.en}>
+              <h2>{group.title[l]}</h2>
+              <div className="method-list">
+                {group.items.map((item) => <span key={item}>{item}</span>)}
               </div>
             </article>
           ))}
