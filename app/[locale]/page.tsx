@@ -7,10 +7,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isZh = locale === 'zh';
   return {
-    title: isZh ? '张宁宁｜统计预测与优化算法工程师' : 'Ningning Zhang | Forecasting & Optimization',
+    title: isZh ? '张宁宁｜定价与决策智能算法' : 'Ningning Zhang | Pricing & Decision Intelligence',
     description: isZh
-      ? '统计预测、概率建模、优化决策与民航收益管理算法作品集。'
-      : 'Portfolio in statistical forecasting, probabilistic modeling, optimization, and airline revenue management.',
+      ? '覆盖需求预测、旅客选择、收益优化、动态定价与算法仿真评测的决策智能作品集。'
+      : 'A decision-intelligence portfolio spanning demand forecasting, customer choice, revenue optimization, dynamic pricing, and simulation-based evaluation.',
   };
 }
 
@@ -35,12 +35,12 @@ const caseStudies = [
   },
   {
     index: '03',
-    title: { zh: '航季运价规划与价格梯度优化', en: 'Seasonal Fare Planning & Price Ladder Optimization' },
+    title: { zh: '收益管理仿真与算法评测平台', en: 'RM Simulation & Algorithm Evaluation Platform' },
     description: {
-      zh: '基于历史销售与价格敏感性，为不同航线、季节、预售期和停留期生成下一航季分组运价与舱位价格梯度。',
-      en: 'Generating segment-level seasonal fares and cabin price ladders from historical sales and price sensitivity across route and booking contexts.',
+      zh: '在统一旅客流下公平复跑传统基线与新算法；固定随机种子压力场景中，预测 + 网络控制组合取得 56.8% 仿真收益提升。',
+      en: 'Replay baseline and new policies under identical passenger streams; the forecast-plus-network-control stack achieved a 56.8% simulated revenue lift in a fixed-seed stress scenario.',
     },
-    methods: ['Market Segmentation', 'Price Elasticity', 'WTP', 'Price Architecture'],
+    methods: ['Simulation', 'Common Random Numbers', 'Oracle Test', 'Streamlit'],
   },
   {
     index: '04',
@@ -55,16 +55,16 @@ const caseStudies = [
 
 const capabilities = [
   {
-    title: { zh: '统计预测', en: 'Statistical Forecasting' },
-    text: { zh: '时间序列、贝叶斯建模、概率预测与非平稳更新', en: 'Time series, Bayesian modeling, probabilistic forecasts, and non-stationary updating' },
+    title: { zh: '预测与选择', en: 'Forecasting & Choice' },
+    text: { zh: '贝叶斯时间序列、概率预测、旅客选择、WTP 与购买概率', en: 'Bayesian time series, probabilistic forecasts, customer choice, WTP, and purchase probability' },
   },
   {
-    title: { zh: '优化决策', en: 'Optimization' },
-    text: { zh: '线性规划、动态规划、随机优化与收益管理', en: 'Linear programming, dynamic programming, stochastic optimization, and revenue management' },
+    title: { zh: '优化与控制', en: 'Optimization & Control' },
+    text: { zh: 'DLP、Bid Price、Bellman DP、容量约束与收益最大化', en: 'DLP, bid price, Bellman DP, capacity constraints, and revenue maximization' },
   },
   {
-    title: { zh: '业务转化', en: 'Applied Modeling' },
-    text: { zh: '把统计模型转化为可验证、可解释的业务决策模块', en: 'Turning statistical models into testable, interpretable decision modules' },
+    title: { zh: '评测与解释', en: 'Evaluation & Explainability' },
+    text: { zh: '反事实仿真、Oracle 诊断、What-if 分析与决策溯源', en: 'Counterfactual simulation, Oracle diagnostics, what-if analysis, and decision traceability' },
   },
 ] as const;
 
@@ -149,12 +149,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <div className="portfolio-home">
       <section className="hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow">STATISTICAL FORECASTING · OPTIMIZATION</p>
-          <h1>{isZh ? '统计预测与优化算法工程师' : 'Statistical Forecasting & Optimization Engineer'}</h1>
+          <p className="eyebrow">PRICING · FORECASTING · OPTIMIZATION</p>
+          <h1>{isZh ? '定价与决策智能算法' : 'Pricing & Decision Intelligence'}</h1>
           <p className="hero-lead">
             {isZh
-              ? '香港大学统计学博士，现从事航空收益管理与动态定价算法研发。擅长将时间序列预测、概率建模与优化方法转化为可落地的业务决策系统。'
-              : 'Ph.D. in Statistics from The University of Hong Kong, working on airline revenue management and dynamic pricing. I turn forecasting, probabilistic modeling, and optimization into practical decision systems.'}
+              ? '香港大学统计学博士，现从事航空收益管理与动态定价算法研发。专注把需求预测、用户价格响应与约束优化连接成可验证、可解释的定价决策系统。'
+              : 'Ph.D. in Statistics from The University of Hong Kong, working on airline revenue management and dynamic pricing. I connect demand forecasting, customer price response, and constrained optimization into testable, explainable pricing systems.'}
           </p>
           <div className="hero-actions">
             <Link href={`/${locale}/projects`} className="button button-primary">
@@ -165,7 +165,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </Link>
           </div>
           <div className="skill-list" aria-label={isZh ? '核心技术方向' : 'Core skills'}>
-            {['Time Series', 'Bayesian Modeling', 'Optimization', 'Machine Learning'].map((skill) => (
+            {['Python', 'Bayesian Forecasting', 'Choice Modeling', 'DLP · Bellman DP', 'Streamlit'].map((skill) => (
               <span key={skill}>{skill}</span>
             ))}
           </div>
@@ -175,9 +175,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <section className="proof-strip" aria-label={isZh ? '专业背景概览' : 'Professional summary'}>
         <div><span>01</span><strong>Ph.D. in Statistics</strong></div>
-        <div><span>02</span><strong>Forecasting &amp; Optimization</strong></div>
-        <div><span>03</span><strong>Airline RM · Dynamic Pricing</strong></div>
+        <div><span>02</span><strong>Forecast → Optimize → Decide</strong></div>
+        <div><span>03</span><strong>+56.8%* Simulation Benchmark</strong></div>
       </section>
+      <p className="proof-note">
+        {isZh
+          ? '* 固定随机种子、三个月网络压力场景的仿真实验结果，不代表线上收益。'
+          : '* Simulated result from a fixed-seed, three-month network-stress scenario; not an online production lift.'}
+      </p>
 
       <section className="content-section" id="work">
         <div className="section-heading">
@@ -263,7 +268,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <section className="contact-band">
         <p className="eyebrow">LET&apos;S CONNECT</p>
-        <h2>{isZh ? '关注统计预测、优化决策与算法落地机会' : 'Open to opportunities in forecasting, optimization, and applied algorithms'}</h2>
+        <h2>{isZh ? '关注复杂供需场景下的预测、定价与决策优化机会' : 'Open to forecasting, pricing, and decision-optimization opportunities in complex marketplaces'}</h2>
         <a href="mailto:zhangnn0725@163.com">zhangnn0725@163.com ↗</a>
       </section>
     </div>

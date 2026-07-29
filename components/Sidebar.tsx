@@ -17,6 +17,8 @@ export default function Sidebar({ locale }: { locale: string }) {
   const pathname = usePathname();
   const otherLocale = locale === 'zh' ? 'en' : 'zh';
   const otherLocalePath = pathname.replace(`/${locale}`, `/${otherLocale}`);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const resumeHref = `${basePath}/${locale === 'zh' ? 'Ningning_Zhang_Resume_ZH.pdf' : 'Ningning_Zhang_Resume_EN.pdf'}`;
 
   const localizedHref = (href: string) => `/${locale}${href === '/' ? '' : href}`;
   const isActive = (href: string) => {
@@ -30,7 +32,7 @@ export default function Sidebar({ locale }: { locale: string }) {
       <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between px-5 md:px-10 lg:px-14">
         <Link href={`/${locale}`} className="brand-mark group">
           <span className="block text-[17px] font-bold tracking-[0.07em]">NINGNING ZHANG</span>
-          <span className="hidden text-[10px] font-semibold uppercase tracking-[0.19em] md:block">Forecasting · Optimization</span>
+          <span className="hidden text-[10px] font-semibold uppercase tracking-[0.19em] md:block">Pricing · Decision Intelligence</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -48,6 +50,9 @@ export default function Sidebar({ locale }: { locale: string }) {
         </nav>
 
         <div className="flex items-center gap-4">
+          <a href={resumeHref} download className="resume-download">
+            {locale === 'zh' ? '简历下载' : 'Resume PDF'}
+          </a>
           <Link
             href={`/${locale}/projects`}
             className="mobile-project-link text-[12px] font-semibold md:hidden"
