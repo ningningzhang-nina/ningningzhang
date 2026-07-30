@@ -4,7 +4,7 @@
     "about": "Experience",
     "projects": "Selected Work",
     "blog": "Technical Notes",
-    "papers": "Research",
+    "papers": "Papers & Patents",
     "travel": "Travel"
   },
   "home": {
@@ -34,8 +34,8 @@
     "minRead": "min read"
   },
   "papers": {
-    "title": "Papers & Publications",
-    "subtitle": "Academic work I've published"
+    "title": "Papers & Patents",
+    "subtitle": "Academic publications and inventions"
   },
   "travel": {
     "title": "Travel",

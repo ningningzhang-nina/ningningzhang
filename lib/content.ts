@@ -28,6 +28,12 @@ export interface Paper {
   citations?: number;
 }
 
+export interface Patent {
+  slug: string;
+  title: string;
+  inventors: string;
+}
+
 export interface Project {
   slug: string;
   category?: 'core' | 'frontier';
@@ -180,6 +186,19 @@ export function getAllPapers(): Paper[] {
       } as Paper;
     })
     .sort((a, b) => b.year - a.year);
+}
+
+export function getAllPatents(): Patent[] {
+  const singleFile = path.join(contentDir, 'papers.md');
+  if (!fs.existsSync(singleFile)) return [];
+
+  const raw = fs.readFileSync(singleFile, 'utf8');
+  const { data } = matter(raw);
+  return (data.patents ?? []).map((patent: Record<string, unknown>, index: number) => ({
+    slug: `patent-${index}`,
+    title: patent.title ?? '',
+    inventors: patent.inventors ?? '',
+  })) as Patent[];
 }
 
 export function getAllProjects(): Project[] {

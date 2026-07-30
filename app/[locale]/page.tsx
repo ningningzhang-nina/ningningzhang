@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { setRequestLocale } from 'next-intl/server';
-import { getAllPapers, getAllPosts, getAllProjects } from '@/lib/content';
-import graduationPortrait from '@/public/images/profile/graduation-portrait.jpg';
+import { getAllPapers, getAllPatents, getAllPosts, getAllProjects } from '@/lib/content';
+import graduationPortrait from '@/public/images/profile/graduation-portrait-retouched.jpg';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -79,7 +79,7 @@ const credentials = [
     note: { zh: '平均分 93.51 / 100', en: 'GPA 93.51 / 100' },
   },
   {
-    value: '3',
+    value: '7',
     title: { zh: '专利成果', en: 'Patents' },
     note: { zh: '算法设计与业务应用相关', en: 'Algorithm design and applied systems' },
   },
@@ -91,8 +91,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const isZh = locale === 'zh';
   const l = isZh ? 'zh' : 'en';
   const papers = getAllPapers();
+  const patents = getAllPatents();
   const posts = getAllPosts(locale).slice(0, 3);
   const projects = getAllProjects().filter((project) => project.category !== 'frontier');
+  const featuredPatents = patents.filter((patent) =>
+    patent.title.includes('航班聚合动态定价') || patent.title.includes('多智能体协同')
+  );
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const resumeHref = `${basePath}/${isZh ? 'Ningning_Zhang_Resume_ZH.pdf' : 'Ningning_Zhang_Resume_EN.pdf'}`;
 
@@ -135,7 +139,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           />
           <div className="design-stats">
             <article><strong>{papers.length}+</strong><span>{isZh ? '论文与研究成果' : 'Publications'}</span></article>
-            <article><strong>3</strong><span>{isZh ? '专利' : 'Patents'}</span></article>
+            <article><strong>{patents.length}</strong><span>{isZh ? '专利' : 'Patents'}</span></article>
             <article><strong>{projects.length}</strong><span>{isZh ? '核心项目' : 'Core Projects'}</span></article>
             <article><strong>Ph.D.</strong><span>{isZh ? '统计学' : 'Statistics'}</span></article>
           </div>
@@ -200,17 +204,24 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="design-section" id="papers">
         <div className="design-section-heading">
           <div>
-            <p className="design-kicker">PUBLICATIONS</p>
-            <h2>{isZh ? '论文与研究成果' : 'Papers & Publications'}</h2>
+            <p className="design-kicker">PUBLICATIONS & PATENTS</p>
+            <h2>{isZh ? '论文与专利' : 'Papers & Patents'}</h2>
           </div>
-          <Link href={`/${locale}/papers`}>{isZh ? '查看全部论文' : 'View all papers'} →</Link>
+          <Link href={`/${locale}/papers`}>{isZh ? '查看全部论文与专利' : 'View all papers & patents'} →</Link>
         </div>
         <div className="design-paper-grid">
-          {papers.slice(0, 4).map((paper) => (
+          {papers.slice(0, 2).map((paper) => (
             <article key={paper.slug}>
               <div><span>{paper.venue}</span><time>{paper.year}</time></div>
               <h3>{paper.title}</h3>
               <p>{paper.authors}</p>
+            </article>
+          ))}
+          {featuredPatents.map((patent) => (
+            <article key={patent.slug}>
+              <div><span>{isZh ? '发明专利' : 'Patent'}</span><time>PATENT</time></div>
+              <h3>{patent.title}</h3>
+              <p>{isZh ? `发明人：${patent.inventors}` : `Inventors: ${patent.inventors}`}</p>
             </article>
           ))}
         </div>

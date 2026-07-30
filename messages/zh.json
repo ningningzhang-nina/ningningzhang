@@ -4,7 +4,7 @@
     "about": "经历",
     "projects": "代表项目",
     "blog": "技术文章",
-    "papers": "研究成果",
+    "papers": "论文与专利",
     "travel": "旅行"
   },
   "home": {
@@ -34,8 +34,8 @@
     "minRead": "分钟阅读"
   },
   "papers": {
-    "title": "论文与出版物",
-    "subtitle": "发表的学术成果"
+    "title": "论文与专利",
+    "subtitle": "学术论文与发明专利"
   },
   "travel": {
     "title": "旅行",
