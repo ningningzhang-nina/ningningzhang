@@ -1,6 +1,6 @@
-import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
-import { getAllPapers, getAllPosts } from '@/lib/content';
+import { setRequestLocale } from 'next-intl/server';
+import { getAllPapers, getAllPosts, getAllProjects } from '@/lib/content';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -14,262 +14,255 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const caseStudies = [
+const experience = [
   {
-    index: '01',
-    title: { zh: '实时动态定价与旅客选择引擎', en: 'Real-time Choice-based Pricing Engine' },
-    description: {
-      zh: '从0到1主导构建 Pricing Engine，将旅客选择、WTP、价格弹性与机会成本统一到实时收益最大化框架中。',
-      en: 'Built a pricing engine from the ground up, unifying customer choice, WTP, price elasticity, and opportunity cost for real-time revenue maximization.',
+    period: { zh: '2025.09 – 至今', en: 'Sep 2025 – Present' },
+    role: { zh: '博士后研究员 · 核心算法负责人', en: 'Postdoctoral Researcher · Algorithm Lead' },
+    organization: { zh: '中国民航信息网络股份有限公司', en: 'TravelSky Technology Limited' },
+    details: {
+      zh: [
+        '负责航空收益管理与动态定价中“预测—优化—控制”闭环的核心算法设计与 POC 验证',
+        '连接贝叶斯需求预测、DLP / Bid Price、Bellman DP、旅客选择与 WTP 建模',
+      ],
+      en: [
+        'Lead core algorithm design and POC validation for the forecast-optimize-control loop in airline revenue management and dynamic pricing',
+        'Connect Bayesian demand forecasting, DLP / bid price, Bellman DP, customer choice, and WTP modeling',
+      ],
     },
-    methods: ['Real-time Pricing', 'Choice Modeling', 'Revenue Maximization', 'Marketplace Pricing'],
   },
   {
-    index: '02',
-    title: { zh: '预测驱动的收益优化决策系统', en: 'Forecast-to-Decision Revenue Optimization' },
-    description: {
-      zh: '从0到1搭建需求预测—网络优化—Bid Price—库存控制的算法架构，将概率预测转化为可执行收益决策。',
-      en: 'Built a forecast-to-decision architecture spanning demand forecasting, network optimization, bid price, and inventory control.',
+    period: { zh: '2025.01 – 2025.08', en: 'Jan 2025 – Aug 2025' },
+    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
+    organization: { zh: '香港大学', en: 'The University of Hong Kong' },
+    details: {
+      zh: ['开展金融时间序列、条件矩、概率建模与不确定性分析研究'],
+      en: ['Research in financial time series, conditional moments, probabilistic modeling, and uncertainty analysis'],
     },
-    methods: ['Demand Forecasting', 'Revenue Optimization', 'Network Optimization', 'Inventory Control'],
   },
   {
-    index: '03',
-    title: { zh: '收益管理仿真与算法评测平台', en: 'RM Simulation & Algorithm Evaluation Platform' },
-    description: {
-      zh: '在统一旅客流下公平复跑传统基线与新算法；固定随机种子压力场景中，预测 + 网络控制组合取得 56.8% 仿真收益提升。',
-      en: 'Replay baseline and new policies under identical passenger streams; the forecast-plus-network-control stack achieved a 56.8% simulated revenue lift in a fixed-seed stress scenario.',
+    period: { zh: '2017 – 2018', en: '2017 – 2018' },
+    role: { zh: '算法与数据分析实习', en: 'Algorithm & Data Analytics Internships' },
+    organization: { zh: '美团 · 滴滴出行', en: 'Meituan · DiDi' },
+    details: {
+      zh: ['参与配送时间预测、供需分析、调价评估与实验分群'],
+      en: ['Worked on delivery-time prediction, supply-demand analysis, pricing evaluation, and experiment segmentation'],
     },
-    methods: ['Simulation', 'Common Random Numbers', 'Oracle Test', 'Streamlit'],
-  },
-  {
-    index: '04',
-    title: { zh: '收益管理 AI Copilot', en: 'Revenue Management AI Copilot' },
-    description: {
-      zh: '通过大模型问答连接数据、预测与优化模块，实现决策解释、结果溯源、What-if 分析和约束检查。',
-      en: 'Connecting data, forecasting, and optimization through LLM-based explanations, decision traceability, what-if analysis, and constraint checks.',
-    },
-    methods: ['Decision Intelligence', 'LLM Orchestration', 'Traceability', 'What-if Analysis'],
   },
 ] as const;
 
-const capabilities = [
+const skillGroups = [
   {
-    title: { zh: '预测与选择', en: 'Forecasting & Choice' },
-    text: { zh: '贝叶斯时间序列、概率预测、旅客选择、WTP 与购买概率', en: 'Bayesian time series, probabilistic forecasts, customer choice, WTP, and purchase probability' },
+    title: { zh: '预测与统计建模', en: 'Forecasting & Statistics' },
+    items: ['Bayesian Time Series', 'Probabilistic Forecasting', 'LightGBM', 'Demand Unconstraining'],
   },
   {
-    title: { zh: '优化与控制', en: 'Optimization & Control' },
-    text: { zh: 'DLP、Bid Price、Bellman DP、容量约束与收益最大化', en: 'DLP, bid price, Bellman DP, capacity constraints, and revenue maximization' },
+    title: { zh: '定价与收益优化', en: 'Pricing & Revenue Optimization' },
+    items: ['Choice Modeling', 'WTP', 'DLP', 'Bid Price', 'Bellman DP'],
   },
   {
-    title: { zh: '评测与解释', en: 'Evaluation & Explainability' },
-    text: { zh: '反事实仿真、Oracle 诊断、What-if 分析与决策溯源', en: 'Counterfactual simulation, Oracle diagnostics, what-if analysis, and decision traceability' },
+    title: { zh: '系统与评测', en: 'Systems & Evaluation' },
+    items: ['Python', 'Streamlit', 'Backtesting', 'Common Random Numbers', 'LLM Tool Calling'],
   },
 ] as const;
 
-function DecisionVisual({ isZh }: { isZh: boolean }) {
-  return (
-    <div className="algorithm-visual" aria-label={isZh ? '预测、优化与决策算法链路示意图' : 'Forecasting, optimization, and decision pipeline'}>
-      <svg viewBox="0 0 720 560" role="img" aria-hidden="true">
-        <defs>
-          <linearGradient id="forecastBand" x1="0" x2="1">
-            <stop offset="0" stopColor="#E5EAD9" stopOpacity="0.18" />
-            <stop offset="1" stopColor="#B45F4A" stopOpacity="0.38" />
-          </linearGradient>
-          <linearGradient id="surfaceFill" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#E5EAD9" stopOpacity="0.5" />
-            <stop offset="1" stopColor="#76536B" stopOpacity="0.16" />
-          </linearGradient>
-          <marker id="flowArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#E57A61" />
-          </marker>
-        </defs>
-
-        <g fill="#E5EAD9" fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace" fontSize="11" fontWeight="700" letterSpacing="1.8">
-          <text x="34" y="22">01 FORECAST</text>
-          <text x="48" y="224">02 OPTIMIZE</text>
-          <text x="510" y="276">03 DECIDE</text>
-        </g>
-
-        <g opacity="0.48" stroke="#C8D2C2" strokeWidth="1">
-          <path d="M34 174H686" />
-          <path d="M34 116H686" strokeDasharray="4 8" />
-          <path d="M34 58H686" strokeDasharray="4 8" />
-        </g>
-        <path
-          d="M34 142 C68 116 90 151 120 120 S171 91 204 132 S257 151 292 119 S333 140 354 112 L354 112 C392 78 428 91 463 68 S522 88 558 57 S623 80 686 28 L686 110 C630 137 598 128 558 145 S502 124 463 151 S397 129 354 156 Z"
-          fill="url(#forecastBand)"
-        />
-        <path d="M34 142 C68 116 90 151 120 120 S171 91 204 132 S257 151 292 119 S333 140 354 112" fill="none" stroke="#E5EAD9" strokeWidth="3" />
-        <path d="M354 112 C392 86 428 103 463 82 S522 105 558 75 S623 98 686 48" fill="none" stroke="#E57A61" strokeWidth="3" />
-        <path d="M354 28V184" stroke="#E5EAD9" strokeDasharray="8 9" opacity="0.85" />
-        {[34, 84, 134, 184, 234, 284, 334, 384, 434, 484, 534, 584, 634, 686].map((x, i) => (
-          <circle key={x} cx={x} cy={[142, 121, 108, 103, 139, 133, 121, 96, 91, 103, 75, 89, 81, 48][i]} r="4" fill={i < 7 ? '#E5EAD9' : '#E57A61'} />
-        ))}
-
-        <path d="M354 184 C354 218 318 232 274 270" fill="none" stroke="#E57A61" strokeWidth="2" strokeDasharray="5 7" markerEnd="url(#flowArrow)" />
-
-        <g transform="translate(30 230)">
-          <path d="M18 226 C96 150 121 36 220 56 C316 77 311 179 421 193 C319 220 224 251 18 226Z" fill="url(#surfaceFill)" stroke="#AABAA5" strokeWidth="1.5" />
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <path key={i} d={`M${24 + i * 12} ${220 - i * 14} C${100 + i * 8} ${154 - i * 20} ${136 + i * 11} ${54 - i * 2} ${220 + i * 6} ${62 + i * 5} C${302 + i * 9} ${74 + i * 18} ${320 + i * 8} ${170 + i * 9} ${414 - i * 2} ${190 + i * 5}`} fill="none" stroke="#DDE5D5" opacity={0.72 - i * 0.08} />
-          ))}
-          {[0, 1, 2, 3, 4].map((i) => (
-            <ellipse key={i} cx="220" cy="226" rx={176 - i * 26} ry={48 - i * 7} fill="none" stroke="#C3B69C" opacity="0.72" />
-          ))}
-          <path d="M122 213 C159 196 175 169 194 140 S223 95 246 78" fill="none" stroke="#E57A61" strokeWidth="3" />
-          {[122, 158, 194, 223, 246].map((x, i) => <circle key={x} cx={x} cy={[213, 188, 140, 101, 78][i]} r={i === 3 ? 9 : 5} fill="#E5EAD9" stroke="#5A3F52" strokeWidth="3" />)}
-        </g>
-
-        <path d="M446 424 C476 424 492 401 519 376" fill="none" stroke="#E57A61" strokeWidth="2" strokeDasharray="5 7" markerEnd="url(#flowArrow)" />
-
-        <g transform="translate(510 296)" stroke="#D7C9B7" strokeWidth="2">
-          <path d="M20 55L92 22L146 74L104 142L35 128Z" fill="none" />
-          <path d="M92 22L104 142M20 55L146 74M35 128L146 74" fill="none" opacity="0.7" />
-          {([
-            [20, 55, '#C8D2C2'], [92, 22, '#E5EAD9'], [146, 74, '#E57A61'], [104, 142, '#C8D2C2'], [35, 128, '#A7879F'],
-          ] as const).map(([cx, cy, fill]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="13" fill={fill} stroke="#382638" strokeWidth="4" />)}
-        </g>
-      </svg>
-      <span className="visual-caption">FORECAST → OPTIMIZE → DECIDE</span>
-    </div>
-  );
-}
+const credentials = [
+  {
+    value: 'Ph.D.',
+    title: { zh: '香港大学统计学博士', en: 'Ph.D. in Statistics, HKU' },
+    note: { zh: '时间序列、概率建模与不确定性分析', en: 'Time series, probabilistic modeling, and uncertainty analysis' },
+  },
+  {
+    value: '#1',
+    title: { zh: '硕士专业排名', en: 'M.S. Program Rank' },
+    note: { zh: '平均分 93.51 / 100', en: 'GPA 93.51 / 100' },
+  },
+  {
+    value: '3',
+    title: { zh: '专利成果', en: 'Patents' },
+    note: { zh: '算法设计与业务应用相关', en: 'Algorithm design and applied systems' },
+  },
+] as const;
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const isZh = locale === 'zh';
   const l = isZh ? 'zh' : 'en';
-  const papers = getAllPapers().slice(0, 3);
+  const papers = getAllPapers();
   const posts = getAllPosts(locale).slice(0, 3);
+  const projects = getAllProjects().filter((project) => project.category !== 'frontier');
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const resumeHref = `${basePath}/${isZh ? 'Ningning_Zhang_Resume_ZH.pdf' : 'Ningning_Zhang_Resume_EN.pdf'}`;
 
   return (
-    <div className="portfolio-home">
-      <section className="hero-grid">
-        <div className="hero-copy">
-          <p className="eyebrow">PRICING · FORECASTING · OPTIMIZATION</p>
-          <h1>{isZh ? '定价与决策智能算法' : 'Pricing & Decision Intelligence'}</h1>
-          <p className="hero-lead">
+    <div className="design-home">
+      <section className="design-hero" id="about">
+        <div className="design-hero-copy">
+          <p className="design-kicker">PH.D. · PRICING · DECISION INTELLIGENCE</p>
+          <h1>{isZh ? '张宁宁' : 'Ningning Zhang'}</h1>
+          <h2>{isZh ? '定价与收益优化算法负责人' : 'Pricing & Revenue Optimization Algorithm Lead'}</h2>
+          <p className="design-hero-summary">
             {isZh
-              ? '香港大学统计学博士，现从事航空收益管理与动态定价算法研发。专注把需求预测、用户价格响应与约束优化连接成可验证、可解释的定价决策系统。'
-              : 'Ph.D. in Statistics from The University of Hong Kong, working on airline revenue management and dynamic pricing. I connect demand forecasting, customer price response, and constrained optimization into testable, explainable pricing systems.'}
+              ? '香港大学统计学博士，现从事航空收益管理与动态定价算法研发。专注把需求预测、旅客选择、容量约束与收益目标连接成可验证、可解释的决策系统。'
+              : 'Ph.D. in Statistics from The University of Hong Kong, working on airline revenue management and dynamic pricing. I connect demand forecasting, customer choice, capacity constraints, and revenue objectives into testable, explainable decision systems.'}
           </p>
-          <div className="hero-actions">
-            <Link href={`/${locale}/projects`} className="button button-primary">
-              {isZh ? '查看代表项目' : 'View Selected Work'}
+          <div className="design-actions">
+            <Link href={`/${locale}/projects`} className="design-button design-button-primary">
+              {isZh ? '查看项目' : 'View Projects'}
             </Link>
-            <Link href={`/${locale}/about`} className="button button-secondary">
-              {isZh ? '了解我的经历' : 'View Experience'}
-            </Link>
+            <a href={resumeHref} download className="design-button design-button-secondary">
+              {isZh ? '下载简历' : 'Download Résumé'}
+            </a>
+            <a href="https://github.com/ningningzhang-nina" target="_blank" rel="noopener noreferrer" className="design-text-link">
+              GitHub ↗
+            </a>
           </div>
-          <div className="skill-list" aria-label={isZh ? '核心技术方向' : 'Core skills'}>
-            {['Python', 'Bayesian Forecasting', 'Choice Modeling', 'DLP · Bellman DP', 'Streamlit'].map((skill) => (
-              <span key={skill}>{skill}</span>
+          <div className="design-tags">
+            {['Bayesian Forecasting', 'Dynamic Pricing', 'Revenue Optimization', 'Choice Modeling'].map((tag) => (
+              <span key={tag}>{tag}</span>
             ))}
           </div>
         </div>
-        <DecisionVisual isZh={isZh} />
-      </section>
 
-      <section className="proof-strip" aria-label={isZh ? '专业背景概览' : 'Professional summary'}>
-        <div><span>01</span><strong>Ph.D. in Statistics</strong></div>
-        <div><span>02</span><strong>Forecast → Optimize → Decide</strong></div>
-        <div><span>03</span><strong>+56.8%* Simulation Benchmark</strong></div>
-      </section>
-      <p className="proof-note">
-        {isZh
-          ? '* 固定随机种子、三个月网络压力场景的仿真实验结果，不代表线上收益。'
-          : '* Simulated result from a fixed-seed, three-month network-stress scenario; not an online production lift.'}
-      </p>
-
-      <section className="content-section" id="work">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">SELECTED WORK</p>
-            <h2>{isZh ? '代表项目' : 'Selected Projects'}</h2>
+        <div className="design-profile">
+          <img src={`${basePath}/images/profile/graduation-portrait.jpg`} alt={isZh ? '张宁宁的博士毕业照' : 'Graduation portrait of Ningning Zhang'} />
+          <div className="design-stats">
+            <article><strong>{papers.length}+</strong><span>{isZh ? '论文与研究成果' : 'Publications'}</span></article>
+            <article><strong>3</strong><span>{isZh ? '专利' : 'Patents'}</span></article>
+            <article><strong>{projects.length}</strong><span>{isZh ? '核心项目' : 'Core Projects'}</span></article>
+            <article><strong>Ph.D.</strong><span>{isZh ? '统计学' : 'Statistics'}</span></article>
           </div>
-          <Link href={`/${locale}/projects`}>{isZh ? '查看全部' : 'View all'} →</Link>
         </div>
-        <div className="case-grid">
-          {caseStudies.map((study) => (
-            <article key={study.index} className="case-card">
-              <div className="case-index">{study.index}</div>
-              <h3>{study.title[l]}</h3>
-              <p>{study.description[l]}</p>
-              <div className="method-list">
-                {study.methods.map((method) => <span key={method}>{method}</span>)}
+      </section>
+
+      <section className="design-section" id="experience">
+        <div className="design-section-heading">
+          <div>
+            <p className="design-kicker">WORK EXPERIENCE</p>
+            <h2>{isZh ? '工作经历' : 'Experience'}</h2>
+          </div>
+          <Link href={`/${locale}/about`}>{isZh ? '完整经历' : 'Full profile'} →</Link>
+        </div>
+        <div className="design-timeline">
+          {experience.map((item) => (
+            <article key={item.period.en}>
+              <time>{item.period[l]}</time>
+              <div>
+                <span className="design-timeline-dot" aria-hidden="true" />
+                <h3>{item.role[l]}</h3>
+                <h4>{item.organization[l]}</h4>
+                <ul>
+                  {item.details[l].map((detail) => <li key={detail}>{detail}</li>)}
+                </ul>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="content-section capability-section">
-        <div className="section-heading compact-heading">
+      <section className="design-section" id="projects">
+        <div className="design-section-heading">
           <div>
-            <p className="eyebrow">CAPABILITIES</p>
-            <h2>{isZh ? '我能解决什么问题' : 'What I Bring'}</h2>
+            <p className="design-kicker">SELECTED PROJECTS</p>
+            <h2>{isZh ? '代表项目' : 'Selected Projects'}</h2>
           </div>
+          <Link href={`/${locale}/projects`}>{isZh ? '查看全部项目' : 'View all projects'} →</Link>
         </div>
-        <div className="capability-grid">
-          {capabilities.map((capability, index) => (
-            <article key={capability.title.en}>
-              <span>0{index + 1}</span>
-              <h3>{capability.title[l]}</h3>
-              <p>{capability.text[l]}</p>
+        <div className="design-project-grid">
+          {projects.slice(0, 3).map((project) => {
+            const title = isZh ? project.titleZh || project.title : project.titleEn || project.title;
+            const description = isZh ? project.descriptionZh || project.description : project.descriptionEn || project.description;
+            const outcome = isZh ? project.outcomesZh?.[0] : project.outcomesEn?.[0];
+            return (
+              <Link href={`/${locale}/projects/${project.slug}`} key={project.slug}>
+                <article>
+                  <span className="design-card-index">0{project.order}</span>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                  <div className="design-card-tags">
+                    {project.tags.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
+                  </div>
+                  {outcome && <strong>{outcome}</strong>}
+                </article>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="design-section" id="papers">
+        <div className="design-section-heading">
+          <div>
+            <p className="design-kicker">PUBLICATIONS</p>
+            <h2>{isZh ? '论文与研究成果' : 'Papers & Publications'}</h2>
+          </div>
+          <Link href={`/${locale}/papers`}>{isZh ? '查看全部论文' : 'View all papers'} →</Link>
+        </div>
+        <div className="design-paper-grid">
+          {papers.slice(0, 4).map((paper) => (
+            <article key={paper.slug}>
+              <div><span>{paper.venue}</span><time>{paper.year}</time></div>
+              <h3>{paper.title}</h3>
+              <p>{paper.authors}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="content-section evidence-grid">
-        <div>
-          <div className="section-heading compact-heading">
-            <div>
-              <p className="eyebrow">PUBLICATIONS</p>
-              <h2>{isZh ? '研究成果' : 'Selected Publications'}</h2>
-            </div>
-            <Link href={`/${locale}/papers`}>{isZh ? '全部论文' : 'All papers'} →</Link>
-          </div>
-          <div className="publication-list">
-            {papers.map((paper) => (
-              <article key={paper.slug}>
-                <span>{paper.year}</span>
-                <div>
-                  <h3>{paper.title}</h3>
-                  <p>{paper.venue}</p>
-                </div>
-              </article>
-            ))}
+      <section className="design-section" id="skills">
+        <div className="design-section-heading">
+          <div>
+            <p className="design-kicker">SKILLS</p>
+            <h2>{isZh ? '技术能力' : 'Technical Skills'}</h2>
           </div>
         </div>
-
-        <div>
-          <div className="section-heading compact-heading">
-            <div>
-              <p className="eyebrow">TECHNICAL NOTES</p>
-              <h2>{isZh ? '技术文章' : 'Technical Writing'}</h2>
-            </div>
-            <Link href={`/${locale}/blog`}>{isZh ? '全部文章' : 'All notes'} →</Link>
-          </div>
-          <div className="note-list">
-            {posts.map((post) => (
-              <Link key={post.slug} href={post.externalUrl || `/${locale}/blog/${post.slug}`} target={post.externalUrl ? '_blank' : undefined}>
-                <span>{post.date}</span>
-                <h3>{post.title}</h3>
-                <p>{post.summary}</p>
-              </Link>
-            ))}
-          </div>
+        <div className="design-skill-grid">
+          {skillGroups.map((group) => (
+            <article key={group.title.en}>
+              <h3>{group.title[l]}</h3>
+              <div className="design-card-tags">
+                {group.items.map((item) => <span key={item}>{item}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="design-credential-grid">
+          {credentials.map((credential) => (
+            <article key={credential.value}>
+              <strong>{credential.value}</strong>
+              <h3>{credential.title[l]}</h3>
+              <p>{credential.note[l]}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="contact-band">
-        <p className="eyebrow">LET&apos;S CONNECT</p>
-        <h2>{isZh ? '关注复杂供需场景下的预测、定价与决策优化机会' : 'Open to forecasting, pricing, and decision-optimization opportunities in complex marketplaces'}</h2>
-        <a href="mailto:zhangnn0725@163.com">zhangnn0725@163.com ↗</a>
+      <section className="design-section" id="writing">
+        <div className="design-section-heading">
+          <div>
+            <p className="design-kicker">TECHNICAL WRITING</p>
+            <h2>{isZh ? '技术文章' : 'Technical Notes'}</h2>
+          </div>
+          <Link href={`/${locale}/blog`}>{isZh ? '查看全部文章' : 'View all notes'} →</Link>
+        </div>
+        <div className="design-writing-list">
+          {posts.map((post) => (
+            <Link key={post.slug} href={post.externalUrl || `/${locale}/blog/${post.slug}`} target={post.externalUrl ? '_blank' : undefined}>
+              <h3>{post.title}</h3>
+              <span>{post.date} ↗</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="design-contact" id="contact">
+        <p className="design-kicker">GET IN TOUCH</p>
+        <h2>{isZh ? '交流预测、定价、收益优化与职业机会' : 'Forecasting, pricing, revenue optimization, and opportunities'}</h2>
+        <p>{isZh ? '如果你正在寻找兼具统计建模深度与业务决策系统经验的算法负责人，欢迎联系我。' : 'If you are looking for an algorithm lead with statistical depth and decision-system experience, let’s talk.'}</p>
+        <div>
+          <a href="mailto:zhangnn0725@163.com" className="design-button design-button-primary">zhangnn0725@163.com</a>
+          <a href="https://github.com/ningningzhang-nina" target="_blank" rel="noopener noreferrer" className="design-button design-button-secondary">GitHub</a>
+        </div>
       </section>
     </div>
   );
