@@ -119,6 +119,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <a href={resumeHref} download className="design-button design-button-secondary">
               {isZh ? '下载简历' : 'Download Résumé'}
             </a>
+            <a
+              href="https://www.agifors.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="design-button design-button-secondary"
+            >
+              AGIFORS Member ↗
+            </a>
             <a href="https://github.com/ningningzhang-nina" target="_blank" rel="noopener noreferrer" className="design-text-link">
               GitHub ↗
             </a>
