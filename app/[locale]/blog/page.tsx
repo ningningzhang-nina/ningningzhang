@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
-import { getAllPosts, getAllBlogTags } from '@/lib/content';
+import { getAllPosts } from '@/lib/content';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -15,36 +15,33 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'blog' });
   const posts = getAllPosts(locale);
-  const allTags = getAllBlogTags(locale);
-  const isZh = locale === 'zh';
 
   return (
-    <div className="inner-page">
-      <header className="inner-page-hero">
-        <p className="eyebrow">TECHNICAL NOTES</p>
-        <h1>{t('title')}</h1>
-        <p>{isZh ? '记录我对算法机制、业务约束与模型落地问题的理解。' : 'Notes on algorithm mechanics, business constraints, and applied modeling.'}</p>
-      </header>
-
-      {allTags.length > 0 && (
-        <nav className="tag-filter" aria-label={isZh ? '文章标签' : 'Article tags'}>
-          {allTags.map((tag) => <Link key={tag} href={`/${locale}/blog/tag/${encodeURIComponent(tag)}`}>{tag}</Link>)}
-        </nav>
-      )}
-
-      <div className="article-catalog">
+    <div className="project-tile-page article-tile-page">
+      <h1 className="sr-only">{t('title')}</h1>
+      <div className="project-tile-grid article-tile-grid">
         {posts.map((post, index) => {
           const href = post.externalUrl || `/${locale}/blog/${post.slug}`;
           return (
-            <Link key={post.slug} href={href} target={post.externalUrl ? '_blank' : undefined} rel={post.externalUrl ? 'noopener noreferrer' : undefined}>
-              <span className="article-index">{String(index + 1).padStart(2, '0')}</span>
-              <div>
-                <p className="article-date">{post.date}{post.externalUrl ? ' · External' : ''}</p>
+            <Link
+              key={post.slug}
+              href={href}
+              target={post.externalUrl ? '_blank' : undefined}
+              rel={post.externalUrl ? 'noopener noreferrer' : undefined}
+              className="project-tile article-tile"
+            >
+              <article>
+                <div className="project-tile-topline article-tile-topline">
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <time>{post.date}</time>
+                </div>
                 <h2>{post.title}</h2>
-                {post.summary && <p className="article-summary">{post.summary}</p>}
-                <div className="method-list">{post.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-              </div>
-              <span className="article-arrow">↗</span>
+                <div className="article-tile-tags">
+                  {post.tags.slice(0, 2).map((tag) => <span key={tag}>{tag}</span>)}
+                  {post.externalUrl && <span>External</span>}
+                </div>
+                <span className="project-tile-arrow" aria-hidden="true">↗</span>
+              </article>
             </Link>
           );
         })}
