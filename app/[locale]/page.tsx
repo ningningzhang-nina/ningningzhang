@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { setRequestLocale } from 'next-intl/server';
 import { getAllPapers, getAllPosts, getAllProjects } from '@/lib/content';
+import graduationPortrait from '@/public/images/profile/graduation-portrait.jpg';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -31,21 +33,21 @@ const experience = [
     },
   },
   {
-    period: { zh: '2025.01 – 2025.08', en: 'Jan 2025 – Aug 2025' },
-    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
-    organization: { zh: '香港大学', en: 'The University of Hong Kong' },
+    period: { zh: '2018', en: '2018' },
+    role: { zh: '算法实习生', en: 'Algorithm Intern' },
+    organization: { zh: '美团', en: 'Meituan' },
     details: {
-      zh: ['开展金融时间序列、条件矩、概率建模与不确定性分析研究'],
-      en: ['Research in financial time series, conditional moments, probabilistic modeling, and uncertainty analysis'],
+      zh: ['参与外卖配送时间预测相关的特征工程与模型分析'],
+      en: ['Contributed to feature engineering and model analysis for delivery-time prediction'],
     },
   },
   {
-    period: { zh: '2017 – 2018', en: '2017 – 2018' },
-    role: { zh: '算法与数据分析实习', en: 'Algorithm & Data Analytics Internships' },
-    organization: { zh: '美团 · 滴滴出行', en: 'Meituan · DiDi' },
+    period: { zh: '2017', en: '2017' },
+    role: { zh: '数据分析实习生', en: 'Data Analytics Intern' },
+    organization: { zh: '滴滴出行', en: 'DiDi' },
     details: {
-      zh: ['参与配送时间预测、供需分析、调价评估与实验分群'],
-      en: ['Worked on delivery-time prediction, supply-demand analysis, pricing evaluation, and experiment segmentation'],
+      zh: ['开展供需关系分析、调价评估与实验分群'],
+      en: ['Conducted supply-demand analysis, pricing evaluation, and experiment segmentation'],
     },
   },
 ] as const;
@@ -125,7 +127,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
 
         <div className="design-profile">
-          <img src={`${basePath}/images/profile/graduation-portrait.jpg`} alt={isZh ? '张宁宁的博士毕业照' : 'Graduation portrait of Ningning Zhang'} />
+          <Image
+            src={graduationPortrait}
+            alt={isZh ? '张宁宁的博士毕业照' : 'Graduation portrait of Ningning Zhang'}
+            priority
+            sizes="(max-width: 980px) 500px, 420px"
+          />
           <div className="design-stats">
             <article><strong>{papers.length}+</strong><span>{isZh ? '论文与研究成果' : 'Publications'}</span></article>
             <article><strong>3</strong><span>{isZh ? '专利' : 'Patents'}</span></article>

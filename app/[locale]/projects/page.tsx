@@ -15,78 +15,68 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'projects' });
   const projects = getAllProjects();
-  const coreProjects = projects.filter((project) => project.category !== 'frontier');
+  const coreProjects = projects.filter((project) => project.category === 'core');
   const frontierProjects = projects.filter((project) => project.category === 'frontier');
   const isZh = locale === 'zh';
 
-  const renderProjectCard = (project: (typeof projects)[number], index: number) => {
+  const renderProject = (project: (typeof projects)[number], index: number, frontier = false) => {
     const title = isZh ? project.titleZh || project.title : project.titleEn || project.title;
     const description = isZh ? project.descriptionZh || project.description : project.descriptionEn || project.description;
     const role = isZh ? project.roleZh : project.roleEn;
     const stage = isZh ? project.stageZh : project.stageEn;
     const outcome = isZh ? project.outcomesZh?.[0] : project.outcomesEn?.[0];
-    const isFrontier = project.category === 'frontier';
 
     return (
       <Link
-        key={project.slug}
         href={`/${locale}/projects/${project.slug}`}
-        className={`project-card${isFrontier ? ' project-card-frontier' : ''}`}
-        aria-label={`${isZh ? '查看项目：' : 'View project: '}${title}`}
+        key={project.slug}
+        className={`portfolio-project-row${frontier ? ' portfolio-project-row-frontier' : ''}`}
       >
         <article>
-          <div className="project-card-topline">
-            <span>{isFrontier ? `L${String(index + 1).padStart(2, '0')}` : String(index + 1).padStart(2, '0')}</span>
-            <span className="project-card-status">
-              {stage || (isZh ? '查看项目' : 'View project')}
+          <div className="portfolio-project-main">
+            <span className="portfolio-project-number">
+              {frontier ? `L${String(index + 1).padStart(2, '0')}` : String(index + 1).padStart(2, '0')}
             </span>
-          </div>
-
-          <div className="project-card-copy">
-            <p className="project-card-year">
-              {isFrontier
-                ? (isZh ? '公开数据探索项目' : 'Public-data exploration')
-                : `${project.year} · CASE STUDY`}
-            </p>
-            <h3>{title}</h3>
-            <p>{description}</p>
-          </div>
-
-          {role && (
-            <p className="project-card-role">
-              <strong>{isZh ? '我的角色' : 'My role'}</strong>
-              {role}
-            </p>
-          )}
-
-          <div className="method-list project-card-tags">
-            {project.tags.slice(0, 4).map((tag) => <span key={tag}>{tag}</span>)}
-          </div>
-
-          {outcome && (
-            <div className="project-card-proof">
-              <span>{isZh ? (isFrontier ? '目标产出' : '代表性成果') : (isFrontier ? 'Target' : 'Selected outcome')}</span>
-              <p>{outcome}</p>
+            <div>
+              <div className="portfolio-project-title-row">
+                <h3>{title}</h3>
+                <span className="portfolio-project-stage">
+                  {stage || (isZh ? '持续建设' : 'In development')}
+                </span>
+              </div>
+              <p className="portfolio-project-description">{description}</p>
+              {role && (
+                <p className="portfolio-project-role">
+                  <strong>{isZh ? '角色' : 'Role'}</strong>
+                  {role}
+                </p>
+              )}
+              <div className="portfolio-project-tags">
+                {project.tags.slice(0, 5).map((tag) => <span key={tag}>{tag}</span>)}
+              </div>
+              {outcome && (
+                <p className="portfolio-project-outcome">
+                  <strong>{isZh ? (frontier ? '目标产出' : '代表性成果') : (frontier ? 'Target' : 'Selected outcome')}</strong>
+                  {outcome}
+                </p>
+              )}
             </div>
-          )}
-
-          <span className="project-card-link">
-            {isZh ? '查看项目详情' : 'View case study'} <span aria-hidden="true">↗</span>
-          </span>
+          </div>
+          <span className="portfolio-project-arrow" aria-hidden="true">↗</span>
         </article>
       </Link>
     );
   };
 
   return (
-    <div className="inner-page projects-index">
+    <div className="inner-page projects-index projects-list-page">
       <header className="inner-page-hero projects-hero">
-        <p className="eyebrow">PRICING · FORECASTING · OPTIMIZATION</p>
+        <p className="eyebrow">PROJECTS</p>
         <h1>{t('title')}</h1>
         <p>{t('subtitle')}</p>
       </header>
 
-      <section className="project-track" aria-labelledby="core-projects-heading">
+      <section className="portfolio-project-group" aria-labelledby="core-projects-heading">
         <div className="portfolio-track-heading">
           <div>
             <p className="eyebrow">ESTABLISHED WORK</p>
@@ -94,16 +84,16 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
           </div>
           <p>
             {isZh
-              ? '五个相互衔接的项目，覆盖需求预测、网络收益优化、动态定价、价格架构、决策解释与仿真评测。'
-              : 'Five connected projects spanning demand forecasting, network revenue optimization, dynamic pricing, price architecture, decision intelligence, and simulation-based evaluation.'}
+              ? `${coreProjects.length} 个已完成、正在验证或持续建设的真实业务项目。`
+              : `${coreProjects.length} real-world projects completed, under validation, or actively being developed.`}
           </p>
         </div>
-        <div className="project-card-grid">
-          {coreProjects.map(renderProjectCard)}
+        <div className="portfolio-project-list">
+          {coreProjects.map((project, index) => renderProject(project, index))}
         </div>
       </section>
 
-      <section className="project-track frontier-track" aria-labelledby="frontier-projects-heading">
+      <section className="portfolio-project-group portfolio-frontier-group" aria-labelledby="frontier-projects-heading">
         <div className="portfolio-track-heading">
           <div>
             <p className="eyebrow">EMERGING FRONTIERS</p>
@@ -111,12 +101,12 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
           </div>
           <p>
             {isZh
-              ? '面向下一阶段能力拓展的公开数据实验路线。规划项目与既有工作明确区分，并将逐项补充可复现成果。'
-              : 'A public-data experimentation roadmap for the next stage of capability building, clearly separated from established work.'}
+              ? `${frontierProjects.length} 个基于公开数据规划的实验项目，与既有工作经历明确区分。`
+              : `${frontierProjects.length} planned public-data experiments, clearly separated from established work.`}
           </p>
         </div>
-        <div className="project-card-grid frontier-card-grid">
-          {frontierProjects.map(renderProjectCard)}
+        <div className="portfolio-project-list">
+          {frontierProjects.map((project, index) => renderProject(project, index, true))}
         </div>
       </section>
 

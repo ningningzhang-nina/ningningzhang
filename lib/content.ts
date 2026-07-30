@@ -95,7 +95,6 @@ export function getAllPosts(locale: string): Post[] {
       const { data, content } = matter(raw);
       return {
         slug,
-        category: data.category ?? 'core',
         title: data.title ?? slug,
         date: data.date ?? '',
         tags: data.tags ?? [],
@@ -194,6 +193,7 @@ export function getAllProjects(): Project[] {
       const { data } = matter(raw);
       return {
         slug,
+        category: data.category ?? 'core',
         title: data.title ?? slug,
         description: data.description ?? '',
         titleZh: data.titleZh,
