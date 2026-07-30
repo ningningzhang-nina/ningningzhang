@@ -30,6 +30,7 @@ export interface Paper {
 
 export interface Project {
   slug: string;
+  category?: 'core' | 'frontier';
   title: string;
   description: string;
   titleZh?: string;
@@ -50,6 +51,10 @@ export interface Project {
   highlightsEn?: string[];
   outcomesZh?: string[];
   outcomesEn?: string[];
+  dataPlanZh?: string;
+  dataPlanEn?: string;
+  deliverableZh?: string;
+  deliverableEn?: string;
   tags: string[];
   github?: string;
   demo?: string;
@@ -90,6 +95,7 @@ export function getAllPosts(locale: string): Post[] {
       const { data, content } = matter(raw);
       return {
         slug,
+        category: data.category ?? 'core',
         title: data.title ?? slug,
         date: data.date ?? '',
         tags: data.tags ?? [],
@@ -208,6 +214,10 @@ export function getAllProjects(): Project[] {
         highlightsEn: data.highlightsEn ?? [],
         outcomesZh: data.outcomesZh ?? [],
         outcomesEn: data.outcomesEn ?? [],
+        dataPlanZh: data.dataPlanZh,
+        dataPlanEn: data.dataPlanEn,
+        deliverableZh: data.deliverableZh,
+        deliverableEn: data.deliverableEn,
         tags: data.tags ?? [],
         github: data.github,
         demo: data.demo,
@@ -218,6 +228,10 @@ export function getAllProjects(): Project[] {
       } as Project;
     })
     .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || b.year - a.year);
+}
+
+export function getProjectBySlug(slug: string): Project | null {
+  return getAllProjects().find((project) => project.slug === slug) ?? null;
 }
 
 export function getAllLifePosts(): LifePost[] {
