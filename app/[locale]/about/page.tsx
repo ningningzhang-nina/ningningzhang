@@ -27,21 +27,21 @@ const experience = [
     },
   },
   {
-    period: { zh: '2025.01 – 2025.08', en: 'Jan 2025 – Aug 2025' },
-    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
-    organization: { zh: '香港大学', en: 'The University of Hong Kong' },
+    period: { zh: '2018', en: '2018' },
+    role: { zh: '算法实习生', en: 'Algorithm Intern' },
+    organization: { zh: '美团', en: 'Meituan' },
     details: {
-      zh: ['开展金融时间序列、条件矩与统计建模研究，延续概率建模与不确定性分析方向'],
-      en: ['Conducted research in financial time series, conditional moments, statistical modeling, and uncertainty analysis'],
+      zh: ['参与外卖配送时间预测相关的特征工程与模型分析'],
+      en: ['Contributed to feature engineering and model analysis for delivery-time prediction'],
     },
   },
   {
-    period: { zh: '2017 – 2018', en: '2017 – 2018' },
-    role: { zh: '算法与数据分析实习', en: 'Algorithm & Data Analytics Internships' },
-    organization: { zh: '美团 · 滴滴出行', en: 'Meituan · DiDi' },
+    period: { zh: '2017', en: '2017' },
+    role: { zh: '数据分析实习生', en: 'Data Analytics Intern' },
+    organization: { zh: '滴滴出行', en: 'DiDi' },
     details: {
-      zh: ['参与外卖配送时间预测特征工程', '开展供需关系分析、调价评估与实验分群'],
-      en: ['Contributed to feature engineering for delivery-time prediction', 'Conducted supply-demand analysis, pricing evaluation, and experiment segmentation'],
+      zh: ['开展供需关系分析、调价评估与实验分群'],
+      en: ['Conducted supply-demand analysis, pricing evaluation, and experiment segmentation'],
     },
   },
 ] as const;
@@ -67,59 +67,13 @@ const education = [
   },
 ] as const;
 
-const skillGroups = [
-  {
-    title: { zh: '建模', en: 'MODELING' },
-    items: ['Python', 'Bayesian Time Series', 'LightGBM', 'Choice Modeling', 'WTP'],
-  },
-  {
-    title: { zh: '优化', en: 'OPTIMIZATION' },
-    items: ['Linear Programming', 'DLP', 'Bid Price', 'Bellman DP'],
-  },
-  {
-    title: { zh: '系统与评测', en: 'SYSTEMS & EVALUATION' },
-    items: ['Streamlit', 'Backtesting', 'Common Random Numbers', 'LLM Tool Calling'],
-  },
-] as const;
-
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const l = locale === 'zh' ? 'zh' : 'en';
   const isZh = l === 'zh';
 
   return (
-    <div className="inner-page about-page">
-      <header className="inner-page-hero about-hero">
-        <p className="eyebrow">PRICING · DECISION INTELLIGENCE</p>
-        <h1>{isZh ? '从统计预测到定价决策系统' : 'From Statistical Forecasts to Pricing Decisions'}</h1>
-        <p>
-          {isZh
-            ? '香港大学统计学博士，现从事航空收益管理与动态定价算法研发。我的核心能力是把不确定性、用户价格响应、业务约束与收益目标组织成可验证的决策链路。'
-            : 'Ph.D. in Statistics from The University of Hong Kong, working on airline revenue management and dynamic pricing. I turn uncertainty, customer price response, business constraints, and revenue objectives into testable decision pipelines.'}
-        </p>
-      </header>
-
-      <section className="about-evidence" aria-label={isZh ? '核心证据' : 'Selected evidence'}>
-        <article>
-          <span>01</span>
-          <strong>{isZh ? '统计学博士' : 'Ph.D. in Statistics'}</strong>
-          <p>{isZh ? '时间序列、概率建模与不确定性分析' : 'Time series, probabilistic modeling, and uncertainty analysis'}</p>
-        </article>
-        <article>
-          <span>02</span>
-          <strong>{isZh ? '端到端算法闭环' : 'End-to-end Algorithm Loop'}</strong>
-          <p>{isZh ? 'Forecast → Optimize → Decide → Evaluate' : 'Forecast → Optimize → Decide → Evaluate'}</p>
-        </article>
-        <article>
-          <span>03</span>
-          <strong>+56.8%*</strong>
-          <p>{isZh ? '固定随机种子压力场景仿真收益提升' : 'Simulated lift in a fixed-seed stress scenario'}</p>
-        </article>
-      </section>
-      <p className="evidence-footnote">
-        {isZh ? '* 仿真实验结果，不代表线上业务收益。' : '* Simulation result; not an online production metric.'}
-      </p>
-
+    <div className="inner-page about-page direct-content-page">
       <section className="resume-section">
         <div className="resume-label">{isZh ? '工作经历' : 'EXPERIENCE'}</div>
         <div className="timeline-list">
@@ -139,7 +93,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </section>
 
       <section className="resume-section">
-        <div className="resume-label">{isZh ? '教育背景' : 'EDUCATION'}</div>
+        <div className="resume-label">{isZh ? '学习经历' : 'EDUCATION'}</div>
         <div className="timeline-list education-list">
           {education.map((item) => (
             <article key={item.period}>
@@ -154,27 +108,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
-      <section className="resume-section">
-        <div className="resume-label">{isZh ? '技术栈' : 'TECH STACK'}</div>
-        <div className="skill-matrix">
-          {skillGroups.map((group) => (
-            <article key={group.title.en}>
-              <h2>{group.title[l]}</h2>
-              <div className="method-list">
-                {group.items.map((item) => <span key={item}>{item}</span>)}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-contact">
-        <div>
-          <p className="eyebrow">CONTACT</p>
-          <h2>{isZh ? '交流算法、研究与职业机会' : 'Algorithms, research, and opportunities'}</h2>
-        </div>
-        <a href="mailto:zhangnn0725@163.com">zhangnn0725@163.com ↗</a>
-      </section>
     </div>
   );
 }

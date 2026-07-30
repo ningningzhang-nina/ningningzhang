@@ -38,15 +38,15 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-14">
+    <div className="mx-auto max-w-3xl px-6 py-8 sm:py-10">
       <Link
         href={`/${locale}/blog`}
-        className="inline-flex items-center gap-1.5 text-[13px] text-[#999] hover:text-[#0a0a0a] mb-8 transition-colors"
+        className="inline-flex items-center gap-1.5 text-[13px] text-[#999] hover:text-[#0a0a0a] mb-5 transition-colors"
       >
         ← {locale === 'zh' ? '返回博客' : 'Back to blog'}
       </Link>
 
-      <div className="mb-10">
+      <div className="mb-7">
         <h1 className="text-[30px] font-bold tracking-tight text-[#0a0a0a] leading-tight mb-4">
           {post.title}
         </h1>

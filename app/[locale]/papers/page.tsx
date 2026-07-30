@@ -12,20 +12,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function PapersPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'papers' });
   const papers = getAllPapers();
   const patents = getAllPatents();
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const isZh = locale === 'zh';
 
   return (
-    <div className="inner-page">
-      <header className="inner-page-hero">
-        <p className="eyebrow">RESEARCH & INVENTIONS</p>
-        <h1>{t('title')}</h1>
-        <p>{isZh ? `${papers.length} 项论文与研究成果，${patents.length} 项航空定价、收益管理及旅客行为相关专利。` : `${papers.length} publications and research outputs, plus ${patents.length} patents in airline pricing, revenue management, and passenger behavior.`}</p>
-      </header>
-
+    <div className="inner-page direct-content-page">
       <section className="research-catalog-section">
         <div className="research-catalog-heading">
           <p className="eyebrow">PUBLICATIONS</p>
