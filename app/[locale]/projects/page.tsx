@@ -48,10 +48,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
                   </span>
                 </div>
                 <h2>{title}</h2>
-                <div className="project-tile-footer">
-                  <span>{isZh ? '查看项目' : 'View project'}</span>
-                  <span aria-hidden="true">↗</span>
-                </div>
+                <span className="project-tile-arrow" aria-hidden="true">↗</span>
               </article>
             </Link>
           );
