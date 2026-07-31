@@ -1,4 +1,5 @@
 ---
+category: "prototype"
 title: "Seasonal Fare Planning & Price Ladder Optimization"
 titleZh: "航季运价规划与价格梯度优化"
 titleEn: "Seasonal Fare Planning & Price Ladder Optimization"
@@ -9,6 +10,10 @@ roleZh: "项目算法负责人 / Price Architecture Designer"
 roleEn: "Project Algorithm Lead / Price Architecture Designer"
 stageZh: "方案设计与算法原型"
 stageEn: "Solution design and algorithm prototype"
+proofLabelZh: "方案设计与算法原型 · 尚无线上效果验证"
+proofLabelEn: "Solution design and algorithm prototype · no online-effect validation"
+validationBoundaryZh: "当前完成的是建模方案与原型链路；在获得公开或可披露的样本外结果前，不作为已落地收益案例展示。"
+validationBoundaryEn: "The current deliverable is a modeling design and prototype pipeline. It is not presented as a deployed revenue case until public or disclosable out-of-sample results are available."
 challengeZh: "从受历史价格策略影响的销售数据中识别不同市场条件下的价格敏感性，同时兼顾数据稀疏、分组复杂度和既有运价发布规则。"
 challengeEn: "Recover price sensitivity from sales shaped by historical pricing while balancing sparse data, segmentation complexity, and existing fare-publication rules."
 responsibilitiesZh:
@@ -52,5 +57,5 @@ outcomesEn:
 tags: ["Market Segmentation", "Price Elasticity Modeling", "WTP", "Price Architecture", "Price Ladder Optimization"]
 featured: true
 year: 2026
-order: 3
+order: 1
 ---

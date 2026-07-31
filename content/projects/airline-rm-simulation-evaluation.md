@@ -1,4 +1,5 @@
 ---
+category: "core"
 title: "Airline Revenue Management Simulation & Evaluation Platform"
 titleZh: "航空收益管理仿真与算法评测平台"
 titleEn: "Airline Revenue Management Simulation & Evaluation Platform"
@@ -9,6 +10,55 @@ roleZh: "平台与算法负责人 / Simulation & Evaluation Architect"
 roleEn: "Platform & Algorithm Lead / Simulation & Evaluation Architect"
 stageZh: "可运行原型、算法验证与可视化评测"
 stageEn: "Working prototype, algorithm validation, and visual evaluation"
+proofLabelZh: "可运行原型 · 固定种子可复现 · 有传统基线与 Oracle 对照"
+proofLabelEn: "Working prototype · fixed-seed reproducibility · baseline and Oracle controls"
+proofPointsZh:
+  - "同一批潜在旅客、选择与取消随机数同时驱动所有策略，避免把随机客流差异误判为算法收益"
+  - "传统方案、用户算法与 Oracle 需求在统一 runner 中执行，可单独分解预测改进与网络控制改进"
+  - "已输出标准化收益结果、订座轨迹、客座率、预测误差与 Bid Price 诊断，并在 Streamlit 面板查看"
+proofPointsEn:
+  - "Every policy receives the same potential passengers, choices, and cancellation draws, preventing traffic noise from being mistaken for algorithm value"
+  - "Traditional, proposed, and Oracle-demand policies run through one runner, separating forecast value from network-control value"
+  - "The runner outputs normalized revenue, booking trajectories, load factors, forecast error, and bid-price diagnostics to a Streamlit dashboard"
+deliveryItemsZh:
+  - "参数化网络与场景配置：机场、航段、O&D、容量、运价、DCP 与随机种子"
+  - "旅客事件生成器：到达、客群、WTP、选择、同行人数与取消"
+  - "可插拔策略接口：历史均值 + EMSR-b、贝叶斯预测 + DLP + Bellman DP、Oracle 控制"
+  - "批量实验 runner、收益分解表与可视化诊断面板"
+deliveryItemsEn:
+  - "Parameterized network and scenario configuration for airports, legs, O&Ds, capacity, fares, DCPs, and random seeds"
+  - "Passenger-event generator for arrivals, segments, WTP, choice, party size, and cancellation"
+  - "Pluggable policy interface for historical mean + EMSR-b, Bayesian forecasting + DLP + Bellman DP, and Oracle controls"
+  - "Batch experiment runner, revenue-decomposition tables, and visual diagnostics"
+inputContractZh: "网络与班期、航段容量、O&D 产品与票价、旅客行为参数、预售期、DCP、策略配置、随机种子。"
+inputContractEn: "Network and schedule, leg capacity, O&D products and fares, passenger-behavior parameters, booking horizon, DCPs, policy configuration, and random seed."
+outputContractZh: "逐请求接受/拒绝、逐日订座与取消、预测均值/方差、Bid Price、客座率、收益及基线差异分解。"
+outputContractEn: "Request-level accept/reject decisions, daily bookings and cancellations, forecast mean/variance, bid prices, load factor, revenue, and decomposition against baselines."
+validationBoundaryZh: "56.8% 与 39.24% 均为三个月网络压力场景中的仿真结果，不代表生产环境线上增益；前者目前基于固定随机种子，仍需多种子置信区间和更多真实数据场景复验。"
+validationBoundaryEn: "The 56.8% and 39.24% figures are simulated results from a three-month network-stress scenario, not production uplift. The former currently uses one fixed seed and still requires multi-seed confidence intervals and broader real-data scenario validation."
+metricCards:
+  - value: "7 / 12 / 42"
+    labelZh: "机场 / 有向航段 / O&D 市场"
+    labelEn: "Airports / directed legs / O&D markets"
+    noteZh: "含直飞、联程与共享容量位移"
+    noteEn: "Local, connecting, and shared-capacity displacement"
+  - value: "+56.8%"
+    labelZh: "用户策略相对传统基线的仿真收益"
+    labelEn: "Simulated revenue vs. traditional baseline"
+    noteZh: "固定种子；三个月压力场景"
+    noteEn: "Fixed seed; three-month stress scenario"
+  - value: "+39.24%"
+    labelZh: "Oracle 需求下网络控制相对 leg 控制"
+    labelEn: "Network vs. leg control under Oracle demand"
+    noteZh: "隔离预测误差后验证控制价值"
+    noteEn: "Control value isolated from forecast error"
+artifacts:
+  - labelZh: "下载公开实验配置"
+    labelEn: "Download public experiment manifest"
+    href: "/ningningzhang/artifacts/rm-simulation-manifest.json"
+  - labelZh: "下载标准化结果表"
+    labelEn: "Download normalized results"
+    href: "/ningningzhang/artifacts/rm-simulation-results.csv"
 challengeZh: "真实业务数据难以提供完整反事实，线上试验成本高且不同策略面对的旅客流不一致，因此难以判断收益变化究竟来自预测、控制策略还是随机波动。"
 challengeEn: "Real-world data rarely exposes complete counterfactuals, online experiments are costly, and competing policies do not naturally face identical passenger streams—making it difficult to separate forecasting value, control value, and random variation."
 responsibilitiesZh:
@@ -54,5 +104,5 @@ outcomesEn:
 tags: ["Simulation", "Revenue Management", "Passenger Choice", "Bayesian Online Learning", "DLP", "Bellman DP", "Algorithm Evaluation"]
 featured: true
 year: 2026
-order: 5
+order: 1
 ---

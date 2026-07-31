@@ -36,7 +36,7 @@ export interface Patent {
 
 export interface Project {
   slug: string;
-  category?: 'core' | 'frontier';
+  category?: 'core' | 'prototype' | 'frontier';
   title: string;
   description: string;
   titleZh?: string;
@@ -61,6 +61,30 @@ export interface Project {
   dataPlanEn?: string;
   deliverableZh?: string;
   deliverableEn?: string;
+  proofLabelZh?: string;
+  proofLabelEn?: string;
+  proofPointsZh?: string[];
+  proofPointsEn?: string[];
+  deliveryItemsZh?: string[];
+  deliveryItemsEn?: string[];
+  inputContractZh?: string;
+  inputContractEn?: string;
+  outputContractZh?: string;
+  outputContractEn?: string;
+  validationBoundaryZh?: string;
+  validationBoundaryEn?: string;
+  metricCards?: Array<{
+    value: string;
+    labelZh: string;
+    labelEn: string;
+    noteZh?: string;
+    noteEn?: string;
+  }>;
+  artifacts?: Array<{
+    labelZh: string;
+    labelEn: string;
+    href: string;
+  }>;
   tags: string[];
   github?: string;
   demo?: string;
@@ -237,6 +261,20 @@ export function getAllProjects(): Project[] {
         dataPlanEn: data.dataPlanEn,
         deliverableZh: data.deliverableZh,
         deliverableEn: data.deliverableEn,
+        proofLabelZh: data.proofLabelZh,
+        proofLabelEn: data.proofLabelEn,
+        proofPointsZh: data.proofPointsZh ?? [],
+        proofPointsEn: data.proofPointsEn ?? [],
+        deliveryItemsZh: data.deliveryItemsZh ?? [],
+        deliveryItemsEn: data.deliveryItemsEn ?? [],
+        inputContractZh: data.inputContractZh,
+        inputContractEn: data.inputContractEn,
+        outputContractZh: data.outputContractZh,
+        outputContractEn: data.outputContractEn,
+        validationBoundaryZh: data.validationBoundaryZh,
+        validationBoundaryEn: data.validationBoundaryEn,
+        metricCards: data.metricCards ?? [],
+        artifacts: data.artifacts ?? [],
         tags: data.tags ?? [],
         github: data.github,
         demo: data.demo,

@@ -1,4 +1,5 @@
 ---
+category: "core"
 title: "Real-time Choice-based Pricing Engine"
 titleZh: "实时动态定价与旅客选择引擎"
 titleEn: "Real-time Choice-based Pricing Engine"
@@ -9,6 +10,38 @@ roleZh: "动态定价算法负责人 / Pricing Engine Architect"
 roleEn: "Dynamic Pricing Algorithm Lead / Pricing Engine Architect"
 stageZh: "算法原型与 Demo 验证"
 stageEn: "Algorithm prototype and demo validation"
+proofLabelZh: "算法原型 · 可演示价格重求解与解释 · 暂不声称线上收益"
+proofLabelEn: "Algorithm prototype · demonstrable re-pricing and explanation · no online-uplift claim"
+proofPointsZh:
+  - "给定价格上下界、Bid Price、价格敏感度与业务约束，原型能够输出候选价格、购买概率、预期收益和推荐价格"
+  - "支持修改需求、价格或机会成本后重求解，并展示调整前后决策链路"
+  - "价格方向约束、调价阈值、上下界与日志已作为显式 guardrails，而非依赖大模型自由生成价格"
+proofPointsEn:
+  - "Given price bounds, bid price, price sensitivity, and business constraints, the prototype returns candidate prices, purchase probabilities, expected revenue, and a recommendation"
+  - "Supports re-solving after changes to demand, price, or opportunity cost and compares the before/after decision path"
+  - "Price-direction constraints, adjustment thresholds, bounds, and logs are explicit guardrails; the LLM does not invent prices"
+deliveryItemsZh:
+  - "旅客选择与购买概率计算模块"
+  - "基于 (Price − Bid Price) × P(purchase) 的候选价格求解器"
+  - "价格边界、变化阈值和异常输入校验"
+  - "What-if 重求解、前后对比与决策解释 Demo"
+deliveryItemsEn:
+  - "Customer-choice and purchase-probability module"
+  - "Candidate-price solver based on (Price − Bid Price) × P(purchase)"
+  - "Price bounds, adjustment thresholds, and invalid-input checks"
+  - "What-if re-solving, before/after comparison, and decision-explanation demo"
+inputContractZh: "市场与航班上下文、当前价格、价格上下界、Bid Price、旅客/客群特征、价格系数与业务保护规则。"
+inputContractEn: "Market and flight context, current price, price bounds, bid price, customer/segment features, price coefficients, and business guardrails."
+outputContractZh: "推荐价格、购买概率、预期边际收益、约束命中项、基线对比与可追溯解释。"
+outputContractEn: "Recommended price, purchase probability, expected marginal revenue, triggered constraints, baseline comparison, and traceable explanation."
+validationBoundaryZh: "当前证据是内部算法原型和 Demo 验证；由于尚无合格线上 A/B 或准实验结果，本页不使用“提升收入/转化率”等生产效果表述。"
+validationBoundaryEn: "Current evidence is limited to an internal algorithm prototype and demo. Without a qualified online A/B test or quasi-experiment, this page makes no production revenue or conversion-uplift claim."
+metricCards:
+  - value: "4"
+    labelZh: "核心决策输出"
+    labelEn: "Core decision outputs"
+    noteZh: "价格 / 购买概率 / 边际收益 / 约束证据"
+    noteEn: "Price / purchase probability / margin / constraint evidence"
 challengeZh: "在价格响应不可直接观测、选择集合复杂且受到库存和业务规则约束的场景下，估计旅客购买行为并给出收益更优的可执行价格。"
 challengeEn: "Estimate passenger purchase behavior and produce executable, revenue-improving prices when price response is latent and decisions are constrained by choice sets, inventory, and business rules."
 responsibilitiesZh:
@@ -54,5 +87,5 @@ outcomesEn:
 tags: ["Real-time Pricing", "Choice Modeling", "WTP", "Price Elasticity Modeling", "Revenue Maximization Engine", "Marketplace Pricing"]
 featured: true
 year: 2026
-order: 1
+order: 3
 ---
