@@ -93,7 +93,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const papers = getAllPapers();
   const patents = getAllPatents();
   const posts = getAllPosts(locale).slice(0, 3);
-  const projects = getAllProjects().filter((project) => project.category !== 'frontier');
+  const projects = getAllProjects().filter((project) => project.category === 'core');
   const featuredPatents = patents.filter((patent) =>
     patent.title.includes('航班聚合动态定价') || patent.title.includes('多智能体协同')
   );
@@ -191,7 +191,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           {projects.slice(0, 3).map((project) => {
             const title = isZh ? project.titleZh || project.title : project.titleEn || project.title;
             const description = isZh ? project.descriptionZh || project.description : project.descriptionEn || project.description;
-            const outcome = isZh ? project.outcomesZh?.[0] : project.outcomesEn?.[0];
+            const proof = isZh ? project.proofLabelZh : project.proofLabelEn;
             return (
               <Link href={`/${locale}/projects/${project.slug}`} key={project.slug}>
                 <article>
@@ -201,7 +201,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   <div className="design-card-tags">
                     {project.tags.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
                   </div>
-                  {outcome && <strong>{outcome}</strong>}
+                  {proof && <strong>{isZh ? `验证证据：${proof}` : `Evidence: ${proof}`}</strong>}
                 </article>
               </Link>
             );

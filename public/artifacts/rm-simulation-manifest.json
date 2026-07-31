@@ -1,0 +1,37 @@
+{
+  "artifact_type": "public-safe experiment manifest",
+  "project": "Airline Revenue Management Simulation & Evaluation Platform",
+  "scenario": {
+    "horizon": "three-month network stress simulation",
+    "airports": 7,
+    "directed_legs": 12,
+    "od_markets": 42,
+    "dcp_windows": 10,
+    "randomization": "fixed seed with common random numbers"
+  },
+  "passenger_process": [
+    "Gamma-Poisson arrivals",
+    "dynamic business/leisure mix",
+    "booking horizon",
+    "willingness to pay",
+    "multinomial-logit choice",
+    "party size",
+    "cancellation risk"
+  ],
+  "policies": {
+    "traditional_baseline": "historical-mean forecast + leg EMSR-b",
+    "proposed_policy": "Bayesian online forecast + DLP + finite-horizon Bellman DP",
+    "oracle_leg_control": "Oracle demand + leg EMSR-b",
+    "oracle_network_control": "Oracle demand + DLP + finite-horizon Bellman DP"
+  },
+  "outputs": [
+    "request-level decisions",
+    "booking and cancellation trajectories",
+    "forecast mean and variance",
+    "bid prices",
+    "load factors",
+    "normalized revenue",
+    "policy-value decomposition"
+  ],
+  "disclaimer": "Public-safe normalized configuration only. Results are simulated and are not production uplift."
+}

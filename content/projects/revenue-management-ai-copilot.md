@@ -1,4 +1,5 @@
 ---
+category: "prototype"
 title: "Pricing & Revenue Optimization AI Copilot"
 titleZh: "定价与收益优化 AI Copilot"
 titleEn: "Pricing & Revenue Optimization AI Copilot"
@@ -9,6 +10,10 @@ roleZh: "产品与算法负责人 / Decision Intelligence Architect"
 roleEn: "Product & Algorithm Lead / Decision Intelligence Architect"
 stageZh: "交互原型与系统方案"
 stageEn: "Interactive prototype and system design"
+proofLabelZh: "交互原型 · 工具调用链路设计 · 尚未生产化"
+proofLabelEn: "Interactive prototype · tool-call workflow design · not productionized"
+validationBoundaryZh: "当前用于验证可解释问答、工具调用和 What-if 流程，不声称已经形成稳定生产 Agent 或替代人工决策。"
+validationBoundaryEn: "The prototype validates grounded explanations, tool calls, and what-if workflows. It is not claimed as a production-grade agent or a replacement for human decisions."
 challengeZh: "收益管理模型链路长、算法专业门槛高，业务用户难以理解一次预测或定价结果为何产生，也难以跨模块追溯和开展情景分析。"
 challengeEn: "Revenue-management pipelines are long and specialized, making it difficult for business users to understand why a forecast or price was produced, trace it across modules, or run scenarios."
 responsibilitiesZh:
@@ -52,5 +57,5 @@ outcomesEn:
 tags: ["Decision Intelligence", "LLM Orchestration", "Tool Calling", "Decision Traceability", "What-if Analysis"]
 featured: true
 year: 2026
-order: 4
+order: 2
 ---

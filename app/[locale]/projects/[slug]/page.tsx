@@ -38,6 +38,7 @@ export default async function ProjectDetailPage({
 
   const isZh = locale === 'zh';
   const isFrontier = project.category === 'frontier';
+  const isPrototype = project.category === 'prototype';
   const title = isZh ? project.titleZh || project.title : project.titleEn || project.title;
   const description = isZh
     ? project.descriptionZh || project.description
@@ -51,6 +52,12 @@ export default async function ProjectDetailPage({
   const outcomes = isZh ? project.outcomesZh : project.outcomesEn;
   const dataPlan = isZh ? project.dataPlanZh : project.dataPlanEn;
   const deliverable = isZh ? project.deliverableZh : project.deliverableEn;
+  const proofLabel = isZh ? project.proofLabelZh : project.proofLabelEn;
+  const proofPoints = isZh ? project.proofPointsZh : project.proofPointsEn;
+  const deliveryItems = isZh ? project.deliveryItemsZh : project.deliveryItemsEn;
+  const inputContract = isZh ? project.inputContractZh : project.inputContractEn;
+  const outputContract = isZh ? project.outputContractZh : project.outputContractEn;
+  const validationBoundary = isZh ? project.validationBoundaryZh : project.validationBoundaryEn;
 
   return (
     <div className="inner-page project-case-page">
@@ -61,7 +68,7 @@ export default async function ProjectDetailPage({
       <header className="project-case-hero">
         <div>
           <p className="eyebrow">
-            {isFrontier ? 'EMERGING FRONTIER' : `${project.year} · CASE STUDY`}
+            {isFrontier ? 'PUBLIC VALIDATION PLAN' : isPrototype ? 'TECHNICAL PROTOTYPE' : `${project.year} · DELIVERED CASE`}
           </p>
           <h1>{title}</h1>
           <p>{description}</p>
@@ -79,6 +86,12 @@ export default async function ProjectDetailPage({
               <dd>{stage}</dd>
             </div>
           )}
+          {proofLabel && (
+            <div>
+              <dt>{isZh ? '证据等级' : 'Evidence Level'}</dt>
+              <dd>{proofLabel}</dd>
+            </div>
+          )}
         </dl>
         <div className="method-list project-case-tags">
           {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
@@ -86,6 +99,44 @@ export default async function ProjectDetailPage({
       </header>
 
       <main className="project-case-sections">
+        {project.metricCards && project.metricCards.length > 0 && (
+          <section className="project-case-section project-proof-metrics">
+            {project.metricCards.map((metric) => (
+              <article key={`${metric.value}-${metric.labelEn}`}>
+                <strong>{metric.value}</strong>
+                <h2>{isZh ? metric.labelZh : metric.labelEn}</h2>
+                {(isZh ? metric.noteZh : metric.noteEn) && <p>{isZh ? metric.noteZh : metric.noteEn}</p>}
+              </article>
+            ))}
+          </section>
+        )}
+
+        {proofPoints && proofPoints.length > 0 && (
+          <section className="project-case-section project-case-outcomes">
+            <p className="project-case-label">{isZh ? '可核验证据' : 'Verifiable Evidence'}</p>
+            <ul>
+              {proofPoints.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </section>
+        )}
+
+        {deliveryItems && deliveryItems.length > 0 && (
+          <section className="project-case-section">
+            <p className="project-case-label">{isZh ? '已完成交付物' : 'Delivered Components'}</p>
+            <ul>
+              {deliveryItems.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </section>
+        )}
+
+        {(inputContract || outputContract) && (
+          <section className="project-case-section project-system-contract">
+            <p className="project-case-label">{isZh ? '系统输入 / 输出' : 'System Input / Output'}</p>
+            {inputContract && <div><strong>INPUT</strong><p>{inputContract}</p></div>}
+            {outputContract && <div><strong>OUTPUT</strong><p>{outputContract}</p></div>}
+          </section>
+        )}
+
         {challenge && (
           <section className="project-case-section project-case-challenge">
             <p className="project-case-label">{isZh ? (isFrontier ? '探索目标' : '业务问题') : (isFrontier ? 'Exploration Goal' : 'Business Challenge')}</p>
@@ -144,10 +195,34 @@ export default async function ProjectDetailPage({
 
         {outcomes && outcomes.length > 0 && (
           <section className="project-case-section project-case-outcomes">
-            <p className="project-case-label">{isZh ? (isFrontier ? '预期成果' : '方向性成果') : (isFrontier ? 'Expected Outcomes' : 'Directional Outcomes')}</p>
+            <p className="project-case-label">
+              {isZh
+                ? (isFrontier ? '预期成果' : isPrototype ? '当前产出' : '验证结果')
+                : (isFrontier ? 'Expected Outcomes' : isPrototype ? 'Current Output' : 'Validated Results')}
+            </p>
             <ul>
               {outcomes.map((item) => <li key={item}>{item}</li>)}
             </ul>
+          </section>
+        )}
+
+        {validationBoundary && (
+          <section className="project-case-section project-validation-boundary">
+            <p className="project-case-label">{isZh ? '验证边界' : 'Validation Boundary'}</p>
+            <p>{validationBoundary}</p>
+          </section>
+        )}
+
+        {project.artifacts && project.artifacts.length > 0 && (
+          <section className="project-case-section project-artifacts">
+            <p className="project-case-label">{isZh ? '公开材料' : 'Public Artifacts'}</p>
+            <div>
+              {project.artifacts.map((artifact) => (
+                <a key={artifact.href} href={artifact.href} target="_blank" rel="noopener noreferrer">
+                  {isZh ? artifact.labelZh : artifact.labelEn} ↗
+                </a>
+              ))}
+            </div>
           </section>
         )}
       </main>

@@ -1190,8 +1190,77 @@
 
 .project-case-challenge,
 .project-case-outcomes,
-.project-plan-section {
+.project-plan-section,
+.project-proof-metrics,
+.project-validation-boundary,
+.project-artifacts {
   grid-column: 1 / -1;
+}
+
+.project-proof-metrics {
+  display: grid;
+  gap: 1px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--line);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.project-proof-metrics article {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.project-proof-metrics strong {
+  display: block;
+  color: var(--coral);
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1;
+}
+
+.project-proof-metrics h2 {
+  margin: 12px 0 6px;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.project-proof-metrics p,
+.project-system-contract p,
+.project-validation-boundary > p:last-child {
+  margin: 0;
+  color: var(--copy);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.project-system-contract > div {
+  display: grid;
+  margin-top: 14px;
+  gap: 14px;
+  grid-template-columns: 70px 1fr;
+}
+
+.project-system-contract > div > strong {
+  color: var(--teal);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.project-artifacts > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.project-artifacts a {
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .project-case-label {
@@ -2261,13 +2330,20 @@
 }
 
 .project-tile h2 {
-  margin: auto 0;
+  margin: auto 0 0;
   padding: 18px 24px 12px 0;
   color: var(--ink);
   font-size: clamp(17px, 1.35vw, 21px);
   font-weight: 760;
   line-height: 1.46;
   letter-spacing: -0.025em;
+}
+
+.project-tile-proof {
+  margin: 4px 30px 0 0;
+  color: var(--copy);
+  font-size: 10px;
+  line-height: 1.55;
 }
 
 .project-tile-arrow {
@@ -2292,6 +2368,17 @@
 .project-tile-frontier .project-tile-category {
   border-color: rgba(118, 83, 107, 0.22);
   color: var(--plum);
+}
+
+.project-tile-prototype > article {
+  background:
+    radial-gradient(circle at 100% 0, rgba(224, 117, 92, 0.1), transparent 34%),
+    rgba(255, 255, 255, 0.86);
+}
+
+.project-tile-prototype .project-tile-category {
+  border-color: rgba(224, 117, 92, 0.24);
+  color: var(--coral);
 }
 
 .article-tile-grid {

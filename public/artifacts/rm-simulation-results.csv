@@ -1,0 +1,3 @@
+comparison,baseline_policy,challenger_policy,baseline_revenue_index,challenger_revenue_index,simulated_uplift_pct,validation_scope
+end_to_end,historical mean + leg EMSR-b,Bayesian online forecast + DLP + Bellman DP,100,156.8,56.8,"three-month stress scenario; fixed seed"
+control_only,Oracle demand + leg EMSR-b,Oracle demand + DLP + Bellman DP,100,139.24,39.24,"identical Oracle demand; forecast error removed"
