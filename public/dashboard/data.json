@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-01 10:15 CST",
+  "updatedAt": "2026-08-01 10:18 CST",
   "targetDate": "2027-08-01",
   "todayDate": "2026-08-01",
   "yesterdayDate": "2026-07-31",
@@ -20,14 +20,6 @@
     {"id":"sc4","group":"第二曲线","name":"管理与带人能力","value":0,"color":"rose"},
     {"id":"sc5","group":"第二曲线","name":"历史与金融危机","value":0,"color":"lavender"}
   ],
-  "yesterday": [
-    {"id":"yd-20260731-1","text":"明确职业总工作台的真实需求","detail":"工作仍在 ChatGPT 内完成，总览页负责汇总主线、成果和下一步。"},
-    {"id":"yd-20260731-2","text":"确定一年后跳槽和 Decision Intelligence 的职业定位","detail":"把预测、优化、定价、仿真与业务价值统一成决策系统叙事。"},
-    {"id":"yd-20260731-3","text":"建立第二曲线学习框架","detail":"纳入 Business、资本、英语、管理以及历史与金融危机。"}
-  ],
-  "today": [
-    {"id":"td-20260801-1","text":"把职业工作台发布到个人主页","detail":"形成固定网址，并让每日任务只更新数据文件。"},
-    {"id":"td-20260801-2","text":"推动 DCP 方差拆分实验落地","detail":"整理实验配置、对比指标、结论标准和负责人。"},
-    {"id":"td-20260801-3","text":"冻结仿真平台核心对比矩阵","detail":"明确 Baseline、Bayes + DLP + DP 与 Oracle 组合。"}
-  ]
+  "yesterday": [],
+  "today": []
 }
