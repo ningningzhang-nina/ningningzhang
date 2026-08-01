@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-01 10:18 CST",
+  "updatedAt": "2026-08-01 10:21 CST",
   "targetDate": "2027-08-01",
   "todayDate": "2026-08-01",
   "yesterdayDate": "2026-07-31",
@@ -11,6 +11,7 @@
     {"id":"tr4","group":"TravelSky","name":"民航阶梯定价方案","value":50,"color":"yellow"},
     {"id":"tr5","group":"TravelSky","name":"民航 Shopping 推荐系统","value":0,"color":"mint"},
     {"id":"tr6","group":"TravelSky","name":"民航强化学习","value":0,"color":"sky"},
+    {"id":"tr7","group":"TravelSky","name":"动态定价综述论文","value":0,"color":"lavender"},
     {"id":"di1","group":"智能决策","name":"因果推断 / A/B Test","value":0,"color":"lavender"},
     {"id":"di2","group":"智能决策","name":"Uplift Modeling","value":0,"color":"pink"},
     {"id":"di3","group":"智能决策","name":"预测","value":0,"color":"rose"},
