@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-02 10:48 CST",
+  "updatedAt": "2026-08-02 11:14 CST",
   "targetDate": "2027-08-01",
   "todayDate": "2026-08-02",
   "yesterdayDate": "2026-08-01",
@@ -19,7 +19,7 @@
     {"id":"sc2","group":"第二曲线","name":"Business + 资本思维","value":0,"color":"yellow"},
     {"id":"sc3","group":"第二曲线","name":"英语口语与国际表达","value":0,"color":"sky"},
     {"id":"sc4","group":"第二曲线","name":"管理与带人能力","value":2,"color":"rose"},
-    {"id":"sc5","group":"第二曲线","name":"历史与金融危机","value":0,"color":"lavender"}
+    {"id":"sc5","group":"第二曲线","name":"历史与金融危机","value":2,"color":"lavender"}
   ],
   "yesterday": [
     {"id":"2026-08-01-rms-diagnosis","text":"完成取消率改进后 Bid Price 偏差扩大的根因分析，并设计旧模型、新模型与 Oracle 对照实验"},
@@ -28,7 +28,8 @@
     {"id":"2026-08-01-rl-route","text":"完成民航强化学习路线调研与代码核对，形成 FLYR-inspired BCQ 和 PROS-inspired Scenario RL 方案"},
     {"id":"2026-08-01-release-flow","text":"梳理 Simulation、Replay、Shadow Mode、灰度上线与 A/B Test 的生产上线流程"},
     {"id":"2026-08-01-di-skills","text":"形成 Decision Intelligence 职业定位与七项可复用 Skill 框架"},
-    {"id":"2026-08-01-dashboard","text":"建立职业工作台、Life 项目档案和长期同步结构"}
+    {"id":"2026-08-01-dashboard","text":"建立职业工作台、Life 项目档案和长期同步结构"},
+    {"id":"2026-08-01-financial-crisis","text":"学习经济危机与金融周期，理解杠杆顺周期和流动性反馈机制"}
   ],
   "today": [
     {"id":"2026-08-02-oracle-test","text":"设计取消率 A/B/C 对照实验","detail":"固定网络优化输入，比较旧取消率、新取消率和实际取消率 Oracle 对净需求、BP 与收益的影响"},
