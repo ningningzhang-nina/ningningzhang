@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-01 10:22 CST",
+  "updatedAt": "2026-08-02 10:00 CST",
   "targetDate": "2027-08-01",
-  "todayDate": "2026-08-01",
+  "todayDate": "2026-08-02",
   "yesterdayDate": "2026-07-31",
   "headline": "不要用忙碌证明价值；要用可验证的成果，让一年后的市场看见你的选择权。",
   "progress": [
@@ -21,6 +21,10 @@
     {"id":"sc4","group":"第二曲线","name":"管理与带人能力","value":0,"color":"rose"},
     {"id":"sc5","group":"第二曲线","name":"历史与金融危机","value":0,"color":"lavender"}
   ],
-  "yesterday": [],
+  "yesterday": [
+    "明确职业总工作台定位，将 GitHub 作为长期职业资产管理系统",
+    "建立 Life 与项目 progress 独立归档机制",
+    "完成第二曲线与 Decision Intelligence 工作台框架设计"
+  ],
   "today": []
 }
