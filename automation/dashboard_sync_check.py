@@ -54,8 +54,19 @@ def main():
             problems.append(f'progress mismatch: {k} history={v} dashboard={dashboard.get(k)}')
 
     # Yesterday's dashboard list must be sourced from the dated history record.
+    yesterday_tasks = data.get('yesterday', [])
+    malformed_tasks = [
+        task for task in yesterday_tasks
+        if not isinstance(task, dict) or not task.get('id') or not task.get('text')
+    ]
+    if malformed_tasks:
+        problems.append('yesterday tasks must contain id and text')
+
     expected_summary = yesterday_record.get('completed', [])
-    if data.get('yesterday', []) != expected_summary:
+    rendered_summary = [
+        task.get('text') for task in yesterday_tasks if isinstance(task, dict)
+    ]
+    if rendered_summary != expected_summary:
         problems.append('yesterday summary does not match history')
 
     if problems:
