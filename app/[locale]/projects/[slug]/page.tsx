@@ -43,6 +43,7 @@ export default async function ProjectDetailPage({
   const description = isZh
     ? project.descriptionZh || project.description
     : project.descriptionEn || project.description;
+  const application = isZh ? project.applicationZh : project.applicationEn;
   const role = isZh ? project.roleZh : project.roleEn;
   const stage = isZh ? project.stageZh : project.stageEn;
   const challenge = isZh ? project.challengeZh : project.challengeEn;
@@ -84,6 +85,12 @@ export default async function ProjectDetailPage({
             <div>
               <dt>{isZh ? '项目阶段' : 'Stage'}</dt>
               <dd>{stage}</dd>
+            </div>
+          )}
+          {application && (
+            <div>
+              <dt>{isZh ? '应用场景' : 'Application'}</dt>
+              <dd>{application}</dd>
             </div>
           )}
           {proofLabel && (

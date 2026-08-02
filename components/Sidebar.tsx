@@ -32,7 +32,7 @@ export default function Sidebar({ locale }: { locale: string }) {
       <div className="mx-auto flex h-[68px] max-w-[1160px] items-center justify-between px-5 md:px-8">
         <Link href={`/${locale}`} className="brand-mark group">
           <span className="block text-[17px] font-bold tracking-[0.07em]">NINGNING ZHANG</span>
-          <span className="hidden text-[10px] font-semibold uppercase tracking-[0.19em] md:block">Pricing · Decision Intelligence</span>
+          <span className="hidden text-[10px] font-semibold uppercase tracking-[0.19em] md:block">Decision Intelligence · Pricing · AI</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

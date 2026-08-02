@@ -43,6 +43,8 @@ export interface Project {
   titleEn?: string;
   descriptionZh?: string;
   descriptionEn?: string;
+  applicationZh?: string;
+  applicationEn?: string;
   roleZh?: string;
   roleEn?: string;
   stageZh?: string;
@@ -243,6 +245,8 @@ export function getAllProjects(): Project[] {
         titleEn: data.titleEn,
         descriptionZh: data.descriptionZh,
         descriptionEn: data.descriptionEn,
+        applicationZh: data.applicationZh,
+        applicationEn: data.applicationEn,
         roleZh: data.roleZh,
         roleEn: data.roleEn,
         stageZh: data.stageZh,

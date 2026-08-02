@@ -2258,11 +2258,66 @@
 }
 
 .project-tile-page {
-  display: flex;
+  display: block;
   width: min(100%, 1280px);
   min-height: calc(100vh - 68px);
   margin: 0 auto;
   padding: 26px 28px;
+}
+
+.project-capability-hero {
+  max-width: 820px;
+  padding: 18px 0 38px;
+}
+
+.project-capability-hero h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.project-capability-hero > p:last-child {
+  margin: 16px 0 0;
+  color: var(--copy);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.project-capability-group {
+  padding: 30px 0 36px;
+  border-top: 1px solid var(--line);
+}
+
+.project-capability-heading {
+  display: grid;
+  margin-bottom: 22px;
+  gap: 18px;
+  grid-template-columns: 44px minmax(0, 760px);
+}
+
+.project-capability-heading > span {
+  padding-top: 7px;
+  color: var(--coral);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.project-capability-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 780;
+  letter-spacing: -0.035em;
+}
+
+.project-capability-heading p {
+  margin: 9px 0 0;
+  color: var(--copy);
+  font-size: 13px;
+  line-height: 1.72;
 }
 
 .project-tile-grid {
@@ -2330,7 +2385,7 @@
 }
 
 .project-tile h2 {
-  margin: auto 0 0;
+  margin: 22px 0 0;
   padding: 18px 24px 12px 0;
   color: var(--ink);
   font-size: clamp(17px, 1.35vw, 21px);
@@ -2339,8 +2394,34 @@
   letter-spacing: -0.025em;
 }
 
+.project-tile-description {
+  margin: 10px 0 0;
+  color: var(--copy);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.project-tile-application {
+  display: flex;
+  margin: auto 28px 0 0;
+  padding-top: 14px;
+  flex-direction: column;
+  gap: 3px;
+  color: var(--copy);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.project-tile-application strong {
+  color: var(--coral);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .project-tile-proof {
-  margin: 4px 30px 0 0;
+  margin: 9px 30px 0 0;
   color: var(--copy);
   font-size: 10px;
   line-height: 1.55;
@@ -2433,6 +2514,14 @@
 
   .project-tile > article {
     min-height: 145px;
+  }
+
+  .project-capability-hero {
+    padding-top: 8px;
+  }
+
+  .project-capability-heading {
+    grid-template-columns: 34px 1fr;
   }
 
   .article-tile-grid {
@@ -2731,7 +2820,40 @@
 .design-project-grid {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.design-leadership-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.design-leadership-grid article {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--canvas-soft);
+}
+
+.design-leadership-grid span {
+  color: var(--coral);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.design-leadership-grid h3 {
+  margin: 16px 0 8px;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.design-leadership-grid p {
+  margin: 0;
+  color: var(--copy);
+  font-size: 11px;
+  line-height: 1.7;
 }
 
 .design-project-grid > a {
@@ -2793,6 +2915,21 @@
   line-height: 1.75;
 }
 
+.design-project-grid .design-card-application {
+  margin: -6px 0 18px;
+  color: var(--copy);
+  font-size: 10px;
+}
+
+.design-card-application strong {
+  margin-right: 7px;
+  color: var(--coral);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .design-project-grid .design-card-tags {
   margin-top: auto;
 }
@@ -2846,6 +2983,10 @@
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.design-skill-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .design-skill-grid article {
@@ -3008,6 +3149,7 @@
   }
 
   .design-project-grid,
+  .design-leadership-grid,
   .design-skill-grid,
   .design-credential-grid {
     grid-template-columns: 1fr;

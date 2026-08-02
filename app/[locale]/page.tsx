@@ -9,10 +9,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isZh = locale === 'zh';
   return {
-    title: isZh ? '张宁宁｜定价与决策智能算法' : 'Ningning Zhang | Pricing & Decision Intelligence',
+    title: isZh ? '张宁宁｜决策智能与智能定价算法负责人' : 'Ningning Zhang | Decision Intelligence & Pricing Algorithm Lead',
     description: isZh
-      ? '覆盖需求预测、旅客选择、收益优化、动态定价与算法仿真评测的决策智能作品集。'
-      : 'A decision-intelligence portfolio spanning demand forecasting, customer choice, revenue optimization, dynamic pricing, and simulation-based evaluation.',
+      ? '结合统计学习、优化与 AI，在不确定环境中构建智能定价、资源配置与收益优化决策系统。'
+      : 'Building intelligent pricing, resource-allocation, and revenue-optimization systems with statistical learning, optimization, and AI.',
   };
 }
 
@@ -23,12 +23,12 @@ const experience = [
     organization: { zh: '中国民航信息网络股份有限公司', en: 'TravelSky Technology Limited' },
     details: {
       zh: [
-        '负责航空收益管理与动态定价中“预测—优化—控制”闭环的核心算法设计与 POC 验证',
-        '连接贝叶斯需求预测、DLP / Bid Price、Bellman DP、旅客选择与 WTP 建模',
+        '负责大型决策系统的算法研发，连接需求预测、优化、定价策略与仿真验证',
+        '将方法落地于航空收益管理与动态定价，构建“预测—优化—控制”闭环',
       ],
       en: [
-        'Lead core algorithm design and POC validation for the forecast-optimize-control loop in airline revenue management and dynamic pricing',
-        'Connect Bayesian demand forecasting, DLP / bid price, Bellman DP, customer choice, and WTP modeling',
+        'Lead algorithm development for large-scale decision systems, connecting demand forecasting, optimization, pricing strategy, and simulation-based validation',
+        'Apply these methods to airline revenue management and dynamic pricing through a forecast-optimize-control loop',
       ],
     },
   },
@@ -58,12 +58,35 @@ const skillGroups = [
     items: ['Bayesian Time Series', 'Probabilistic Forecasting', 'LightGBM', 'Demand Unconstraining'],
   },
   {
-    title: { zh: '定价与收益优化', en: 'Pricing & Revenue Optimization' },
-    items: ['Choice Modeling', 'WTP', 'DLP', 'Bid Price', 'Bellman DP'],
+    title: { zh: '决策智能', en: 'Decision Intelligence' },
+    items: ['Optimization under Uncertainty', 'Dynamic Programming', 'Reinforcement Learning', 'Simulation-based Evaluation'],
   },
   {
-    title: { zh: '系统与评测', en: 'Systems & Evaluation' },
-    items: ['Python', 'Streamlit', 'Backtesting', 'Common Random Numbers', 'LLM Tool Calling'],
+    title: { zh: '定价与收益优化', en: 'Pricing & Revenue Optimization' },
+    items: ['Dynamic Pricing', 'Choice Modeling', 'WTP', 'Bid Price'],
+  },
+  {
+    title: { zh: 'AI 系统', en: 'AI Systems' },
+    items: ['LLM Agent', 'Tool Calling', 'AI Decision Support', 'Experimentation'],
+  },
+] as const;
+
+const leadershipItems = [
+  {
+    title: { zh: '算法体系协调', en: 'Algorithm Program Coordination' },
+    detail: { zh: '统筹预测、网络优化、Bid Price 与定价模块的接口、依赖和验证节奏。', en: 'Coordinate interfaces, dependencies, and validation across forecasting, network optimization, bid price, and pricing modules.' },
+  },
+  {
+    title: { zh: '验证流程设计', en: 'Validation Workflow Design' },
+    detail: { zh: '建立基线、Oracle、固定随机数、压力场景与收益分解相结合的算法评测流程。', en: 'Design evaluation workflows combining baselines, Oracle controls, common random numbers, stress scenarios, and revenue decomposition.' },
+  },
+  {
+    title: { zh: '跨职能协作', en: 'Cross-functional Collaboration' },
+    detail: { zh: '推动预测、优化、测试与业务参与者围绕统一输入输出和验收标准协同。', en: 'Align forecasting, optimization, testing, and business stakeholders around shared contracts and acceptance criteria.' },
+  },
+  {
+    title: { zh: '实验与进度治理', en: 'Experiment & Delivery Governance' },
+    detail: { zh: '建立实验记录、运行状态、问题备注和结果对标机制，让复杂算法项目可追踪。', en: 'Establish experiment logs, run status, issue notes, and benchmark tracking for transparent algorithm delivery.' },
   },
 ] as const;
 
@@ -93,7 +116,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const papers = getAllPapers();
   const patents = getAllPatents();
   const posts = getAllPosts(locale).slice(0, 3);
-  const projects = getAllProjects().filter((project) => project.category === 'core');
+  const allProjects = getAllProjects();
+  const featuredSlugs = [
+    'dynamic-pricing',
+    'revenue-management-optimization',
+    'revenue-management-ai-copilot',
+    'airline-rm-simulation-evaluation',
+  ];
+  const projects = featuredSlugs
+    .map((slug) => allProjects.find((project) => project.slug === slug))
+    .filter((project): project is NonNullable<typeof project> => Boolean(project));
   const featuredPatents = patents.filter((patent) =>
     patent.title.includes('航班聚合动态定价') || patent.title.includes('多智能体协同')
   );
@@ -104,13 +136,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <div className="design-home">
       <section className="design-hero" id="about">
         <div className="design-hero-copy">
-          <p className="design-kicker">PH.D. · PRICING · DECISION INTELLIGENCE</p>
+          <p className="design-kicker">DECISION INTELLIGENCE · OPTIMIZATION · AI</p>
           <h1>{isZh ? '张宁宁' : 'Ningning Zhang'}</h1>
-          <h2>{isZh ? '定价与收益优化算法负责人' : 'Pricing & Revenue Optimization Algorithm Lead'}</h2>
+          <h2>{isZh ? '决策智能与智能定价算法负责人' : 'Decision Intelligence & Pricing Algorithm Lead'}</h2>
           <p className="design-hero-summary">
             {isZh
-              ? '香港大学统计学博士，现从事航空收益管理与动态定价算法研发。专注把需求预测、旅客选择、容量约束与收益目标连接成可验证、可解释的决策系统。'
-              : 'Ph.D. in Statistics from The University of Hong Kong, working on airline revenue management and dynamic pricing. I connect demand forecasting, customer choice, capacity constraints, and revenue objectives into testable, explainable decision systems.'}
+              ? '香港大学统计学博士，专注于不确定环境下的智能决策系统。结合统计建模、预测优化、动态定价与 AI Agent，解决复杂商业场景中的资源配置和收益优化问题。当前在航空收益管理场景中落地这些方法，构建“预测—优化—控制”闭环系统。'
+              : 'Ph.D. in Statistics from The University of Hong Kong. I build intelligent decision systems that combine statistical learning, optimization, dynamic pricing, and AI agents to solve complex business problems under uncertainty. I currently apply these methods to airline revenue management through a forecast-optimize-control loop.'}
           </p>
           <div className="design-actions">
             <Link href={`/${locale}/projects`} className="design-button design-button-primary">
@@ -132,7 +164,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </a>
           </div>
           <div className="design-tags">
-            {['Bayesian Forecasting', 'Dynamic Pricing', 'Revenue Optimization', 'Choice Modeling'].map((tag) => (
+            {['Decision Intelligence', 'Optimization under Uncertainty', 'Dynamic Pricing', 'AI Decision Systems'].map((tag) => (
               <span key={tag}>{tag}</span>
             ))}
           </div>
@@ -151,6 +183,34 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <article><strong>{projects.length}</strong><span>{isZh ? '核心项目' : 'Core Projects'}</span></article>
             <article><strong>Ph.D.</strong><span>{isZh ? '统计学' : 'Statistics'}</span></article>
           </div>
+        </div>
+      </section>
+
+      <section className="design-section" id="skills">
+        <div className="design-section-heading">
+          <div>
+            <p className="design-kicker">CORE EXPERTISE</p>
+            <h2>{isZh ? '核心能力' : 'Core Expertise'}</h2>
+          </div>
+        </div>
+        <div className="design-skill-grid">
+          {skillGroups.map((group) => (
+            <article key={group.title.en}>
+              <h3>{group.title[l]}</h3>
+              <div className="design-card-tags">
+                {group.items.map((item) => <span key={item}>{item}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="design-credential-grid">
+          {credentials.map((credential) => (
+            <article key={credential.value}>
+              <strong>{credential.value}</strong>
+              <h3>{credential.title[l]}</h3>
+              <p>{credential.note[l]}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -188,16 +248,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <Link href={`/${locale}/projects`}>{isZh ? '查看全部项目' : 'View all projects'} →</Link>
         </div>
         <div className="design-project-grid">
-          {projects.slice(0, 3).map((project) => {
+          {projects.map((project, index) => {
             const title = isZh ? project.titleZh || project.title : project.titleEn || project.title;
             const description = isZh ? project.descriptionZh || project.description : project.descriptionEn || project.description;
+            const application = isZh ? project.applicationZh : project.applicationEn;
             const proof = isZh ? project.proofLabelZh : project.proofLabelEn;
             return (
               <Link href={`/${locale}/projects/${project.slug}`} key={project.slug}>
                 <article>
-                  <span className="design-card-index">0{project.order}</span>
+                  <span className="design-card-index">{String(index + 1).padStart(2, '0')}</span>
                   <h3>{title}</h3>
                   <p>{description}</p>
+                  {application && (
+                    <p className="design-card-application">
+                      <strong>{isZh ? '应用场景' : 'Application'}</strong>
+                      {application}
+                    </p>
+                  )}
                   <div className="design-card-tags">
                     {project.tags.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
                   </div>
@@ -209,13 +276,31 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
+      <section className="design-section" id="leadership">
+        <div className="design-section-heading">
+          <div>
+            <p className="design-kicker">LEADERSHIP & PROJECT MANAGEMENT</p>
+            <h2>{isZh ? '算法领导力与项目管理' : 'Leadership & Project Management'}</h2>
+          </div>
+        </div>
+        <div className="design-leadership-grid">
+          {leadershipItems.map((item, index) => (
+            <article key={item.title.en}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title[l]}</h3>
+              <p>{item.detail[l]}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="design-section" id="papers">
         <div className="design-section-heading">
           <div>
-            <p className="design-kicker">PUBLICATIONS & PATENTS</p>
-            <h2>{isZh ? '论文与专利' : 'Papers & Patents'}</h2>
+            <p className="design-kicker">RESEARCH FOUNDATION</p>
+            <h2>{isZh ? '研究基础' : 'Research Foundation'}</h2>
           </div>
-          <Link href={`/${locale}/papers`}>{isZh ? '查看全部论文与专利' : 'View all papers & patents'} →</Link>
+          <Link href={`/${locale}/papers`}>{isZh ? '查看研究成果' : 'View research work'} →</Link>
         </div>
         <div className="design-paper-grid">
           {papers.slice(0, 2).map((paper) => (
@@ -230,34 +315,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <div><span>{isZh ? '发明专利' : 'Patent'}</span><time>PATENT</time></div>
               <h3>{patent.title}</h3>
               <p>{isZh ? `发明人：${patent.inventors}` : `Inventors: ${patent.inventors}`}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="design-section" id="skills">
-        <div className="design-section-heading">
-          <div>
-            <p className="design-kicker">SKILLS</p>
-            <h2>{isZh ? '技术能力' : 'Technical Skills'}</h2>
-          </div>
-        </div>
-        <div className="design-skill-grid">
-          {skillGroups.map((group) => (
-            <article key={group.title.en}>
-              <h3>{group.title[l]}</h3>
-              <div className="design-card-tags">
-                {group.items.map((item) => <span key={item}>{item}</span>)}
-              </div>
-            </article>
-          ))}
-        </div>
-        <div className="design-credential-grid">
-          {credentials.map((credential) => (
-            <article key={credential.value}>
-              <strong>{credential.value}</strong>
-              <h3>{credential.title[l]}</h3>
-              <p>{credential.note[l]}</p>
             </article>
           ))}
         </div>
@@ -283,8 +340,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <section className="design-contact" id="contact">
         <p className="design-kicker">GET IN TOUCH</p>
-        <h2>{isZh ? '交流预测、定价、收益优化与职业机会' : 'Forecasting, pricing, revenue optimization, and opportunities'}</h2>
-        <p>{isZh ? '如果你正在寻找兼具统计建模深度与业务决策系统经验的算法负责人，欢迎联系我。' : 'If you are looking for an algorithm lead with statistical depth and decision-system experience, let’s talk.'}</p>
+        <h2>{isZh ? '交流决策智能、定价优化与职业机会' : 'Decision intelligence, pricing optimization, and opportunities'}</h2>
+        <p>{isZh ? '如果你正在寻找兼具统计建模深度、优化能力与复杂决策系统经验的算法负责人，欢迎联系我。' : 'If you are looking for an algorithm lead combining statistical depth, optimization, and complex decision-system experience, let’s talk.'}</p>
         <div>
           <a href="mailto:zhangnn0725@163.com" className="design-button design-button-primary">zhangnn0725@163.com</a>
           <a href="https://github.com/ningningzhang-nina" target="_blank" rel="noopener noreferrer" className="design-button design-button-secondary">GitHub</a>

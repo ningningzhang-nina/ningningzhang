@@ -11,17 +11,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const experience = [
   {
     period: { zh: '2025.09 – 至今', en: 'Sep 2025 – Present' },
-    role: { zh: '博士后研究员', en: 'Postdoctoral Researcher' },
+    role: { zh: '博士后研究员 · 核心算法负责人', en: 'Postdoctoral Researcher · Algorithm Lead' },
     organization: { zh: '中国民航信息网络股份有限公司', en: 'TravelSky Technology Limited' },
     details: {
       zh: [
-        '负责航空收益管理与动态定价中“预测—优化—控制”闭环的核心算法设计与 POC 验证',
-        '采用贝叶斯层级预测、DLP / Bid Price、Bellman DP、旅客选择与 WTP 建模连接需求、容量和价格决策',
+        '负责大型决策系统的算法研发，连接需求预测、优化、定价策略与仿真验证',
+        '将贝叶斯预测、DLP / Bid Price、Bellman DP、旅客选择与 WTP 建模落地于航空收益管理和动态定价场景',
         '搭建可复现仿真评测平台；固定随机种子压力场景中，新算法组合取得 56.8% 仿真收益提升（非线上指标）',
       ],
       en: [
-        'Lead core algorithm design and POC validation for the forecast-optimize-control loop in airline revenue management and dynamic pricing',
-        'Connect demand, capacity, and pricing through hierarchical Bayesian forecasting, DLP / bid price, Bellman DP, customer choice, and WTP modeling',
+        'Lead algorithm development for large-scale decision systems, connecting demand forecasting, optimization, pricing strategy, and simulation-based validation',
+        'Apply hierarchical Bayesian forecasting, DLP / bid price, Bellman DP, customer choice, and WTP modeling to airline revenue management and dynamic pricing',
         'Built a reproducible simulation benchmark; the new algorithm stack achieved a 56.8% simulated revenue lift in a fixed-seed stress scenario (not a production metric)',
       ],
     },
@@ -67,6 +67,21 @@ const education = [
   },
 ] as const;
 
+const leadership = [
+  {
+    title: { zh: '模块协同', en: 'Program Coordination' },
+    detail: { zh: '协调预测、网络优化、Bid Price、定价与测试模块，明确接口、依赖和验收标准。', en: 'Coordinate forecasting, network optimization, bid price, pricing, and testing through explicit interfaces, dependencies, and acceptance criteria.' },
+  },
+  {
+    title: { zh: '算法验证', en: 'Algorithm Validation' },
+    detail: { zh: '设计基线、Oracle、共同随机数、压力场景和收益分解相结合的评测流程。', en: 'Design evaluation workflows combining baselines, Oracle controls, common random numbers, stress scenarios, and revenue decomposition.' },
+  },
+  {
+    title: { zh: '项目治理', en: 'Delivery Governance' },
+    detail: { zh: '建立运行记录、进度追踪、问题备注与结果对标框架，使跨团队实验可追踪。', en: 'Establish run logs, progress tracking, issue notes, and benchmark frameworks for traceable cross-team experiments.' },
+  },
+] as const;
+
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const l = locale === 'zh' ? 'zh' : 'en';
@@ -86,6 +101,21 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 <ul>
                   {item.details[l].map((detail) => <li key={detail}>{detail}</li>)}
                 </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="resume-section">
+        <div className="resume-label">{isZh ? '领导力与项目管理' : 'LEADERSHIP'}</div>
+        <div className="timeline-list education-list">
+          {leadership.map((item) => (
+            <article key={item.title.en}>
+              <div className="timeline-period">LEAD</div>
+              <div>
+                <h2>{item.title[l]}</h2>
+                <p>{item.detail[l]}</p>
               </div>
             </article>
           ))}
