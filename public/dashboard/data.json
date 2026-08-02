@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-08-02 10:00 CST",
+  "updatedAt": "2026-08-02 10:30 CST",
   "targetDate": "2027-08-01",
   "todayDate": "2026-08-02",
-  "yesterdayDate": "2026-07-31",
+  "yesterdayDate": "2026-08-01",
   "headline": "不要用忙碌证明价值；要用可验证的成果，让一年后的市场看见你的选择权。",
   "progress": [
     {"id":"tr1","group":"TravelSky","name":"民航收益管理系统开发","value":70,"color":"pink"},
@@ -22,9 +22,9 @@
     {"id":"sc5","group":"第二曲线","name":"历史与金融危机","value":0,"color":"lavender"}
   ],
   "yesterday": [
-    "明确职业总工作台定位，将 GitHub 作为长期职业资产管理系统",
-    "建立 Life 与项目 progress 独立归档机制",
-    "完成第二曲线与 Decision Intelligence 工作台框架设计"
+    "发布 Nina Career Dashboard 到个人主页",
+    "按当前实际状态重设 15 项职业资产进度基线",
+    "新增“动态定价综述论文”并将进度设为 50%"
   ],
   "today": []
 }
