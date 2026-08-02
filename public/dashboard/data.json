@@ -1,30 +1,40 @@
 {
-  "updatedAt": "2026-08-02 10:30 CST",
+  "updatedAt": "2026-08-02 10:48 CST",
   "targetDate": "2027-08-01",
   "todayDate": "2026-08-02",
   "yesterdayDate": "2026-08-01",
-  "headline": "不要用忙碌证明价值；要用可验证的成果，让一年后的市场看见你的选择权。",
+  "headline": "真正的进步，是把问题变成证据，把证据变成决策，再把决策沉淀成可复用的系统。",
   "progress": [
-    {"id":"tr1","group":"TravelSky","name":"民航收益管理系统开发","value":70,"color":"pink"},
+    {"id":"tr1","group":"TravelSky","name":"民航收益管理系统开发","value":75,"color":"pink"},
     {"id":"tr2","group":"TravelSky","name":"民航动态定价引擎开发","value":70,"color":"rose"},
-    {"id":"tr3","group":"TravelSky","name":"民航仿真平台开发","value":50,"color":"orange"},
+    {"id":"tr3","group":"TravelSky","name":"民航仿真平台开发","value":55,"color":"orange"},
     {"id":"tr4","group":"TravelSky","name":"民航阶梯定价方案","value":50,"color":"yellow"},
     {"id":"tr5","group":"TravelSky","name":"民航 Shopping 推荐系统","value":0,"color":"mint"},
-    {"id":"tr6","group":"TravelSky","name":"民航强化学习","value":0,"color":"sky"},
+    {"id":"tr6","group":"TravelSky","name":"民航强化学习","value":5,"color":"sky"},
     {"id":"tr7","group":"TravelSky","name":"动态定价综述论文","value":50,"color":"lavender"},
-    {"id":"di1","group":"智能决策","name":"因果推断 / A/B Test","value":0,"color":"lavender"},
+    {"id":"di1","group":"智能决策","name":"因果推断 / A/B Test","value":3,"color":"lavender"},
     {"id":"di2","group":"智能决策","name":"Uplift Modeling","value":0,"color":"pink"},
     {"id":"di3","group":"智能决策","name":"预测","value":0,"color":"rose"},
-    {"id":"sc1","group":"第二曲线","name":"Decision Intelligence 认知升级","value":0,"color":"mint"},
+    {"id":"sc1","group":"第二曲线","name":"Decision Intelligence 认知升级","value":5,"color":"mint"},
     {"id":"sc2","group":"第二曲线","name":"Business + 资本思维","value":0,"color":"yellow"},
     {"id":"sc3","group":"第二曲线","name":"英语口语与国际表达","value":0,"color":"sky"},
-    {"id":"sc4","group":"第二曲线","name":"管理与带人能力","value":0,"color":"rose"},
+    {"id":"sc4","group":"第二曲线","name":"管理与带人能力","value":2,"color":"rose"},
     {"id":"sc5","group":"第二曲线","name":"历史与金融危机","value":0,"color":"lavender"}
   ],
   "yesterday": [
-    {"id":"2026-08-01-dashboard","text":"发布 Nina Career Dashboard 到个人主页"},
-    {"id":"2026-08-01-baseline","text":"按当前实际状态重设 15 项职业资产进度基线"},
-    {"id":"2026-08-01-review-paper","text":"新增“动态定价综述论文”并将进度设为 50%"}
+    {"id":"2026-08-01-rms-diagnosis","text":"完成取消率改进后 Bid Price 偏差扩大的根因分析，并设计旧模型、新模型与 Oracle 对照实验"},
+    {"id":"2026-08-01-run-registry","text":"生成 RMS 端到端运行台账，统一需求预测、网络优化和 BP 比较的版本、负责人、时间与结果"},
+    {"id":"2026-08-01-simulator-review","text":"审查仿真平台订座决策链路，明确 DP-BP-only 与 AU+DP-BP 的实现差距"},
+    {"id":"2026-08-01-rl-route","text":"完成民航强化学习路线调研与代码核对，形成 FLYR-inspired BCQ 和 PROS-inspired Scenario RL 方案"},
+    {"id":"2026-08-01-release-flow","text":"梳理 Simulation、Replay、Shadow Mode、灰度上线与 A/B Test 的生产上线流程"},
+    {"id":"2026-08-01-di-skills","text":"形成 Decision Intelligence 职业定位与七项可复用 Skill 框架"},
+    {"id":"2026-08-01-dashboard","text":"建立职业工作台、Life 项目档案和长期同步结构"}
   ],
-  "today": []
+  "today": [
+    {"id":"2026-08-02-oracle-test","text":"设计取消率 A/B/C 对照实验","detail":"固定网络优化输入，比较旧取消率、新取消率和实际取消率 Oracle 对净需求、BP 与收益的影响"},
+    {"id":"2026-08-02-run-registry","text":"用 RMS 运行台账登记首个真实批次","detail":"补齐 RUN_ID、数据版本、Git commit、三阶段负责人、耗时、WAPE 与异常说明"},
+    {"id":"2026-08-02-dapp-questions","text":"整理周一要确认的 DAPP 决策链路问题","detail":"明确 AU、座位级 BP、请求准入、物理库存扣减的执行顺序和接口；确认前不修改仿真代码"},
+    {"id":"2026-08-02-decision-output","text":"找出 RMS 中一个尚未转化为可执行决策的算法输出","detail":"写清业务用户、触发频率、输入、动作、护栏指标和回滚条件"},
+    {"id":"2026-08-02-english","text":"完成 10 分钟英语表达训练","detail":"主题：Why better forecast accuracy does not always produce better revenue outcomes"}
+  ]
 }
