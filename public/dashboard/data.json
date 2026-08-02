@@ -22,9 +22,9 @@
     {"id":"sc5","group":"第二曲线","name":"历史与金融危机","value":0,"color":"lavender"}
   ],
   "yesterday": [
-    "发布 Nina Career Dashboard 到个人主页",
-    "按当前实际状态重设 15 项职业资产进度基线",
-    "新增“动态定价综述论文”并将进度设为 50%"
+    {"id":"2026-08-01-dashboard","text":"发布 Nina Career Dashboard 到个人主页"},
+    {"id":"2026-08-01-baseline","text":"按当前实际状态重设 15 项职业资产进度基线"},
+    {"id":"2026-08-01-review-paper","text":"新增“动态定价综述论文”并将进度设为 50%"}
   ],
   "today": []
 }
