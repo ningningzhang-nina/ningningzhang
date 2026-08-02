@@ -144,6 +144,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               ? '香港大学统计学博士，专注于不确定环境下的智能决策系统。结合统计建模、预测优化、动态定价与 AI Agent，解决复杂商业场景中的资源配置和收益优化问题。当前在航空收益管理场景中落地这些方法，构建“预测—优化—控制”闭环系统。'
               : 'Ph.D. in Statistics from The University of Hong Kong. I build intelligent decision systems that combine statistical learning, optimization, dynamic pricing, and AI agents to solve complex business problems under uncertainty. I currently apply these methods to airline revenue management through a forecast-optimize-control loop.'}
           </p>
+          <div className="design-hero-leadership">
+            <div>
+              <span>ALGORITHM LEADERSHIP</span>
+              <strong>{isZh ? '算法负责人 · 跨模块项目管理' : 'Algorithm Lead · Cross-functional Program Management'}</strong>
+            </div>
+            <p>
+              {isZh
+                ? '统筹预测、优化、定价、仿真与验证，推动跨团队协作、实验治理和复杂算法交付。'
+                : 'Leading forecasting, optimization, pricing, simulation, and validation across teams—from interfaces and experiment governance to delivery.'}
+            </p>
+          </div>
           <div className="design-actions">
             <Link href={`/${locale}/projects`} className="design-button design-button-primary">
               {isZh ? '查看项目' : 'View Projects'}
@@ -183,6 +194,24 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <article><strong>{projects.length}</strong><span>{isZh ? '核心项目' : 'Core Projects'}</span></article>
             <article><strong>Ph.D.</strong><span>{isZh ? '统计学' : 'Statistics'}</span></article>
           </div>
+        </div>
+      </section>
+
+      <section className="design-section design-leadership-section" id="leadership">
+        <div className="design-section-heading">
+          <div>
+            <p className="design-kicker">LEADERSHIP & PROJECT MANAGEMENT</p>
+            <h2>{isZh ? '算法领导力与项目管理' : 'Leadership & Project Management'}</h2>
+          </div>
+        </div>
+        <div className="design-leadership-grid">
+          {leadershipItems.map((item, index) => (
+            <article key={item.title.en}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title[l]}</h3>
+              <p>{item.detail[l]}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -273,24 +302,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </Link>
             );
           })}
-        </div>
-      </section>
-
-      <section className="design-section" id="leadership">
-        <div className="design-section-heading">
-          <div>
-            <p className="design-kicker">LEADERSHIP & PROJECT MANAGEMENT</p>
-            <h2>{isZh ? '算法领导力与项目管理' : 'Leadership & Project Management'}</h2>
-          </div>
-        </div>
-        <div className="design-leadership-grid">
-          {leadershipItems.map((item, index) => (
-            <article key={item.title.en}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{item.title[l]}</h3>
-              <p>{item.detail[l]}</p>
-            </article>
-          ))}
         </div>
       </section>
 
