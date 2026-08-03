@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-08-02 11:14 CST",
+  "updatedAt": "2026-08-03 08:45 CST",
   "targetDate": "2027-08-01",
-  "todayDate": "2026-08-02",
-  "yesterdayDate": "2026-08-01",
-  "headline": "真正的进步，是把问题变成证据，把证据变成决策，再把决策沉淀成可复用的系统。",
+  "todayDate": "2026-08-03",
+  "yesterdayDate": "2026-08-02",
+  "headline": "先把最关键的验证闭环跑通，再让每一条进度都经得起证据追问。",
   "progress": [
     {"id":"tr1","group":"TravelSky","name":"民航收益管理系统开发","value":75,"color":"pink"},
     {"id":"tr2","group":"TravelSky","name":"民航动态定价引擎开发","value":70,"color":"rose"},
@@ -22,20 +22,15 @@
     {"id":"sc5","group":"第二曲线","name":"历史与金融危机","value":2,"color":"lavender"}
   ],
   "yesterday": [
-    {"id":"2026-08-01-rms-diagnosis","text":"完成取消率改进后 Bid Price 偏差扩大的根因分析，并设计旧模型、新模型与 Oracle 对照实验"},
-    {"id":"2026-08-01-run-registry","text":"生成 RMS 端到端运行台账，统一需求预测、网络优化和 BP 比较的版本、负责人、时间与结果"},
-    {"id":"2026-08-01-simulator-review","text":"审查仿真平台订座决策链路，明确 DP-BP-only 与 AU+DP-BP 的实现差距"},
-    {"id":"2026-08-01-rl-route","text":"完成民航强化学习路线调研与代码核对，形成 FLYR-inspired BCQ 和 PROS-inspired Scenario RL 方案"},
-    {"id":"2026-08-01-release-flow","text":"梳理 Simulation、Replay、Shadow Mode、灰度上线与 A/B Test 的生产上线流程"},
-    {"id":"2026-08-01-di-skills","text":"形成 Decision Intelligence 职业定位与七项可复用 Skill 框架"},
-    {"id":"2026-08-01-dashboard","text":"建立职业工作台、Life 项目档案和长期同步结构"},
-    {"id":"2026-08-01-financial-crisis","text":"学习经济危机与金融周期，理解杠杆顺周期和流动性反馈机制"}
+    {"id":"2026-08-02-homepage-leadership","text":"优化并发布中英文个人主页，将管理能力与跨模块领导力前置到首屏"},
+    {"id":"2026-08-02-dashboard-sync","text":"修复职业工作台昨日成果的数据结构与同步流程，并完成一致性校验和部署"},
+    {"id":"2026-08-02-life-automation","text":"创建并启用每日 Life 归档与公开工作台同步自动化"}
   ],
   "today": [
-    {"id":"2026-08-02-oracle-test","text":"设计取消率 A/B/C 对照实验","detail":"固定网络优化输入，比较旧取消率、新取消率和实际取消率 Oracle 对净需求、BP 与收益的影响"},
-    {"id":"2026-08-02-run-registry","text":"用 RMS 运行台账登记首个真实批次","detail":"补齐 RUN_ID、数据版本、Git commit、三阶段负责人、耗时、WAPE 与异常说明"},
-    {"id":"2026-08-02-dapp-questions","text":"整理周一要确认的 DAPP 决策链路问题","detail":"明确 AU、座位级 BP、请求准入、物理库存扣减的执行顺序和接口；确认前不修改仿真代码"},
-    {"id":"2026-08-02-decision-output","text":"找出 RMS 中一个尚未转化为可执行决策的算法输出","detail":"写清业务用户、触发频率、输入、动作、护栏指标和回滚条件"},
-    {"id":"2026-08-02-english","text":"完成 10 分钟英语表达训练","detail":"主题：Why better forecast accuracy does not always produce better revenue outcomes"}
+    {"id":"2026-08-03-controlled-test","text":"完成关键模型方案的三组受控验证","detail":"固定其他输入，对比三个方案版本对核心预测、决策与业务指标的影响"},
+    {"id":"2026-08-03-run-registry","text":"登记首个端到端真实运行批次","detail":"补齐运行标识、数据与代码版本、阶段耗时、核心指标和异常说明"},
+    {"id":"2026-08-03-decision-chain","text":"确认生产流程的关键决策链路","detail":"明确控制信号、准入规则与状态更新的执行顺序；确认前不修改执行层"},
+    {"id":"2026-08-03-leadership-case","text":"补充一个量化管理案例","detail":"为个人主页整理目标、跨模块协调动作、交付结果和可验证指标"},
+    {"id":"2026-08-03-english","text":"完成 10 分钟英语职业表达训练","detail":"主题：How I lead cross-functional decision-system projects from model to deployment"}
   ]
 }
