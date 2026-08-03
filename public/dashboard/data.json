@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-08-03 08:45 CST",
+  "updatedAt": "2026-08-03 23:05 CST",
   "targetDate": "2027-08-01",
   "todayDate": "2026-08-03",
   "yesterdayDate": "2026-08-02",
-  "headline": "先把最关键的验证闭环跑通，再让每一条进度都经得起证据追问。",
+  "headline": "看清生产与仿真的每一处差异，把验证闭环一步步跑通。",
   "progress": [
     {"id":"tr1","group":"TravelSky","name":"民航收益管理系统开发","value":75,"color":"pink"},
     {"id":"tr2","group":"TravelSky","name":"民航动态定价引擎开发","value":70,"color":"rose"},
@@ -27,10 +27,10 @@
     {"id":"2026-08-02-life-automation","text":"创建并启用每日 Life 归档与公开工作台同步自动化"}
   ],
   "today": [
-    {"id":"2026-08-03-controlled-test","text":"完成关键模型方案的三组受控验证","detail":"固定其他输入，对比三个方案版本对核心预测、决策与业务指标的影响"},
+    {"id":"2026-08-03-controlled-test","text":"完成关键模型方案的三组受控验证","detail":"固定网络优化输入，对比旧、新与实际取消率方案对预测、决策与收益指标的影响"},
     {"id":"2026-08-03-run-registry","text":"登记首个端到端真实运行批次","detail":"补齐运行标识、数据与代码版本、阶段耗时、核心指标和异常说明"},
-    {"id":"2026-08-03-decision-chain","text":"确认生产流程的关键决策链路","detail":"明确控制信号、准入规则与状态更新的执行顺序；确认前不修改执行层"},
-    {"id":"2026-08-03-leadership-case","text":"补充一个量化管理案例","detail":"为个人主页整理目标、跨模块协调动作、交付结果和可验证指标"},
-    {"id":"2026-08-03-english","text":"完成 10 分钟英语职业表达训练","detail":"主题：How I lead cross-functional decision-system projects from model to deployment"}
+    {"id":"2026-08-03-decision-chain","text":"确认生产流程的关键决策链路","detail":"明确控制信号、准入规则与状态更新的执行顺序；核实当前实际启用的预测口径"},
+    {"id":"2026-08-03-prod-sim-alignment","text":"对齐生产与仿真的算法实现口径","detail":"按对照结论先对齐预测结构与窗口粒度，再处理当前窗口需求、取消与动态规划分解"},
+    {"id":"2026-08-03-english","text":"完成一次英语职业表达训练","detail":"主题：How I lead cross-functional decision-system projects from model to deployment"}
   ]
 }
