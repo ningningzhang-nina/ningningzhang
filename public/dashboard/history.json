@@ -39,6 +39,14 @@
       "blockers": ["个人主页 dashboard 前端渲染问题在当天可见内容中尚无修复完成及新 commit 的明确证据"],
       "next": [],
       "progressSnapshot": {"tr1":75,"tr2":70,"tr3":55,"tr4":50,"tr5":0,"tr6":5,"tr7":50,"di1":3,"di2":0,"di3":0,"sc1":5,"sc2":0,"sc3":0,"sc4":2,"sc5":2}
+    },
+    {
+      "date": "2026-08-09",
+      "completed": [],
+      "decisions": [],
+      "blockers": [],
+      "next": [],
+      "progressSnapshot": {"tr1":75,"tr2":70,"tr3":55,"tr4":50,"tr5":0,"tr6":5,"tr7":50,"di1":3,"di2":0,"di3":0,"sc1":5,"sc2":0,"sc3":0,"sc4":2,"sc5":2}
     }
   ]
 }
