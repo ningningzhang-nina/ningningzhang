@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-08-08 23:00 CST",
+  "updatedAt": "2026-08-09 23:00 CST",
   "targetDate": "2027-08-01",
-  "todayDate": "2026-08-09",
-  "yesterdayDate": "2026-08-08",
+  "todayDate": "2026-08-10",
+  "yesterdayDate": "2026-08-09",
   "headline": "用可验证的结果定义完成，而不是用计划代替执行。",
   "progress": [
     {"id":"tr1","group":"TravelSky","name":"民航收益管理系统开发","value":75,"color":"pink"},
@@ -21,8 +21,6 @@
     {"id":"sc4","group":"第二曲线","name":"管理与带人能力","value":2,"color":"rose"},
     {"id":"sc5","group":"第二曲线","name":"历史与金融危机","value":2,"color":"lavender"}
   ],
-  "yesterday": [
-    {"id":"2026-08-08-execution-standard","text":"明确工程任务以真实修改、运行结果或 commit 作为完成证据，不再用计划代替执行"}
-  ],
+  "yesterday": [],
   "today": []
 }
