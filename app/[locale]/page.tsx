@@ -16,39 +16,72 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const experience = [
+const journey = [
   {
-    period: { zh: '2025.09 – 至今', en: 'Sep 2025 – Present' },
-    role: { zh: '博士后研究员 · 核心算法负责人', en: 'Postdoctoral Researcher · Algorithm Lead' },
-    organization: { zh: '中国民航信息网络股份有限公司', en: 'TravelSky Technology Limited' },
-    details: {
-      zh: [
-        '负责大型决策系统的算法研发，连接需求预测、优化、定价策略与仿真验证',
-        '将方法落地于航空收益管理与动态定价，构建“预测—优化—控制”闭环',
-      ],
-      en: [
-        'Lead algorithm development for large-scale decision systems, connecting demand forecasting, optimization, pricing strategy, and simulation-based validation',
-        'Apply these methods to airline revenue management and dynamic pricing through a forecast-optimize-control loop',
-      ],
+    period: '2025 – Present',
+    kind: { zh: '研究与工作', en: 'Research & Work' },
+    title: { zh: '博士后研究员 · 核心算法负责人', en: 'Postdoctoral Researcher · Algorithm Lead' },
+    institution: { zh: '中国民航信息网络股份有限公司（中国航信）', en: 'TravelSky Technology Limited' },
+    description: {
+      zh: '负责民航收益管理与动态定价算法研发，覆盖需求预测、旅客选择建模、动态规划、优化与仿真评测。',
+      en: 'Leading airline revenue management and dynamic pricing algorithms across demand forecasting, choice modeling, dynamic programming, optimization, and simulation-based evaluation.',
     },
+    href: '',
   },
   {
-    period: { zh: '2018', en: '2018' },
-    role: { zh: '算法实习生', en: 'Algorithm Intern' },
-    organization: { zh: '美团', en: 'Meituan' },
-    details: {
-      zh: ['参与外卖配送时间预测相关的特征工程与模型分析'],
-      en: ['Contributed to feature engineering and model analysis for delivery-time prediction'],
+    period: '2019 – 2024',
+    kind: { zh: '教育经历', en: 'Education' },
+    title: { zh: '统计学博士', en: 'Ph.D. in Statistics' },
+    institution: { zh: '香港大学', en: 'The University of Hong Kong' },
+    description: {
+      zh: '研究时间序列、概率统计与不确定性建模；获全额博士奖学金。',
+      en: 'Studied time series, probabilistic statistics, and uncertainty modeling; awarded a full Ph.D. scholarship.',
     },
+    href: 'https://www.hku.hk/',
   },
   {
-    period: { zh: '2017', en: '2017' },
-    role: { zh: '数据分析实习生', en: 'Data Analytics Intern' },
-    organization: { zh: '滴滴出行', en: 'DiDi' },
-    details: {
-      zh: ['开展供需关系分析、调价评估与实验分群'],
-      en: ['Conducted supply-demand analysis, pricing evaluation, and experiment segmentation'],
+    period: '2018',
+    kind: { zh: '实习经历', en: 'Internship' },
+    title: { zh: '算法实习生', en: 'Algorithm Intern' },
+    institution: { zh: '美团', en: 'Meituan' },
+    description: {
+      zh: '参与外卖配送时间预测的特征工程与模型分析。',
+      en: 'Worked on feature engineering and model analysis for delivery-time prediction.',
     },
+    href: '',
+  },
+  {
+    period: '2017',
+    kind: { zh: '实习经历', en: 'Internship' },
+    title: { zh: '数据分析实习生', en: 'Data Analytics Intern' },
+    institution: { zh: '滴滴出行', en: 'DiDi' },
+    description: {
+      zh: '开展供需分析、定价效果评估与实验分群。',
+      en: 'Worked on supply-demand analysis, pricing evaluation, and experiment segmentation.',
+    },
+    href: '',
+  },
+  {
+    period: '2016 – 2019',
+    kind: { zh: '教育经历', en: 'Education' },
+    title: { zh: '统计学硕士', en: 'M.S. in Statistics' },
+    institution: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
+    description: {
+      zh: '平均分 93.51 / 100，专业排名第一。',
+      en: 'GPA 93.51 / 100; ranked first in the program.',
+    },
+    href: 'https://www.bjtu.edu.cn/',
+  },
+  {
+    period: '2012 – 2016',
+    kind: { zh: '教育经历', en: 'Education' },
+    title: { zh: '信息与计算科学学士', en: 'B.S. in Information and Computing Science' },
+    institution: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
+    description: {
+      zh: '建立数学、统计与计算科学基础。',
+      en: 'Built a foundation in mathematics, statistics, and computing.',
+    },
+    href: 'https://www.bjtu.edu.cn/',
   },
 ] as const;
 
@@ -246,25 +279,42 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="design-section" id="experience">
         <div className="design-section-heading">
           <div>
-            <p className="design-kicker">WORK EXPERIENCE</p>
-            <h2>{isZh ? '工作经历' : 'Experience'}</h2>
+            <p className="design-kicker">MY JOURNEY</p>
+            <h2>{isZh ? '经历与成长' : 'My Journey'}</h2>
           </div>
-          <Link href={`/${locale}/about`}>{isZh ? '完整经历' : 'Full profile'} →</Link>
+          <Link href={`/${locale}/about`}>{isZh ? '查看详细履历' : 'Full background'} →</Link>
         </div>
-        <div className="design-timeline">
-          {experience.map((item) => (
-            <article key={item.period.en}>
-              <time>{item.period[l]}</time>
+        <p className="mb-10 max-w-[720px] text-[15px] leading-7 opacity-75">
+          {isZh
+            ? '从数学与统计研究出发，逐步走向面向真实业务的预测、优化与智能决策系统。'
+            : 'From mathematics and statistical research to forecasting, optimization, and intelligent decision systems in practice.'}
+        </p>
+        <div className="mx-auto max-w-[920px]">
+          {journey.map((item) => (
+            <article
+              key={`${item.period}-${item.title.en}`}
+              className="group grid grid-cols-1 gap-2 border-t border-current/15 py-7 md:grid-cols-[185px_minmax(0,1fr)] md:gap-10 md:py-9"
+            >
+              <div className="pt-1">
+                <time className="block text-[15px] font-semibold tracking-[-0.015em]">{item.period}</time>
+                <span className="mt-2 block text-[11px] uppercase tracking-[0.13em] opacity-55">{item.kind[l]}</span>
+              </div>
               <div>
-                <span className="design-timeline-dot" aria-hidden="true" />
-                <h3>{item.role[l]}</h3>
-                <h4>{item.organization[l]}</h4>
-                <ul>
-                  {item.details[l].map((detail) => <li key={detail}>{detail}</li>)}
-                </ul>
+                <h3 className="mb-1 text-[21px] font-semibold leading-snug tracking-[-0.025em] md:text-[24px]">
+                  {item.title[l]}
+                </h3>
+                <p className="mb-3 text-[15px] font-medium">
+                  {item.href ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 underline-offset-4 hover:decoration-current">
+                      {item.institution[l]} ↗
+                    </a>
+                  ) : item.institution[l]}
+                </p>
+                <p className="max-w-[650px] text-[14px] leading-[1.9] opacity-75">{item.description[l]}</p>
               </div>
             </article>
           ))}
+          <div className="border-t border-current/15" aria-hidden="true" />
         </div>
       </section>
 
