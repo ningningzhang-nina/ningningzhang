@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const timeline = [
   {
     period: '2025 –',
-    mark: 'TS',
+    mark: 'TravelSky',
     markClass: 'bg-[#e8f3ed] text-[#1d6c54]',
     text: {
       zh: '在中国航信担任博士后研究员及核心算法负责人，研究并实现民航收益管理和动态定价算法，涵盖需求预测、旅客选择模型、动态规划与仿真验证。',
@@ -39,7 +39,7 @@ const timeline = [
   },
   {
     period: '2018',
-    mark: 'M',
+    mark: 'Meituan',
     markClass: 'bg-[#fff0dc] text-[#b86608]',
     text: {
       zh: '在美团担任算法实习生，参与外卖配送时间预测的特征工程与模型分析。',
@@ -121,9 +121,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <section aria-label={zh ? '个人经历时间线' : 'Career and education timeline'}>
           <div className="space-y-0">
             {timeline.map((item) => (
-              <article key={`${item.period}-${item.mark}`} className="grid grid-cols-[92px_42px_minmax(0,1fr)] items-start gap-x-3 py-[9px] sm:grid-cols-[120px_52px_minmax(0,1fr)] sm:gap-x-5 sm:py-[11px]">
+              <article key={`${item.period}-${item.mark}`} className="grid grid-cols-[77px_77px_minmax(0,1fr)] items-start gap-x-3 py-[9px] sm:grid-cols-[120px_92px_minmax(0,1fr)] sm:gap-x-5 sm:py-[11px]">
                 <time className="pt-[7px] text-[12px] font-semibold leading-[18px] tabular-nums text-[#69736f] sm:text-[13px]">{item.period}</time>
-                <div className={`flex h-[36px] w-[36px] items-center justify-center rounded-[4px] text-[11px] font-extrabold tracking-[-0.02em] sm:h-[43px] sm:w-[43px] sm:text-[12px] ${item.markClass}`} aria-label={item.highlight[language]}>
+                <div className={`flex h-[36px] w-[75px] items-center justify-center rounded-[4px] px-1 text-[10px] font-extrabold tracking-[-0.03em] sm:h-[43px] sm:w-[88px] sm:text-[12px] ${item.markClass}`} aria-label={item.highlight[language]}>
                   {item.mark}
                 </div>
                 <p className="pt-[3px] text-[13px] leading-[1.65] text-[#27302d] sm:text-[14px] sm:leading-[1.7]">
