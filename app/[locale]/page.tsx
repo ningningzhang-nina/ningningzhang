@@ -145,7 +145,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <Link href={`/${locale}/blog`} className="hover:underline">{zh ? '技术文章' : 'Writing'} ↗</Link>
           <Link href={`/${locale}/travel`} className="hover:underline">{zh ? '旅行' : 'Travel'} ↗</Link>
           <a href="mailto:zhangnn0725@163.com" className="hover:underline">Email ↗</a>
-        </footer>      </main>
+        </footer>
+      </main>
     </div>
   );
 }
