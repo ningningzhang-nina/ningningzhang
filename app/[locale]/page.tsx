@@ -1,413 +1,146 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { setRequestLocale } from 'next-intl/server';
-import { getAllPapers, getAllPatents, getAllPosts, getAllProjects } from '@/lib/content';
 import graduationPortrait from '@/public/images/profile/graduation-portrait-retouched.jpg';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const isZh = locale === 'zh';
   return {
-    title: isZh ? '张宁宁｜决策智能与智能定价算法负责人' : 'Ningning Zhang | Decision Intelligence & Pricing Algorithm Lead',
-    description: isZh
-      ? '结合统计学习、优化与 AI，在不确定环境中构建智能定价、资源配置与收益优化决策系统。'
-      : 'Building intelligent pricing, resource-allocation, and revenue-optimization systems with statistical learning, optimization, and AI.',
+    title: locale === 'zh' ? '张宁宁 | 统计学、优化与智能定价' : 'Ningning Zhang | Statistics, Optimization & Pricing',
+    description: locale === 'zh'
+      ? '张宁宁的个人主页：教育经历、研究与工作，专注统计建模、收益管理、动态定价与决策智能。'
+      : 'Ningning Zhang: education, research and career in statistical modeling, revenue management, dynamic pricing and decision intelligence.',
   };
 }
 
-const journey = [
+const timeline = [
   {
-    period: '2025 – Present',
-    kind: { zh: '研究与工作', en: 'Research & Work' },
-    title: { zh: '博士后研究员 · 核心算法负责人', en: 'Postdoctoral Researcher · Algorithm Lead' },
-    institution: { zh: '中国民航信息网络股份有限公司（中国航信）', en: 'TravelSky Technology Limited' },
-    description: {
-      zh: '负责民航收益管理与动态定价算法研发，覆盖需求预测、旅客选择建模、动态规划、优化与仿真评测。',
-      en: 'Leading airline revenue management and dynamic pricing algorithms across demand forecasting, choice modeling, dynamic programming, optimization, and simulation-based evaluation.',
+    period: '2025 –',
+    mark: 'TS',
+    markClass: 'bg-[#e8f3ed] text-[#1d6c54]',
+    text: {
+      zh: '在中国航信担任博士后研究员及核心算法负责人，研究并实现民航收益管理和动态定价算法，涵盖需求预测、旅客选择模型、动态规划与仿真验证。',
+      en: 'Postdoctoral researcher and algorithm lead at TravelSky, developing airline revenue management and dynamic pricing algorithms spanning demand forecasting, choice modeling, dynamic programming, and simulation.',
     },
-    href: '',
+    highlight: { zh: '中国航信', en: 'TravelSky' },
+    url: '',
   },
   {
     period: '2019 – 2024',
-    kind: { zh: '教育经历', en: 'Education' },
-    title: { zh: '统计学博士', en: 'Ph.D. in Statistics' },
-    institution: { zh: '香港大学', en: 'The University of Hong Kong' },
-    description: {
-      zh: '研究时间序列、概率统计与不确定性建模；获全额博士奖学金。',
-      en: 'Studied time series, probabilistic statistics, and uncertainty modeling; awarded a full Ph.D. scholarship.',
+    mark: 'HKU',
+    markClass: 'bg-[#eaf0f9] text-[#204b88]',
+    text: {
+      zh: '在香港大学获得统计学博士学位，研究时间序列、统计建模与不确定性分析，获全额博士奖学金。',
+      en: 'Ph.D. in Statistics at the University of Hong Kong, focusing on time series, statistical modeling and uncertainty analysis. Awarded a full doctoral scholarship.',
     },
-    href: 'https://www.hku.hk/',
+    highlight: { zh: '香港大学', en: 'University of Hong Kong' },
+    url: 'https://www.hku.hk/',
   },
   {
     period: '2018',
-    kind: { zh: '实习经历', en: 'Internship' },
-    title: { zh: '算法实习生', en: 'Algorithm Intern' },
-    institution: { zh: '美团', en: 'Meituan' },
-    description: {
-      zh: '参与外卖配送时间预测的特征工程与模型分析。',
-      en: 'Worked on feature engineering and model analysis for delivery-time prediction.',
+    mark: 'M',
+    markClass: 'bg-[#fff0dc] text-[#b86608]',
+    text: {
+      zh: '在美团担任算法实习生，参与外卖配送时间预测的特征工程与模型分析。',
+      en: 'Algorithm intern at Meituan, working on feature engineering and model analysis for delivery-time prediction.',
     },
-    href: '',
+    highlight: { zh: '美团', en: 'Meituan' },
+    url: '',
   },
   {
     period: '2017',
-    kind: { zh: '实习经历', en: 'Internship' },
-    title: { zh: '数据分析实习生', en: 'Data Analytics Intern' },
-    institution: { zh: '滴滴出行', en: 'DiDi' },
-    description: {
-      zh: '开展供需分析、定价效果评估与实验分群。',
-      en: 'Worked on supply-demand analysis, pricing evaluation, and experiment segmentation.',
+    mark: 'DiDi',
+    markClass: 'bg-[#fff1eb] text-[#d76535]',
+    text: {
+      zh: '在滴滴出行担任数据分析实习生，开展供需关系分析、定价评估与实验分群。',
+      en: 'Data analytics intern at DiDi, working on supply-demand analysis, pricing evaluation and experiment segmentation.',
     },
-    href: '',
+    highlight: { zh: '滴滴出行', en: 'DiDi' },
+    url: '',
   },
   {
     period: '2016 – 2019',
-    kind: { zh: '教育经历', en: 'Education' },
-    title: { zh: '统计学硕士', en: 'M.S. in Statistics' },
-    institution: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
-    description: {
-      zh: '平均分 93.51 / 100，专业排名第一。',
-      en: 'GPA 93.51 / 100; ranked first in the program.',
+    mark: 'BJTU',
+    markClass: 'bg-[#f7e9ed] text-[#87394d]',
+    text: {
+      zh: '在北京交通大学获得统计学硕士学位，平均分 93.51 / 100，专业排名第一。',
+      en: 'M.S. in Statistics at Beijing Jiaotong University. GPA 93.51 / 100; ranked first in the program.',
     },
-    href: 'https://www.bjtu.edu.cn/',
+    highlight: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
+    url: 'https://www.bjtu.edu.cn/',
   },
   {
     period: '2012 – 2016',
-    kind: { zh: '教育经历', en: 'Education' },
-    title: { zh: '信息与计算科学学士', en: 'B.S. in Information and Computing Science' },
-    institution: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
-    description: {
-      zh: '建立数学、统计与计算科学基础。',
-      en: 'Built a foundation in mathematics, statistics, and computing.',
+    mark: 'BJTU',
+    markClass: 'bg-[#f7e9ed] text-[#87394d]',
+    text: {
+      zh: '在北京交通大学获得信息与计算科学学士学位，建立数学、统计与计算科学基础。',
+      en: 'B.S. in Information and Computing Science at Beijing Jiaotong University, building a foundation in mathematics, statistics and computing.',
     },
-    href: 'https://www.bjtu.edu.cn/',
-  },
-] as const;
-
-const skillGroups = [
-  {
-    title: { zh: '预测与统计建模', en: 'Forecasting & Statistics' },
-    items: ['Bayesian Time Series', 'Probabilistic Forecasting', 'LightGBM', 'Demand Unconstraining'],
-  },
-  {
-    title: { zh: '决策智能', en: 'Decision Intelligence' },
-    items: ['Optimization under Uncertainty', 'Dynamic Programming', 'Reinforcement Learning', 'Simulation-based Evaluation'],
-  },
-  {
-    title: { zh: '定价与收益优化', en: 'Pricing & Revenue Optimization' },
-    items: ['Dynamic Pricing', 'Choice Modeling', 'WTP', 'Bid Price'],
-  },
-  {
-    title: { zh: 'AI 系统', en: 'AI Systems' },
-    items: ['LLM Agent', 'Tool Calling', 'AI Decision Support', 'Experimentation'],
-  },
-] as const;
-
-const leadershipItems = [
-  {
-    title: { zh: '算法体系协调', en: 'Algorithm Program Coordination' },
-    detail: { zh: '统筹预测、网络优化、Bid Price 与定价模块的接口、依赖和验证节奏。', en: 'Coordinate interfaces, dependencies, and validation across forecasting, network optimization, bid price, and pricing modules.' },
-  },
-  {
-    title: { zh: '验证流程设计', en: 'Validation Workflow Design' },
-    detail: { zh: '建立基线、Oracle、固定随机数、压力场景与收益分解相结合的算法评测流程。', en: 'Design evaluation workflows combining baselines, Oracle controls, common random numbers, stress scenarios, and revenue decomposition.' },
-  },
-  {
-    title: { zh: '跨职能协作', en: 'Cross-functional Collaboration' },
-    detail: { zh: '推动预测、优化、测试与业务参与者围绕统一输入输出和验收标准协同。', en: 'Align forecasting, optimization, testing, and business stakeholders around shared contracts and acceptance criteria.' },
-  },
-  {
-    title: { zh: '实验与进度治理', en: 'Experiment & Delivery Governance' },
-    detail: { zh: '建立实验记录、运行状态、问题备注和结果对标机制，让复杂算法项目可追踪。', en: 'Establish experiment logs, run status, issue notes, and benchmark tracking for transparent algorithm delivery.' },
-  },
-] as const;
-
-const credentials = [
-  {
-    value: 'Ph.D.',
-    title: { zh: '香港大学统计学博士', en: 'Ph.D. in Statistics, HKU' },
-    note: { zh: '时间序列、概率建模与不确定性分析', en: 'Time series, probabilistic modeling, and uncertainty analysis' },
-  },
-  {
-    value: '#1',
-    title: { zh: '硕士专业排名', en: 'M.S. Program Rank' },
-    note: { zh: '平均分 93.51 / 100', en: 'GPA 93.51 / 100' },
-  },
-  {
-    value: '7',
-    title: { zh: '专利成果', en: 'Patents' },
-    note: { zh: '算法设计与业务应用相关', en: 'Algorithm design and applied systems' },
+    highlight: { zh: '北京交通大学', en: 'Beijing Jiaotong University' },
+    url: 'https://www.bjtu.edu.cn/',
   },
 ] as const;
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const isZh = locale === 'zh';
-  const l = isZh ? 'zh' : 'en';
-  const papers = getAllPapers();
-  const patents = getAllPatents();
-  const posts = getAllPosts(locale).slice(0, 3);
-  const allProjects = getAllProjects();
-  const featuredSlugs = [
-    'dynamic-pricing',
-    'revenue-management-optimization',
-    'revenue-management-ai-copilot',
-    'airline-rm-simulation-evaluation',
-  ];
-  const projects = featuredSlugs
-    .map((slug) => allProjects.find((project) => project.slug === slug))
-    .filter((project): project is NonNullable<typeof project> => Boolean(project));
-  const featuredPatents = patents.filter((patent) =>
-    patent.title.includes('航班聚合动态定价') || patent.title.includes('多智能体协同')
-  );
+  const language = locale === 'zh' ? 'zh' : 'en';
+  const zh = language === 'zh';
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  const resumeHref = `${basePath}/${isZh ? 'Ningning_Zhang_Resume_ZH.pdf' : 'Ningning_Zhang_Resume_EN.pdf'}`;
+  const resume = `${basePath}/Ningning_Zhang_Resume_${zh ? 'ZH' : 'EN'}.pdf`;
 
   return (
-    <div className="design-home">
-      <section className="design-hero" id="about">
-        <div className="design-hero-copy">
-          <p className="design-kicker">DECISION INTELLIGENCE · OPTIMIZATION · AI</p>
-          <h1>{isZh ? '张宁宁' : 'Ningning Zhang'}</h1>
-          <h2>{isZh ? '决策智能与智能定价算法负责人' : 'Decision Intelligence & Pricing Algorithm Lead'}</h2>
-          <p className="design-hero-summary">
-            {isZh
-              ? '香港大学统计学博士，专注于不确定环境下的智能决策系统。结合统计建模、预测优化、动态定价与 AI Agent，解决复杂商业场景中的资源配置和收益优化问题。当前在航空收益管理场景中落地这些方法，构建“预测—优化—控制”闭环系统。'
-              : 'Ph.D. in Statistics from The University of Hong Kong. I build intelligent decision systems that combine statistical learning, optimization, dynamic pricing, and AI agents to solve complex business problems under uncertainty. I currently apply these methods to airline revenue management through a forecast-optimize-control loop.'}
-          </p>
-          <div className="design-hero-leadership">
-            <div>
-              <span>ALGORITHM LEADERSHIP</span>
-              <strong>{isZh ? '算法负责人 · 跨模块项目管理' : 'Algorithm Lead · Cross-functional Program Management'}</strong>
-            </div>
-            <p>
-              {isZh
-                ? '统筹预测、优化、定价、仿真与验证，推动跨团队协作、实验治理和复杂算法交付。'
-                : 'Leading forecasting, optimization, pricing, simulation, and validation across teams—from interfaces and experiment governance to delivery.'}
+    <div className="min-h-[calc(100vh-68px)] bg-[#fafbfa] text-[#202b28]">
+      <main className="mx-auto max-w-[980px] px-5 pb-8 pt-6 sm:px-8 sm:pt-8">
+        <header className="mb-5 flex items-center justify-between gap-5 border-b border-[#dce2df] pb-5">
+          <div className="min-w-0">
+            <h1 className="text-[29px] font-bold tracking-[-0.045em] sm:text-[34px]">
+              {zh ? '张宁宁' : 'Ningning Zhang'}
+            </h1>
+            <p className="mt-1 text-[13px] leading-5 text-[#52605a] sm:text-[14px]">
+              {zh ? '统计学博士 · 决策智能 / 收益管理 / 动态定价' : 'Ph.D. in Statistics · Decision Intelligence / Revenue Management / Dynamic Pricing'}
             </p>
+            <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 text-[12px] font-medium text-[#226b9a]">
+              <a className="hover:underline" href="https://github.com/ningningzhang-nina" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+              <Link className="hover:underline" href={`/${locale}/papers`}>{zh ? '论文' : 'Papers'} ↗</Link>
+              <Link className="hover:underline" href={`/${locale}/projects`}>{zh ? '项目' : 'Projects'} ↗</Link>
+              <a className="hover:underline" href={resume}>{zh ? '简历 PDF' : 'Résumé PDF'} ↗</a>
+            </div>
           </div>
-          <div className="design-actions">
-            <Link href={`/${locale}/projects`} className="design-button design-button-primary">
-              {isZh ? '查看项目' : 'View Projects'}
-            </Link>
-            <a href={resumeHref} download className="design-button design-button-secondary">
-              {isZh ? '下载简历' : 'Download Résumé'}
-            </a>
-            <a
-              href="https://www.agifors.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="design-button design-button-secondary"
-            >
-              AGIFORS Member ↗
-            </a>
-            <a href="https://github.com/ningningzhang-nina" target="_blank" rel="noopener noreferrer" className="design-text-link">
-              GitHub ↗
-            </a>
-          </div>
-          <div className="design-tags">
-            {['Decision Intelligence', 'Optimization under Uncertainty', 'Dynamic Pricing', 'AI Decision Systems'].map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-        </div>
-
-        <div className="design-profile">
           <Image
             src={graduationPortrait}
-            alt={isZh ? '张宁宁的博士毕业照' : 'Graduation portrait of Ningning Zhang'}
+            alt={zh ? '张宁宁' : 'Ningning Zhang'}
             priority
-            sizes="(max-width: 980px) 500px, 420px"
+            className="h-[72px] w-[72px] flex-none rounded-md object-cover object-top sm:h-[88px] sm:w-[88px]"
+            sizes="88px"
           />
-          <div className="design-stats">
-            <article><strong>{papers.length}+</strong><span>{isZh ? '论文与研究成果' : 'Publications'}</span></article>
-            <article><strong>{patents.length}</strong><span>{isZh ? '专利' : 'Patents'}</span></article>
-            <article><strong>{projects.length}</strong><span>{isZh ? '核心项目' : 'Core Projects'}</span></article>
-            <article><strong>Ph.D.</strong><span>{isZh ? '统计学' : 'Statistics'}</span></article>
-          </div>
-        </div>
-      </section>
+        </header>
 
-      <section className="design-section design-leadership-section" id="leadership">
-        <div className="design-section-heading">
-          <div>
-            <p className="design-kicker">LEADERSHIP & PROJECT MANAGEMENT</p>
-            <h2>{isZh ? '算法领导力与项目管理' : 'Leadership & Project Management'}</h2>
-          </div>
-        </div>
-        <div className="design-leadership-grid">
-          {leadershipItems.map((item, index) => (
-            <article key={item.title.en}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{item.title[l]}</h3>
-              <p>{item.detail[l]}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="design-section" id="skills">
-        <div className="design-section-heading">
-          <div>
-            <p className="design-kicker">CORE EXPERTISE</p>
-            <h2>{isZh ? '核心能力' : 'Core Expertise'}</h2>
-          </div>
-        </div>
-        <div className="design-skill-grid">
-          {skillGroups.map((group) => (
-            <article key={group.title.en}>
-              <h3>{group.title[l]}</h3>
-              <div className="design-card-tags">
-                {group.items.map((item) => <span key={item}>{item}</span>)}
-              </div>
-            </article>
-          ))}
-        </div>
-        <div className="design-credential-grid">
-          {credentials.map((credential) => (
-            <article key={credential.value}>
-              <strong>{credential.value}</strong>
-              <h3>{credential.title[l]}</h3>
-              <p>{credential.note[l]}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="design-section" id="experience">
-        <div className="design-section-heading">
-          <div>
-            <p className="design-kicker">MY JOURNEY</p>
-            <h2>{isZh ? '经历与成长' : 'My Journey'}</h2>
-          </div>
-          <Link href={`/${locale}/about`}>{isZh ? '查看详细履历' : 'Full background'} →</Link>
-        </div>
-        <p className="mb-10 max-w-[720px] text-[15px] leading-7 opacity-75">
-          {isZh
-            ? '从数学与统计研究出发，逐步走向面向真实业务的预测、优化与智能决策系统。'
-            : 'From mathematics and statistical research to forecasting, optimization, and intelligent decision systems in practice.'}
-        </p>
-        <div className="mx-auto max-w-[920px]">
-          {journey.map((item) => (
-            <article
-              key={`${item.period}-${item.title.en}`}
-              className="group grid grid-cols-1 gap-2 border-t border-current/15 py-7 md:grid-cols-[185px_minmax(0,1fr)] md:gap-10 md:py-9"
-            >
-              <div className="pt-1">
-                <time className="block text-[15px] font-semibold tracking-[-0.015em]">{item.period}</time>
-                <span className="mt-2 block text-[11px] uppercase tracking-[0.13em] opacity-55">{item.kind[l]}</span>
-              </div>
-              <div>
-                <h3 className="mb-1 text-[21px] font-semibold leading-snug tracking-[-0.025em] md:text-[24px]">
-                  {item.title[l]}
-                </h3>
-                <p className="mb-3 text-[15px] font-medium">
-                  {item.href ? (
-                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="underline decoration-current/30 underline-offset-4 hover:decoration-current">
-                      {item.institution[l]} ↗
-                    </a>
-                  ) : item.institution[l]}
+        <section aria-label={zh ? '个人经历时间线' : 'Career and education timeline'}>
+          <div className="space-y-0">
+            {timeline.map((item) => (
+              <article key={`${item.period}-${item.mark}`} className="grid grid-cols-[92px_42px_minmax(0,1fr)] items-start gap-x-3 py-[9px] sm:grid-cols-[120px_52px_minmax(0,1fr)] sm:gap-x-5 sm:py-[11px]">
+                <time className="pt-[7px] text-[12px] font-semibold leading-[18px] tabular-nums text-[#69736f] sm:text-[13px]">{item.period}</time>
+                <div className={`flex h-[36px] w-[36px] items-center justify-center rounded-[4px] text-[11px] font-extrabold tracking-[-0.02em] sm:h-[43px] sm:w-[43px] sm:text-[12px] ${item.markClass}`} aria-label={item.highlight[language]}>
+                  {item.mark}
+                </div>
+                <p className="pt-[3px] text-[13px] leading-[1.65] text-[#27302d] sm:text-[14px] sm:leading-[1.7]">
+                  {item.text[language]}
                 </p>
-                <p className="max-w-[650px] text-[14px] leading-[1.9] opacity-75">{item.description[l]}</p>
-              </div>
-            </article>
-          ))}
-          <div className="border-t border-current/15" aria-hidden="true" />
-        </div>
-      </section>
-
-      <section className="design-section" id="projects">
-        <div className="design-section-heading">
-          <div>
-            <p className="design-kicker">SELECTED PROJECTS</p>
-            <h2>{isZh ? '代表项目' : 'Selected Projects'}</h2>
+              </article>
+            ))}
           </div>
-          <Link href={`/${locale}/projects`}>{isZh ? '查看全部项目' : 'View all projects'} →</Link>
-        </div>
-        <div className="design-project-grid">
-          {projects.map((project, index) => {
-            const title = isZh ? project.titleZh || project.title : project.titleEn || project.title;
-            const description = isZh ? project.descriptionZh || project.description : project.descriptionEn || project.description;
-            const application = isZh ? project.applicationZh : project.applicationEn;
-            const proof = isZh ? project.proofLabelZh : project.proofLabelEn;
-            return (
-              <Link href={`/${locale}/projects/${project.slug}`} key={project.slug}>
-                <article>
-                  <span className="design-card-index">{String(index + 1).padStart(2, '0')}</span>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
-                  {application && (
-                    <p className="design-card-application">
-                      <strong>{isZh ? '应用场景' : 'Application'}</strong>
-                      {application}
-                    </p>
-                  )}
-                  <div className="design-card-tags">
-                    {project.tags.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
-                  </div>
-                  {proof && <strong>{isZh ? `验证证据：${proof}` : `Evidence: ${proof}`}</strong>}
-                </article>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+        </section>
 
-      <section className="design-section" id="papers">
-        <div className="design-section-heading">
-          <div>
-            <p className="design-kicker">RESEARCH FOUNDATION</p>
-            <h2>{isZh ? '研究基础' : 'Research Foundation'}</h2>
-          </div>
-          <Link href={`/${locale}/papers`}>{isZh ? '查看研究成果' : 'View research work'} →</Link>
-        </div>
-        <div className="design-paper-grid">
-          {papers.slice(0, 2).map((paper) => (
-            <article key={paper.slug}>
-              <div><span>{paper.venue}</span><time>{paper.year}</time></div>
-              <h3>{paper.title}</h3>
-              <p>{paper.authors}</p>
-            </article>
-          ))}
-          {featuredPatents.map((patent) => (
-            <article key={patent.slug}>
-              <div><span>{isZh ? '发明专利' : 'Patent'}</span><time>PATENT</time></div>
-              <h3>{patent.title}</h3>
-              <p>{isZh ? `发明人：${patent.inventors}` : `Inventors: ${patent.inventors}`}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="design-section" id="writing">
-        <div className="design-section-heading">
-          <div>
-            <p className="design-kicker">TECHNICAL WRITING</p>
-            <h2>{isZh ? '技术文章' : 'Technical Notes'}</h2>
-          </div>
-          <Link href={`/${locale}/blog`}>{isZh ? '查看全部文章' : 'View all notes'} →</Link>
-        </div>
-        <div className="design-writing-list">
-          {posts.map((post) => (
-            <Link key={post.slug} href={post.externalUrl || `/${locale}/blog/${post.slug}`} target={post.externalUrl ? '_blank' : undefined}>
-              <h3>{post.title}</h3>
-              <span>{post.date} ↗</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="design-contact" id="contact">
-        <p className="design-kicker">GET IN TOUCH</p>
-        <h2>{isZh ? '交流决策智能、定价优化与职业机会' : 'Decision intelligence, pricing optimization, and opportunities'}</h2>
-        <p>{isZh ? '如果你正在寻找兼具统计建模深度、优化能力与复杂决策系统经验的算法负责人，欢迎联系我。' : 'If you are looking for an algorithm lead combining statistical depth, optimization, and complex decision-system experience, let’s talk.'}</p>
-        <div>
-          <a href="mailto:zhangnn0725@163.com" className="design-button design-button-primary">zhangnn0725@163.com</a>
-          <a href="https://github.com/ningningzhang-nina" target="_blank" rel="noopener noreferrer" className="design-button design-button-secondary">GitHub</a>
-        </div>
-      </section>
+        <footer className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[#dce2df] pt-4 text-[12px] text-[#51625c]">
+          <Link href={`/${locale}/about`} className="hover:underline">{zh ? '详细经历' : 'Full CV'} ↗</Link>
+          <Link href={`/${locale}/blog`} className="hover:underline">{zh ? '技术文章' : 'Writing'} ↗</Link>
+          <Link href={`/${locale}/travel`} className="hover:underline">{zh ? '旅行' : 'Travel'} ↗</Link>
+          <a href="mailto:zhangnn0725@163.com" className="hover:underline">Email ↗</a>
+        </footer>
+      </main>
     </div>
   );
 }
