@@ -113,8 +113,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             src={graduationPortrait}
             alt={zh ? '张宁宁' : 'Ningning Zhang'}
             priority
-            className="h-[72px] w-[72px] flex-none rounded-md object-cover object-top sm:h-[88px] sm:w-[88px]"
-            sizes="88px"
+            className="h-[112px] w-[112px] flex-none rounded-md object-cover object-top sm:h-[144px] sm:w-[144px]"
+            sizes="144px"
           />
         </header>
 
