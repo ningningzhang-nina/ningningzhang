@@ -134,7 +134,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               alt={zh ? '张宁宁' : 'Ningning Zhang'}
               priority
               fill
-              className="object-contain object-center"
+              className="object-cover object-[50%_48%]"
               sizes="(max-width: 1023px) 320px, 20vw"
             />
           </aside>
