@@ -94,8 +94,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <div className="min-h-[calc(100vh-68px)] bg-[#fafbfa] text-[#202b28]">
       <main className="mx-auto max-w-[1240px] px-5 pb-8 pt-6 sm:px-8 sm:pt-8">
-        <div className="grid items-stretch gap-x-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,1fr)] xl:gap-x-8">
-          <div className="min-w-0">
         <header className="mb-5 border-b border-[#dce2df] pb-5">
           <div className="min-w-0">
             <h1 className="text-[29px] font-bold tracking-[-0.045em] sm:text-[34px]">
@@ -113,6 +111,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </header>
 
+        <div className="grid items-stretch gap-x-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,1fr)] xl:gap-x-8">
         <section aria-label={zh ? '个人经历时间线' : 'Career and education timeline'}>
           <div className="space-y-0">
             {timeline.map((item) => (
@@ -129,26 +128,24 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </section>
 
+          <aside className="relative mt-5 aspect-[3/4] w-full max-w-[320px] lg:mt-0 lg:aspect-auto lg:max-w-none lg:self-stretch" aria-label={zh ? '个人照片' : 'Portrait'}>
+            <Image
+              src={graduationPortrait}
+              alt={zh ? '张宁宁' : 'Ningning Zhang'}
+              priority
+              fill
+              className="object-contain object-center"
+              sizes="(max-width: 1023px) 320px, 20vw"
+            />
+          </aside>
+        </div>
+
         <footer className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[#dce2df] pt-4 text-[12px] text-[#51625c]">
           <Link href={`/${locale}/about`} className="hover:underline">{zh ? '详细经历' : 'Full CV'} ↗</Link>
           <Link href={`/${locale}/blog`} className="hover:underline">{zh ? '技术文章' : 'Writing'} ↗</Link>
           <Link href={`/${locale}/travel`} className="hover:underline">{zh ? '旅行' : 'Travel'} ↗</Link>
           <a href="mailto:zhangnn0725@163.com" className="hover:underline">Email ↗</a>
-        </footer>
-          </div>
-          <aside className="mt-7 lg:mt-0 lg:self-start" aria-label={zh ? '个人照片' : 'Portrait'}>
-            <div className="w-full max-w-[280px] overflow-hidden rounded-[6px] shadow-[0_10px_35px_rgba(25,41,33,0.08)] lg:max-w-none">
-              <Image
-                src={graduationPortrait}
-                alt={zh ? '张宁宁' : 'Ningning Zhang'}
-                priority
-                className="block h-auto w-full"
-                sizes="(max-width: 1023px) 100vw, 20vw"
-              />
-            </div>
-          </aside>
-        </div>
-      </main>
+        </footer>      </main>
     </div>
   );
 }
