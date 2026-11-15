@@ -136,14 +136,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <a href="mailto:zhangnn0725@163.com" className="hover:underline">Email ↗</a>
         </footer>
           </div>
-          <aside className="mt-7 lg:mt-0 lg:self-stretch" aria-label={zh ? '个人照片' : 'Portrait'}>
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[6px] bg-[#edf0ed] shadow-[0_10px_35px_rgba(25,41,33,0.08)] lg:aspect-auto lg:h-full">
+          <aside className="mt-7 lg:mt-0 lg:self-start" aria-label={zh ? '个人照片' : 'Portrait'}>
+            <div className="w-full max-w-[280px] overflow-hidden rounded-[6px] shadow-[0_10px_35px_rgba(25,41,33,0.08)] lg:max-w-none">
               <Image
                 src={graduationPortrait}
                 alt={zh ? '张宁宁' : 'Ningning Zhang'}
                 priority
-                fill
-                className="object-cover object-top"
+                className="block h-auto w-full"
                 sizes="(max-width: 1023px) 100vw, 20vw"
               />
             </div>
